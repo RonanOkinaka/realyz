@@ -20,3 +20,5 @@ Then, one should clone this repository into a directory of their choice. In that
 
 There is a .env configuration file that contains some information that is required in order to use the backend.
 For security reasons, this is not published. There is, however, a "fill in the blank" version of this file called `env.template`.
+
+***Please commit to frontend/<Your issue> when committing changes.
