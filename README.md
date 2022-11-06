@@ -5,7 +5,7 @@ First, let's clone our repository, and install all of our yarn dependencies:
 
 ```
 git clone <github repo URL>
-cd realyz_frontend
+cd realyz/frontend
 ```
 
 The instructions to install Node.js will be different based on which platform you're running. It's heavily advised to install your Node.js using NVM (Node Version Manager) because it's easy to manage a standardized version and update it as needed.
