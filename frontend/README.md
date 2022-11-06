@@ -62,13 +62,6 @@ yarn prepare
 (We handle the yarn and npm conflict issues within our `.gitignore` we set up so dw about it!)
 To start our app, you just need to run `yarn start`!
 
-```
-yarn start
-
-And to build our project for production (with CRA and Webpack's bundling with all that goodness),
-
-```
-
 yarn run build
 
 ```
@@ -79,12 +72,15 @@ yarn run build
 Thanks for your interest in contributing to realyz!
 
 Here's a quick guide on how to get started.
+```
 
-1. Either make a new branch or a fork of this repository. `main` is a protected branch, **so you cannot push to it**.
-2. Follow the instructions in "Development Setup" above. If you're on a fork, replace the URL with the fork's URL; if you're on a different branch, check it out using `git checkout`.
-3. Beep boop away!
-4. **Before you push**, make sure your app runs with `yarn start`. If there are any errors, our CI/CD service will **reject your build**.
-5. Once you're ready, stage and commit your changes!
-6. Make a [pull request] with your changes, and let someone on your project team know.
-   a. Netlify has a neat feature called "Deploy Previews" that give you a link to preview your changes; [see the blog post](https://www.netlify.com/blog/2016/07/20/introducing-deploy-previews-in-netlify/) for more info!
-7. If your code passes code review, then we can **squash and merge** it into `main`. Congratulations! If you'd like, it's now safe to delete your branch/fork.
+1. `git checkout -b frontend origin/frontend` to sync your work history to the frontend team.
+2. Follow the instructions in `Development Setup` above.
+3. `git checkout -b Your_issue` to Beep boop away!
+4. **Before you push**, make sure your app runs with `npm start`. If there are any errors, our CI/CD service will **reject your build**.
+5. Once you're ready, stage and commit your changes to your branch!
+6. Make a [pull request] with your changes, and let Raj, Harvey, or Abhay know.
+7. If your code passes code review, then we can **squash and merge** it into `frontend`. Congratulations! If you'd like, it's now safe to delete your branch/fork.
+
+```
+*** Please treat frontend as our main branch and only commit to branch frontend/YourIssue. After code review we will merge your changes to frontend.

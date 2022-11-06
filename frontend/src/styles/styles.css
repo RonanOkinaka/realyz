@@ -1,0 +1,107 @@
+* {
+    font-family: 'Prata', monospace;
+}
+
+.fullpage {
+    position: absolute;
+    width: 95%;
+    height: 95%;
+}
+
+.fullpage #background {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    backdrop-filter: blur(2px);
+}
+
+.fullpage .slogan {
+    position: absolute;
+    
+    width: 100%;
+    /* background-color: black; */
+    
+    text-align: center;
+    top: 30%;
+}
+
+.fullpage .slogan h1 {
+    font-size: 4.5rem;
+    font-weight: normal;
+    color: white;
+    /* background-color: yellow; */
+}
+
+.fullpage button {
+    width: 111px;
+    height: 39px;
+    background-color: transparent;
+    border-color: white;
+    border-style: solid;
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.fullpage button:hover {
+    background-color: grey;
+}
+
+.fullpage .nav {
+    position: fixed;
+    left: 0;
+    /* background-color: black; */
+    color: white;
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    font-size: 30px;
+    overflow: hidden;
+}
+
+.fullpage .nav li {
+    float: right;
+}
+
+.fullpage .nav li button {
+    display: inline;
+    margin: 30px 150px;
+}
+
+.fullpage .nav .logo {
+    position: absolute;
+    margin: auto 36%;
+}
+
+.fullpage .signup {
+    position: absolute;
+    top: 60%;
+    width: 100%;
+    /* background-color: black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;  /* wraps enter button to the next line */
+    /* background-color: black; */
+}
+
+.fullpage .signup .signupform {
+    background-color: transparent;
+    width: 500px;
+    height: 40px;
+    font-size: 20px;
+    border-color: white;
+    border-style: solid;
+    color: white;
+}
+
+.fullpage .signup button {
+    margin-top: 20px;
+}
+
+.fullpage ::placeholder {
+    color: white;
+    text-align: center;
+}
