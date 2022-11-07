@@ -14,7 +14,7 @@ export default function LandingPage() {
             <Slogan/>
             <Signup/>
             {/* <LoginPopup/> */}
-            {/* <SignupPopup/> */}
+            <SignupPopup/>
         </body>
     );
 }
