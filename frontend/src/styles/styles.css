@@ -2,6 +2,19 @@
     font-family: 'Prata', monospace;
 }
 
+h1 {
+    font-size: 4.5rem;
+    font-weight: normal;
+    color: white;
+    /* background-color: yellow; */
+}
+
+h2 {
+    font-size: 3.6rem;
+    font-weight: normal;
+    color: white;
+}
+
 .fullpage {
     position: absolute;
     width: 95%;
@@ -19,20 +32,12 @@
 
 .fullpage .slogan {
     position: absolute;
-    
     width: 100%;
     /* background-color: black; */
-    
     text-align: center;
     top: 30%;
 }
 
-.fullpage .slogan h1 {
-    font-size: 4.5rem;
-    font-weight: normal;
-    color: white;
-    /* background-color: yellow; */
-}
 
 .fullpage button {
     width: 111px;
@@ -105,3 +110,52 @@
     color: white;
     text-align: center;
 }
+
+.fullpage .popup {
+    position: relative;
+    display: flex;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    width: 90%;
+    height: 70%;
+    top: 15%;
+    margin: 0 auto;
+    color: white;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.fullpage .popup .formcontainer {
+    display: flex;
+    /* background-color: black; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1vw;
+}
+.fullpage .popup .popupform {
+    background-color: transparent;
+    width: 500px;
+    height: 40px;
+    font-size: 20px;
+    border-color: white;
+    border-style: solid;
+    color: white;
+    margin: 0.5vw auto;
+}
+
+.fullpage .popup button {
+    margin-top: 1vw;
+}
+
+.fullpage .popup .name .nameform {
+    background-color: transparent;
+    height: 40px;
+    font-size: 20px;
+    border-color: white;
+    border-style: solid;
+    color: white;
+    margin: 0.5vw 0.5vw;
+}
+
