@@ -10,7 +10,10 @@ const USERS_TABLE_COLUMNS = {
     pass: false,
     email: true,
     fname: true,
-    lname: true
+    lname: true,
+    type: true,
+    company: true,
+    biography: true
 };
 
 // Returns true iff. the column exists in the users table and can be changed
