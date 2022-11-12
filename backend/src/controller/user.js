@@ -27,7 +27,7 @@ export async function registerUser(req, res) {
     }
 
     // If we've successfully created the account, redirect to it
-    return res.status(201).location(`/user/${req.body.uid}`);
+    return res.status(201).redirect(`/user/${uid}`);
 }
 
 export async function getUser(req, res) {
