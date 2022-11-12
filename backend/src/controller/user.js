@@ -30,6 +30,19 @@ export async function registerUser(req, res) {
     return res.status(201).location(`/user/${req.body.uid}`);
 }
 
+export async function getUser(req, res) {
+    const [error, userData] = await userModel.getUserPublicData(
+        // Guaranteed by Express to be non-null
+        req.params.uid
+    );
+
+    if (error !== null) {
+        return res.status(error.code).json({ error: error.message });
+    }
+
+    return res.status(200).json(userData);
+}
+
 // Check uid/pass for consistency
 export async function login(req, res) {
     const { uid, pass } = req.body;
