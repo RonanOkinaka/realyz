@@ -19,7 +19,7 @@ export async function registerUser(req, res) {
 
         if (err !== null) {
             console.error(err.message);
-            return res.status(err.code).json(err.message);
+            return res.status(err.code).json({ error: err.message });
         }
     } catch (except) {
         console.error(except);
@@ -28,6 +28,19 @@ export async function registerUser(req, res) {
 
     // If we've successfully created the account, redirect to it
     return res.status(201).location(`/user/${req.body.uid}`);
+}
+
+export async function getUser(req, res) {
+    const [error, userData] = await userModel.getUserPublicData(
+        // Guaranteed by Express to be non-null
+        req.params.uid
+    );
+
+    if (error !== null) {
+        return res.status(error.code).json({ error: error.message });
+    }
+
+    return res.status(200).json(userData);
 }
 
 // Check uid/pass for consistency

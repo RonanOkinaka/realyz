@@ -73,6 +73,17 @@ export async function registerUser(uid, pass, userData) {
     return null;
 }
 
+export async function getUserPublicData(uid) {
+    // As is, this table stores ONLY public data (on purpose)
+    const userData = await getUserData(uid);
+
+    if (!userData) {
+        return [new ResError(404, `No user exists with uid '${uid}'`), null];
+    } else {
+        return [null, userData];
+    }
+}
+
 // Checks consistency between the hashed version of a user's password
 // and their uid
 export async function checkPassword(uid, pass) {
