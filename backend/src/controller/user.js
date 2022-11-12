@@ -19,7 +19,7 @@ export async function registerUser(req, res) {
 
         if (err !== null) {
             console.error(err.message);
-            return res.status(err.code).json(err.message);
+            return res.status(err.code).json({ error: err.message });
         }
     } catch (except) {
         console.error(except);
