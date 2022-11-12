@@ -7,7 +7,7 @@ export async function registerUser(req, res) {
     const { uid, pass } = req.body;
 
     if (!uid || !pass) {
-        return res.status(400).json('Missing username or password');
+        return res.status(400).json({ error: 'Missing username or password' });
     }
 
     // These are dealt with separately
