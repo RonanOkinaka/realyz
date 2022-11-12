@@ -134,6 +134,13 @@ h2 {
     align-items: center;
     margin-top: 1vw;
 }
+
+.fullpage .popup .popupnav {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}
+
 .fullpage .popup .popupform {
     background-color: transparent;
     width: 500px;
@@ -147,6 +154,16 @@ h2 {
 
 .fullpage .popup button {
     margin-top: 1vw;
+}
+
+.fullpage .popup .btnclosemodal {
+    position: absolute;
+    top: 1px;
+    right : 20px;
+    height: 35px;
+    width: 35px;
+    font-size: 24px;
+    border-radius:1cm;
 }
 
 .fullpage .popup .name .nameform {

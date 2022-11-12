@@ -1,10 +1,10 @@
 import React from "react";
 import Logo from "../media/logo.svg"
-export default function Navbar() {
+const Navbar = ({show}) => {
     return (
         <ul className="nav">
             <li>
-                <button>Sign in</button>
+                <button onClick={show}>Sign in</button>
             </li>
             <li className="logo">
                 <img src={Logo} alt="Realyz"/>
@@ -13,3 +13,4 @@ export default function Navbar() {
     )
 }
 
+export default Navbar;
