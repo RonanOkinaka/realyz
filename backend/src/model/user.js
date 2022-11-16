@@ -21,6 +21,20 @@ function canEditColumn(field) {
     return !!USERS_TABLE_COLUMNS[field];
 }
 
+function generateUserColumnSql(userData, fields, values) {
+    for (var key in userData) {
+        if (!canEditColumn(key)) {
+            return new ResError(400, `Invalid field ${key}`);
+        }
+
+        // These are taken by reference
+        fields.push(key);
+        values.push(userData[key]);
+    }
+
+    return null;
+}
+
 // For now, this is only used to pepper the passwords (but that can change)
 function processPass(pass) {
     return pass + process.env.PEPPER;
@@ -47,15 +61,10 @@ export async function registerUser(uid, pass, userData) {
     const hashedPass = bcrypt.hashSync(processPass(pass), salt);
 
     // Generate our SQL query
-    let userDataFields = ['uid'];
-    let userDataValues = [uid];
-    for (var key in userData) {
-        if (!canEditColumn(key)) {
-            return new ResError(400, `Invalid field '${key}'`);
-        }
-
-        userDataFields.push(key);
-        userDataValues.push(userData[key]);
+    let fields = ['uid'], values = [uid];
+    const err = generateUserColumnSql(userData, fields, values);
+    if (err) {
+        return err;
     }
 
     // Note that there are two tables here:
@@ -63,7 +72,7 @@ export async function registerUser(uid, pass, userData) {
     //  - user_auth (stores uid + password representation)
     await pool.query(
         `INSERT INTO users (??) VALUES (?)`,
-        [userDataFields, userDataValues]
+        [fields, values]
     );
     await pool.query(
         'INSERT INTO user_auth (uid, pass) VALUES (?, ?)',
@@ -82,6 +91,25 @@ export async function getUserPublicData(uid) {
     } else {
         return [null, userData];
     }
+}
+
+export async function updateUserData(uid, userData) {
+    let args = [];
+
+    const err = generateUserColumnSql(userData, args, args);
+    if (err) {
+        return err;
+    }
+    if (!args.length) {
+        return new ResError(400, 'Must provide fields to update');
+    }
+
+    const updateStr = '?? = ?'.repeat(args.length / 2);
+    await pool.query(
+        `UPDATE users SET ${updateStr} WHERE uid = ?`,
+        args.concat(uid)
+    );
+    return null;
 }
 
 // Checks consistency between the hashed version of a user's password
