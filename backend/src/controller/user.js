@@ -43,6 +43,18 @@ export async function getUser(req, res) {
     return res.status(200).json(userData);
 }
 
+export async function updateUser(req, res) {
+    const uid = req.body.uid;
+    delete req.body.uid;
+
+    const err = await userModel.updateUserData(uid, req.body);
+    if (err !== null) {
+        return res.status(err.code).json({ error: err.message });
+    }
+
+    return res.status(204).send();
+}
+
 // Check uid/pass for consistency
 export async function login(req, res) {
     const { uid, pass } = req.body;
