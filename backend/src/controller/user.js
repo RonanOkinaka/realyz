@@ -14,10 +14,19 @@ export async function registerUser(req, res) {
     delete req.body.uid;
     delete req.body.pass;
 
+    const userLoc = `/user/${uid}`;
+
     try {
         const err = await userModel.registerUser(uid, pass, req.body);
 
         if (err !== null) {
+            if (err.code == 409) {
+                return res.status(409).json({
+                    error: err.message,
+                    href: userLoc
+                });
+            }
+
             console.error(err.message);
             return res.status(err.code).json({ error: err.message });
         }
@@ -27,7 +36,7 @@ export async function registerUser(req, res) {
     }
 
     // If we've successfully created the account, redirect to it
-    return res.status(201).redirect(`/user/${uid}`);
+    return res.status(201).location(userLoc).send();
 }
 
 export async function getUser(req, res) {
