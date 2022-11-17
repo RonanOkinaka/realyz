@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 const SignupPopup = ({vis, hide}) => (vis == 1) ? (
     <div className="popup">
