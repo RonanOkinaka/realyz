@@ -29,6 +29,16 @@ module.exports={
      */
     target: "web",
     devServer: {
+        /** "proxy" 
+         * port of backend server - prevent CORS issue
+        */
+        proxy: {
+            '/api': {
+                target: 'http://localhost:8080',
+                secure: false,
+            }
+        },
+
         /** "port" 
          * port of dev server
         */
@@ -91,3 +101,4 @@ module.exports={
         ]
     }
 }
+

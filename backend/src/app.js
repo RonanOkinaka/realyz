@@ -7,12 +7,12 @@ import sessionRoute from './route/session.js';
 import userRoute from './route/user.js';
 
 const corsOptions = {
-    origin: '*',
+    origin: 'http://localhost:9500',
     credentials: true,
     optionsSuccessStatus: 200,
 }
 
-const PORT = process.env.PORT || 8080;  //localhost port
+const PORT = process.env.PORT;  //localhost port
 // Set up Express.js routing
 // TODO: some CORS and HTTPS configuration may be necessary here
 const server = express();
@@ -20,14 +20,6 @@ server.use(cors(corsOptions));
 server.use(express.json());
 server.use('/session', sessionRoute);
 server.use('/user', userRoute);
-
-// server.get("/api", (req, res) => {
-//     res.json({ message: "Hello from server!" });
-//   });
-
-// server.get("/", (req, res) => {
-//     res.json({ message: "ddd from server!" });
-// });
 
 server.listen(PORT, function(err, _data) {
     if (err) {
