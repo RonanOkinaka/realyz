@@ -7,5 +7,5 @@ const userRoute = Router();
 userRoute.post('/', userController.registerUser);
 userRoute.get('/:uid', userController.getUser);
 userRoute.patch('/:uid', authorizeUserMiddleware, userController.updateUser);
-
+  
 export default userRoute;

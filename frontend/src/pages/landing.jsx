@@ -8,6 +8,7 @@ import SignupPopup from "../components/signupPopup";
 import useModal from "../util/useModal";
 
 const LandingPage = () => {
+    //FIXME: prevent modal switching when user fails to fill out form
     const {vis, toggle} = useModal(); //by default set state to 0 (hide all)
     return (
         <body className="fullpage">
