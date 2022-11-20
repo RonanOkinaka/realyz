@@ -3,9 +3,9 @@ import Logo from "../media/logo.svg"
 import { clearUserData, loginUser, storeBearerToken, userData } from "../util/data";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = ({show}) => {
+const Navbar = ({isLanding, show}) => {
     const navigate = useNavigate();
-    const handleOnClick = event => {
+    const handleOnClickSignin = event => {
         if (!(userData['uid'] || userData['pass']))
         {
             clearUserData();
@@ -22,18 +22,34 @@ const Navbar = ({show}) => {
             });
         }
     }
+
+    const handleOnClickSignout = event => {
+        clearUserData();
+        navigate('/');
+    }
     
 
     return (
         <ul className="nav">
-            <li>
-                <button onClick={handleOnClick}>
-                    Sign in
-                </button>
-            </li>
-            <li className="logo">
-                <img src={Logo} alt="Realyz"/>
-            </li>
+            { isLanding() &&
+                <>
+                    <li>
+                        <button onClick={handleOnClickSignin}>
+                            Sign in
+                        </button>
+                    </li>
+                    <li className="logo">
+                        <img src={Logo} alt="Realyz"/>
+                    </li>
+                </>
+            }
+            { !isLanding() &&
+                <>
+                    <li>
+                        <button onClick={handleOnClickSignout}>Sign out</button>
+                    </li>
+                </>
+            }
         </ul>
     );
 }

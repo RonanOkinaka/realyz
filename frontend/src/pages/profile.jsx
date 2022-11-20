@@ -6,7 +6,7 @@ const Profile = () => {
     return (
         <body className="profilepage">
             <div className="backgroundcontainer" style={{ backgroundImage: `url(${Background})` }}>
-                Hello World
+                <Navbar isLanding={() => false}/>
             </div>
         </body>
     );
