@@ -1,28 +1,42 @@
-import {Link, Routes, Route, useNavigate} from 'react-router-dom';
-import {registerUser, storeUserData} from "../util/data";
+import {userData, loginUser, registerUser, storeUserData, clearUserData, storeBearerToken} from "../util/data";
+import React, {useState} from 'react';
+import { useNavigate } from "react-router-dom";
 
 function SignupPopup ({vis, hide}){
+    const [err, setErr] = useState(null);
+    const navigate = useNavigate();
+
     const handleSubmit = event => {
         let fname = event.target.firstname.value;
         let lname = event.target.lastname.value;
         let pass = event.target.pwd.value;
-        // Error Processing
+        event.preventDefault();
         if (pass.toString().length < 8) {
-            console.error("password has to have a minimum of 8 Digits");
-            event.preventDefault();
+            setErr("password has to have a minimum of 8 Digits");
         }
         else {
             event.preventDefault();
+            console.log(userData);
             storeUserData(["fname", "lname", "pass"], [fname, lname, pass]);
             registerUser()
+                //if account creation succeeded, login user automatically and goto user portal.
                 .then(function (response){
-                    // console.log(response);
-                    //Success: status: 201, statusText: "Created"
+                    loginUser()
+                        .then(function(response){
+                            storeBearerToken(response['data']['token']);
+                            navigate('/profile');
+                        })
+                        .catch(function(error){
+                            setErr("cannot sign in user after signing up. Dev error.");
+                            clearUserData();
+                        });
                 })
                 .catch(function(error) {
                     if (error.response.status === 409)
-                        console.log("Your email has already been registered in the system.");
-                    // console.log(responseStatus);
+                        setErr("Your email has already been registered in the system.");
+                    if (error.response.status === 500)
+                        setErr("Internal Server Error.");
+                    clearUserData();
                 });
         }
     }
@@ -40,6 +54,7 @@ function SignupPopup ({vis, hide}){
                 </div>
                 <input className="popupform" type="password" placeholder="Set a password: " name="pwd" required></input>
                 <button type="submit">Join</button>
+                {err && <p>error: {err}</p>}
             </form>
         </div>
     ) : null;

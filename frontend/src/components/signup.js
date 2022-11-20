@@ -1,33 +1,43 @@
-import React from "react";
-import {storeUserData, responseStatus, dump} from "../util/data";
+import React, {useState} from "react";
+import {storeUserData} from "../util/data";
 
 export default function Signup({show}) {
+    const [status, setStatus] = useState(false);
+    const [err, setErr] = useState(null);
+    
+    //TODO: clear userdata \ {uid, email} after clicking Enter.
     const handleSubmit = event => {
         let email = event.target.usrname.value;
+        email = email.toString().replace(/\s/g, '');    //delete blank spaces 
         let username = email;
         event.preventDefault(); // prevent page refresh
-        storeUserData(['uid', 'email'], [username, email]);
+        // prevent popup if user does NOT fill in a valid email.
+        if (email.length === 0) {
+            setErr("your email isn't valid.");
+            setStatus(false);
+        }
+        else{
+            storeUserData(['uid', 'email'], [username, email]);
+            setErr(null);
+            setStatus(true);
+        }
     };
+
+    const doNothing = () => {
+    }
 
     return (
         <div className="signup">
-            <form onSubmit={handleSubmit}>
+            <form className="formcontainer" onSubmit={handleSubmit}>
                 <input
                     className="signupform" 
                     type="text" 
                     placeholder="yourworkemail@example.com" 
                     name="usrname"
-                required/>
-                <button type="submit" onClick={show}>Enter</button>
+                />
+                <button type="submit" onClick={status ? show : doNothing}>Enter</button>
+                {err && <p>Error: {err}</p>}
             </form>
         </div>
     );
 }
-
-
-
-// export default function Signup({show}) {
-
-
-
-// }
