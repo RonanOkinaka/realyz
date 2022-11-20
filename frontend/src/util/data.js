@@ -1,9 +1,7 @@
-import React from "react";
 import axios, { AxiosHeaders } from "axios";
 
-const userData = {};
-const bearerToken = '';
-const responseStatus = 0;
+let userData = {};  //TODO: use sessionStorage to store userData
+let bearerToken = "";
 
 /*    
 data: {
@@ -21,8 +19,13 @@ const storeUserData = (param, val) => {
     }
 }
 
+const storeBearerToken = (token) => {
+    bearerToken = token;
+}
+
 const clearUserData = () => {
     userData = {};
+    bearerToken = "";
 }
 
 const registerUser = () => axios({
@@ -36,12 +39,12 @@ const loginUser = () => axios({
     method: 'post',
     baseURL: 'http://localhost:8080',
     url: '/session/login',
-    data: userData //FIXME: only pass in uid and pass fields
-}).then(function (response) {
-    bearerToken = response['data']['token'];
-    console.log(bearerToken);
+    data: userData  //backend only takes uid and pass fields in userData.
 });
 
+const signoutUser = () => axios({
+
+})
 const getUserData = (uid) => axios ({
     method: 'get',
     baseURL: 'http://localhost:8080',
@@ -56,4 +59,4 @@ const dump = () => {
     console.log(userData);
 }
 
-export {userData, bearerToken, responseStatus, storeUserData, clearUserData, registerUser, loginUser, getUserData, dump};
+export {userData, bearerToken, storeBearerToken, storeUserData, clearUserData, registerUser, loginUser, getUserData, dump};

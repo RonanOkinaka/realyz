@@ -6,6 +6,7 @@ import VidBackground from "../components/vidBackground";
 import LoginPopup from "../components/loginPopup";
 import SignupPopup from "../components/signupPopup";
 import useModal from "../util/useModal";
+import { clearUserData } from "../util/data";
 
 const LandingPage = () => {
     //FIXME: prevent modal switching when user fails to fill out form
@@ -23,11 +24,11 @@ const LandingPage = () => {
             {/* <button className="btn-default" onClick={()=>toggle(1)}>Show modal</button> */}
             <LoginPopup
                 vis={vis}
-                hide={() => toggle(0)}
+                hide={() => {toggle(0)}}
             />
             <SignupPopup
                 vis={vis}
-                hide={() => toggle(0)}
+                hide={() => {toggle(0); clearUserData();}}
             />
         </body>
     );

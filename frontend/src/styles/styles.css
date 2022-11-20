@@ -2,6 +2,10 @@
     font-family: 'Prata', monospace;
 }
 
+html {
+    height: 100%;
+}
+
 h1 {
     font-size: 4.5rem;
     font-weight: normal;
@@ -126,9 +130,10 @@ h2 {
     flex-direction: column;
 }
 
-.fullpage .popup .formcontainer {
+.fullpage .formcontainer {
     display: flex;
     /* background-color: black; */
+    color: white;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -176,3 +181,15 @@ h2 {
     margin: 0.5vw 0.5vw;
 }
 
+/* Profile Page */
+.profilepage .backgroundcontainer{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /* background-size: contain; */
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
