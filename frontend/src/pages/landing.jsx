@@ -9,12 +9,12 @@ import useModal from "../util/useModal";
 import { clearUserData } from "../util/data";
 
 const LandingPage = () => {
-    //FIXME: prevent modal switching when user fails to fill out form
     const {vis, toggle} = useModal(); //by default set state to 0 (hide all)
     return (
         <body className="fullpage">
             <VidBackground/>
             <Navbar
+                isLanding = {() => true}
                 show={() => toggle(2)}
             />
             <Slogan/>
