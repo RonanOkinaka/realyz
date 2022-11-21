@@ -3,12 +3,17 @@ import axios, { AxiosHeaders } from "axios";
 let userData = {};  //TODO: use sessionStorage to store userData
 let bearerToken = "";
 
-/*    
-data: {
-    "uid": "test0",
-    "pass": "test888",
-    "fname": "fred",
-    "lname": "test"
+/*
+{
+    "data": {
+        "uid": "a",
+        "email": "a",
+        "fname": "a",
+        "lname": "a",
+        "type": null,
+        "company": null,
+        "biography": null
+    },
 }
 */
 
@@ -17,6 +22,16 @@ const storeUserData = (param, val) => {
     {
         userData[param[i]] = val[i];
     }
+}
+
+//takes in a list of requested user datatypes, return a list of corresponding values.
+function getLocalUserData(param){
+    let selectedData = {};
+    for (let i = 0; i < param.length; i++)
+    {
+        selectedData[param[i]] = userData[param[i]];
+    }
+    return selectedData;
 }
 
 const storeBearerToken = (token) => {
@@ -42,21 +57,15 @@ const loginUser = () => axios({
     data: userData  //backend only takes uid and pass fields in userData.
 });
 
-const signoutUser = () => axios({
-
-})
+//TODO: get user profile picture
 const getUserData = (uid) => axios ({
     method: 'get',
     baseURL: 'http://localhost:8080',
     url: "/user/" + uid,
-}).then(function (response) {
-    // console.log(bearerToken);
-    // console.log(response);
 });
-
 
 const dump = () => {
     console.log(userData);
 }
 
-export {userData, bearerToken, storeBearerToken, storeUserData, clearUserData, registerUser, loginUser, getUserData, dump};
+export {userData, bearerToken, storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, loginUser, getUserData, dump};
