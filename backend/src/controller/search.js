@@ -1,20 +1,23 @@
-import * as userModel from '../model/user.js';
+import * as searchModel from '../model/search.js';
 
 export async function searchUsers(req, res) {
-    let err, results;
-
     try {
-        const { wildcard } = req.query;
+        const { wildcard, connected } = req.query;
         delete req.query.wildcard;
+        delete req.query.connected;
 
-        [err, results] = await userModel.searchUsers(req.query, wildcard);
+        const { uid } = req.body;
+
+        const [err, results] = await searchModel.searchUsers(
+            req.query, wildcard, connected, uid
+        );
         if (err !== null) {
             return res.status(err.code).json({ error: err.message });
         }
+
+        return res.status(200).json(results);
     } catch (except) {
         console.error(except);
         return res.status(500).json({ error: 'Internal server error' });
     }
-
-    return res.status(200).json(results);
 }

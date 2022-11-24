@@ -15,7 +15,7 @@ class TableEntryMetadata {
 
 // Lists all columns in the users table and whether they can be edited
 // after account creation
-const USERS_TABLE_COLUMNS = {
+export const USERS_TABLE_COLUMNS = {
     uid: new TableEntryMetadata(false),
     pass: new TableEntryMetadata(false, false, false),
     email: new TableEntryMetadata(),
@@ -32,7 +32,7 @@ function canEditColumn(field) {
     return colData && colData.isReal && colData.canEdit;
 }
 
-function generateUserColumnSql(userData, fields, values, predicate) {
+export function generateUserColumnSql(userData, fields, values, predicate) {
     for (var key in userData) {
         if (!predicate) {
             return new ResError(400, `Invalid field ${key}`);
@@ -134,58 +134,4 @@ export async function checkPassword(uid, pass) {
 
     return userAuth[0] && userAuth[0].pass
         && bcrypt.compareSync(processPass(pass), userAuth[0].pass);
-}
-
-export async function searchUsers(queryData, wildcard) {
-    let args = [];
-    let whereClauses = [];
-
-    for (var field in queryData) {
-        if (field == 'type') {
-            args.push(field);
-            args.push(queryData[field]);
-
-            // No LIKE allowed for this field
-            whereClauses.push('(?? = ?)');
-            continue;
-        }
-
-        const colData = USERS_TABLE_COLUMNS[field];
-        if (!colData || !colData.isReal || !colData.canSearch) {
-            return [new ResError(400, `Invalid field '${field}'`), null];
-        }
-
-        // To prevent a full table scan, we don't allow strings that would
-        // take the form '%', and escape all wildcards
-        let queryStr = queryData[field].replaceAll('%', '\\%').replaceAll('_', '\\_');
-
-        if (wildcard) {
-            if (!queryStr.length) {
-                return [
-                    new ResError(400, 'No empty strings with wildcard'),
-                    null
-                ];
-            }
-
-            args.push(field);
-            args.push(queryStr + '%');
-            whereClauses.push('(?? LIKE ?)');
-        } else {
-            args.push(field);
-            args.push(queryStr);
-            whereClauses.push('(?? = ?)');
-        }
-    }
-
-    if (!args.length) {
-        return [
-            new ResError(400, 'Must provide fields by which to search'),
-            null
-        ];
-    }
-
-    const [results] = await pool.query(
-        `SELECT * FROM users WHERE ${whereClauses.join(' AND ')}`, args
-    );
-    return [null, results];
 }
