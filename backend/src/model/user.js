@@ -3,27 +3,38 @@ import bcrypt from 'bcryptjs';
 import pool from '../database.js';
 import { ResError } from '../error.js';
 
+class TableEntryMetadata {
+    constructor(canEdit = true, canSearch = true, isReal = true) {
+        this.canEdit = canEdit;
+        this.canSearch = canSearch;
+
+        // Handy to denote implicit or special columns
+        this.isReal = isReal;
+    }
+};
+
 // Lists all columns in the users table and whether they can be edited
 // after account creation
 const USERS_TABLE_COLUMNS = {
-    uid: false,
-    pass: false,
-    email: true,
-    fname: true,
-    lname: true,
-    type: true,
-    company: true,
-    biography: true
+    uid: new TableEntryMetadata(false),
+    pass: new TableEntryMetadata(false, false, false),
+    email: new TableEntryMetadata(),
+    fname: new TableEntryMetadata(),
+    lname: new TableEntryMetadata(),
+    type: new TableEntryMetadata(),
+    company: new TableEntryMetadata(),
+    biography: new TableEntryMetadata(true, false)
 };
 
 // Returns true iff. the column exists in the users table and can be changed
 function canEditColumn(field) {
-    return !!USERS_TABLE_COLUMNS[field];
+    const colData = USERS_TABLE_COLUMNS[field];
+    return colData && colData.isReal && colData.canEdit;
 }
 
-function generateUserColumnSql(userData, fields, values) {
+function generateUserColumnSql(userData, fields, values, predicate) {
     for (var key in userData) {
-        if (!canEditColumn(key)) {
+        if (!predicate) {
             return new ResError(400, `Invalid field ${key}`);
         }
 
@@ -62,7 +73,7 @@ export async function registerUser(uid, pass, userData) {
 
     // Generate our SQL query
     let fields = ['uid'], values = [uid];
-    const err = generateUserColumnSql(userData, fields, values);
+    const err = generateUserColumnSql(userData, fields, values, canEditColumn);
     if (err) {
         return err;
     }
@@ -96,7 +107,7 @@ export async function getUserPublicData(uid) {
 export async function updateUserData(uid, userData) {
     let args = [];
 
-    const err = generateUserColumnSql(userData, args, args);
+    const err = generateUserColumnSql(userData, args, args, canEditColumn);
     if (err) {
         return err;
     }
@@ -123,4 +134,58 @@ export async function checkPassword(uid, pass) {
 
     return userAuth[0] && userAuth[0].pass
         && bcrypt.compareSync(processPass(pass), userAuth[0].pass);
+}
+
+export async function searchUsers(queryData, wildcard) {
+    let args = [];
+    let whereClauses = [];
+
+    for (var field in queryData) {
+        if (field == 'type') {
+            args.push(field);
+            args.push(queryData[field]);
+
+            // No LIKE allowed for this field
+            whereClauses.push('(?? = ?)');
+            continue;
+        }
+
+        const colData = USERS_TABLE_COLUMNS[field];
+        if (!colData || !colData.isReal || !colData.canSearch) {
+            return [new ResError(400, `Invalid field '${field}'`), null];
+        }
+
+        // To prevent a full table scan, we don't allow strings that would
+        // take the form '%', and escape all wildcards
+        let queryStr = queryData[field].replaceAll('%', '\\%').replaceAll('_', '\\_');
+
+        if (wildcard) {
+            if (!queryStr.length) {
+                return [
+                    new ResError(400, 'No empty strings with wildcard'),
+                    null
+                ];
+            }
+
+            args.push(field);
+            args.push(queryStr + '%');
+            whereClauses.push('(?? LIKE ?)');
+        } else {
+            args.push(field);
+            args.push(queryStr);
+            whereClauses.push('(?? = ?)');
+        }
+    }
+
+    if (!args.length) {
+        return [
+            new ResError(400, 'Must provide fields by which to search'),
+            null
+        ];
+    }
+
+    const [results] = await pool.query(
+        `SELECT * FROM users WHERE ${whereClauses.join(' AND ')}`, args
+    );
+    return [null, results];
 }
