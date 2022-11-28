@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { getLocalUserData, getUserData } from "../util/data";
 import SamplePic from "../media/sample.jpg";
 
-const ProfilePic = () => {
+const Pic = () => {
     return (
-        <div className="profilepiccontainer">
-            <img className="profilepic" src={SamplePic} alt="samplePic"></img>
+        <div className="piccontainer">
+            <img className="pic" src={SamplePic} alt="samplePic"></img>
         </div>
     );
 }
@@ -69,13 +69,56 @@ const UserInfoEditable = (userInfo) => {
 }
 
 const UserInfoUnEditable = () => {
+    const [field, setFields] = useState({});
+    // const [val, setVals] = useState([]);
+    // let uid = getLocalUserData(['uid'])['uid'];
+    //get ALL user data
+    // const fetchAllData = () => {
+    //     getUserData(uid)
+    //         .then(function(response){
+    //             return response['data'];
+    //         })
+    //         .catch(function(error){
+    //             console.error("an error occurred fetching user data.");
+    //         })
+    // }
 
+    // let allData = fetchAllData();
+    //TODO: delete this testing data.
+    let allData = {
+        "uid": "a",
+        "email": "a",
+        "fname": "a",
+        "lname": "a",
+        "type": "individual",
+        "company": "hyundai",
+        "biography": "what's up g"
+    };
+    
+    useEffect(() => {
+        setFields(allData);
+        console.log(field);
+    }, [])
+
+    //TODO: pass in a key to each element in list
+    return (
+        <div className="profiledivcontainer">
+            {Object.keys(field).map(name => (
+                <React.Fragment>
+                    <span className="profiledivname">{name}</span>
+                    <div className="profilediv">
+                        <p>{field[name]}</p>
+                    </div>
+                </React.Fragment>
+            ))}
+        </div>
+    );
 }
 
 const OtherProfile = () => {
     return (
         <div className="otherprofile">
-            <ProfilePic />
+            <Pic />
             <FullName />
             <ConnectionCount />
             <UserInfoUnEditable />
@@ -86,11 +129,11 @@ const OtherProfile = () => {
 const MyProfile = () => {
     return (
         <div className="myprofile">
-            <ProfilePic />
+            <Pic />
             <p className="subheading">My Profile</p>
             <UserInfoEditable />
         </div>
     )
 }
 
-export {MyProfile, OtherProfile};
+export {MyProfile, OtherProfile, Pic};
