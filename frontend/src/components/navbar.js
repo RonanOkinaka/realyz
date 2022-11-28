@@ -44,7 +44,7 @@ const Navbar = ({isLanding, show}) => {
                     </button>
                 }
                 { !isLanding() &&
-                    <li>
+                    <li className="navusrcontainer">
                         <li className="greeting">
                             <Parent />
                         </li>

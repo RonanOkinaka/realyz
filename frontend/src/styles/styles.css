@@ -37,7 +37,7 @@ button:hover {
     position: fixed;
     display: flex;
     left: 0;
-    /* background-color: black; */
+    background-color: grey;
     color: white;
     width: 100%;
     margin: 0;
@@ -77,10 +77,16 @@ button:hover {
 }
 
 .nav .navbtns {
-    display: flex;
+    /* background: blue; */
     margin-right: 10vw;
     margin-left: auto;
-    flex-flow: row, nowrap;
+}
+
+.nav .navbtns .navusrcontainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .fullpage .nav li {
@@ -208,12 +214,13 @@ button:hover {
     min-height: 100%;
 }
 
-
-.profilepage .nav .btn {
-    margin-left: auto;
-    margin-right: 10;
+.profilepage .btn {
+    padding-left: 40px;
 }
 
-.profilepage .nav .greeting {
+.profilepage .greeting {
+    padding-right: 40px;
     margin-left: auto;
+    /* background-color: black; */
+    font-size: 4;
 }
