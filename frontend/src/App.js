@@ -9,8 +9,8 @@ export default function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Layout />}>
-                    <Route index element={<LandingPage />} />
-                    <Route path="profile" element={<Profile />} />
+                    <Route index element={<Profile />} /> {/* CHANGE THIS BACK TO LANDINGPAGE WHEN FINISHED DEBUGGING PROFILE PAGE*/}
+                    <Route path="profile" element={<LandingPage />} />
                     <Route path="*" element={<NoPage />} />
                 </Route>
             </Routes>

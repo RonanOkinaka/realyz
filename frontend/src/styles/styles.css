@@ -37,7 +37,7 @@ button:hover {
     position: fixed;
     display: flex;
     left: 0;
-    background-color: grey;
+    /* background-color: grey; */
     color: white;
     width: 100%;
     margin: 0;
@@ -130,7 +130,7 @@ button:hover {
     margin-top: 20px;
 }
 
-.fullpage ::placeholder {
+::placeholder {
     color: white;
     text-align: center;
 }
@@ -223,4 +223,66 @@ button:hover {
     margin-left: auto;
     /* background-color: black; */
     font-size: 4;
+}
+
+.profilepage .myprofile {
+    position: absolute;
+    top: 22%;
+    left: 20%;
+    width: 25%;
+    height: auto;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5%;
+    background: rgba(222, 220, 174, 0.5) /* Green background with 30% opacity */
+}
+
+.myprofile .profilepiccontainer {
+    /* background-color: black; */
+    margin-top: 10px;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+.profilepiccontainer .profilepic {
+    width: 20%;
+    clip-path: circle(50%);
+}
+
+.myprofile .subheading {
+    margin-bottom: 0px;
+}
+.myprofile .profileformcontainer {
+    /* background-color: goldenrod; */
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 5%;
+}
+
+.profileformcontainer .profileformname {
+    font-size: 15px;
+    color: white;
+    padding-top: 2%;
+    padding-bottom: 0.5%;
+}
+
+.profileformcontainer .profileform {
+    background-color: transparent;
+    width: 70%;
+    height: 3%;
+    font-size: 20px;
+    border-color: white;
+    border-style: solid;
+    color: white;
+}
+
+.profileform[type='text'],
+.profileform::-webkit-input-placeholder {
+    font-size: 14px;
 }
