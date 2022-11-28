@@ -25,18 +25,20 @@ const ConnectionCount = () => {
 //takes in an array iterate through each and display value.
 const UserInfoEditable = (userInfo) => {
     const [field, setFields] = useState({});
-    // const [val, setVals] = useState([]);
-    // let uid = getLocalUserData(['uid'])['uid'];
-    //get ALL user data
-    // const fetchAllData = () => {
-    //     getUserData(uid)
-    //         .then(function(response){
-    //             return response['data'];
-    //         })
-    //         .catch(function(error){
-    //             console.error("an error occurred fetching user data.");
-    //         })
-    // }
+    const [val, setVals] = useState([]);
+    //get cached user data
+    let uid = getLocalUserData(['uid'])['uid'];
+    // get ALL user data
+    const fetchAllData = (uid) => {
+        getUserData(uid)
+            .then(function(response){
+                setFields(response['data']);
+            })
+            .catch(function(error){
+                console.error(error)
+                console.error("an error occurred fetching user data.");
+            })
+    }
 
     // let allData = fetchAllData();
     //TODO: delete this testing data.
@@ -51,7 +53,7 @@ const UserInfoEditable = (userInfo) => {
     };
     
     useEffect(() => {
-        setFields(allData);
+        fetchAllData(uid);
         console.log(field);
     }, [])
 
