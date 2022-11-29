@@ -68,13 +68,39 @@ const getUserData = (uid) => axios ({
 const updateUserData = (usrData) => axios ({
     method: 'patch',
     baseURL: 'http://localhost:8080',
-    url: "/user/" + usrData['uid'],
+    url: '/user/' + usrData['uid'],
     headers: {'Authorization': 'Bearer ' + bearerToken},
     data: usrData,
+})
+
+//type: 1 -> jpeg/png 2 -> mp4; media takes in a formData() object.
+const uploadMedia = (media, type, uid) => axios ({
+    method: 'post',
+    baseURL: 'http://localhost:8080',
+    url: '/media/' + uid + '/' + type,
+    headers: {'Authorization': 'Bearer ' + bearerToken},
+    //FIXME: get the right data requirement structure.
+    data: {
+        files: media,
+    }
+})
+
+const getMedia = (media, type, uid) => axios ({
+    method: 'get',
+    baseURL: 'http://localhost:8080',
+    url: '/media/u/' + uid + '/' + type,
+})
+
+const deleteMedia = (type, uid) => axios ({
+    method: 'delete',
+    baseURL: 'http://localhost:8080',
+    url: '/media/u/' + uid + '/' + type,
+    headers: {'Authorization': 'Bearer ' + bearerToken},
 })
 
 const dump = () => {
     console.log(userData);
 }
 
-export {userData, bearerToken, storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, loginUser, getUserData, updateUserData, dump};
+export {userData, bearerToken, storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, 
+    loginUser, getUserData, updateUserData, uploadMedia, getMedia, deleteMedia, dump};

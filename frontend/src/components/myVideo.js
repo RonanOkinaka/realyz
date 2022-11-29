@@ -1,24 +1,30 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import video from "../media/landing_page_video.mp4"
+import { deleteMedia, getLocalUserData, uploadMedia } from "../util/data";
 
 //TODO: get Profile Video from server.
 const ProfileVid = () => {
+    //TODO: stream data from the server after rendering.
     return (
         <div className="profilevidcontainer">
-            <video className="profilevid" autoplay="" muted loop>
+            {/* <video className="profilevid" controls> 
+                <source src='/media/u/a/2' type="video/mp4"> </source>
+            </video> */}
+
+            <video className="profilevid" controls>
                 <source src={video} type="video/mp4"></source>
             </video>
         </div>
     );
 }
 
-
 //TODO: implement popup that uploads video to server
 const ButtonEdit = () => {
     const [video, setVideo] = useState(null);
     const [err, setErr]= useState(null);
     const fileSuffixPattern = /(\.)(?!.*\.).*/;
+    const uid = getLocalUserData(['uid'])['uid'];
 
     const handleInputChange = event => {
         //save local path to state
@@ -41,7 +47,11 @@ const ButtonEdit = () => {
         }
         else {
             setErr(null);
-            // axios.post("...")
+            //FIXME:
+            uploadMedia(formData, 2, uid)
+            .catch(function(error){
+                console.log(error);
+            });
         }
     }
 
@@ -61,8 +71,15 @@ const ButtonEdit = () => {
 }
 
 const ButtonDelete = () => {
+    const uid = getLocalUserData(['uid'])['uid'];
+    const handleOnClick = event => {
+        deleteMedia(2, uid)
+        .catch(function(error){
+            console.log(error);
+        })
+    }
     return (
-        <button className="buttondelete">delete</button>
+        <button className="buttondelete" onClick={handleOnClick}>delete</button>
     );
 }
 
