@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import video from "../media/landing_page_video.mp4"
 
 //TODO: get Profile Video from server.
@@ -12,10 +13,50 @@ const ProfileVid = () => {
     );
 }
 
+
 //TODO: implement popup that uploads video to server
 const ButtonEdit = () => {
+    const [video, setVideo] = useState(null);
+    const [err, setErr]= useState(null);
+    const fileSuffixPattern = /(\.)(?!.*\.).*/;
+
+    const handleInputChange = event => {
+        //save local path to state
+        setVideo(event.target.files[0]);
+    }
+
+    const handleOnClick = event => {
+        //upload the file at the given path to server
+        //catch edge cases:
+        const fileSuffix = video.name.match(fileSuffixPattern)[0];
+        console.log(fileSuffix);
+        const formData = new FormData();
+        formData.append(
+            "myVideo",
+            video,
+            video.name
+        );
+        if (fileSuffix !== ".mp4") {
+            setErr("file type not supported.");
+        }
+        else {
+            setErr(null);
+            // axios.post("...")
+        }
+    }
+
+    useEffect(() => {
+        
+    }, [])
+
     return (
-        <button className="buttonedit">edit</button>
+        <div className="buttonedit">
+            <input type="file" onChange={handleInputChange}></input>
+            <button className="buttonedit" onClick={handleOnClick}>edit</button>
+            { err &&
+                <p>{err}</p>
+            }
+        </div>
     );
 }
 
