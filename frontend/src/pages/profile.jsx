@@ -5,17 +5,23 @@ import { MyProfile, OtherProfile } from "../components/myprofile";
 import MyVideo from "../components/myVideo";
 import Sidebar from "../components/sideBar";
 import OtherVideo from "../components/otherVideo";
+import useModal from "../util/useModal";
 
 //props.mode: 0 == myprofile, 1 == otherprofile
 const Profile = (props) => {
+    const {vis, toggle} = useModal();
     return (
         <body className="profilepage">
             <div className="backgroundcontainer" style={{ backgroundImage: `url(${Background})` }}>
                 <Navbar isLanding={() => false}/>
                 { props.mode === 0 &&
                     <React.Fragment>
-                        <Sidebar />
-                        <MyProfile />
+                        <Sidebar 
+                        show={() => {toggle(1)}}/>
+                        <MyProfile
+                        vis={vis}
+                        hide={() => {toggle(3)}} 
+                        />
                         <MyVideo />
                     </React.Fragment>
                 }

@@ -3,7 +3,8 @@ import {Pic} from "./myprofile"
 const SidebarItem = (props) => {
     const showConnections = () => {
         if(props.name=="Manage Connections"){
-        console.log("you clicked");
+        props.onClick();
+
     }
     }
     return (
@@ -14,13 +15,20 @@ const SidebarItem = (props) => {
     )
 }
 
-const Sidebar = () => {
+const Sidebar = ({show}) => {
+    const deleteProfile = () => {
+        console.log("clicked");
+        show();
+    }
     
     return (
         <div className="sidebarwrapper">
             <div className="sidebar">
-                <SidebarItem name="My account info" />
-                <SidebarItem name="Manage Connections" />
+                <SidebarItem name="My account info" 
+                ishow={() => show(-1)}/>
+                <SidebarItem name="Manage Connections"
+                onClick={deleteProfile} 
+                />
             </div>
         </div>
     )

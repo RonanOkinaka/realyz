@@ -124,7 +124,7 @@ const UserInfoUnEditable = () => {
 
     //TODO: pass in a key to each element in list
     return (
-        <div className="profiledivcontainer">
+        <div className="profiledivcontainer" id="profileContainer">
             {Object.keys(field).map(name => (
                 <React.Fragment>
                     <span className="profiledivname">{name}</span>
@@ -148,14 +148,14 @@ const OtherProfile = () => {
     );
 }
 
-const MyProfile = () => {
-    return (
-        <div className="myprofile">
+const MyProfile = ({vis, hide}) => {
+    return ((vis==0) ? (
+        <div className="myprofile" id="profile">
             <Pic />
             <p className="subheading">My Profile</p>
             <UserInfoEditable />
         </div>
-    )
+    ) : null ) ;
 }
 
 export {MyProfile, OtherProfile, Pic};
