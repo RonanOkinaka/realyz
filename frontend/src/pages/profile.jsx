@@ -6,7 +6,7 @@ import MyVideo from "../components/myVideo";
 import Sidebar from "../components/sideBar";
 import OtherVideo from "../components/otherVideo";
 import useModal from "../util/useModal";
-
+import MyConnections from "../components/myConnections"
 //props.mode: 0 == myprofile, 1 == otherprofile
 const Profile = (props) => {
     const {vis, toggle} = useModal();
@@ -22,6 +22,8 @@ const Profile = (props) => {
                         vis={vis}
                         />
                         <MyVideo 
+                        vis={vis}/>
+                        <MyConnections
                         vis={vis}/>
                     </React.Fragment>
                 }
