@@ -17,7 +17,7 @@ const Profile = (props) => {
                 { props.mode === 0 &&
                     <React.Fragment>
                         <Sidebar 
-                        show={() => {toggle(1)}}/>
+                        show={(num) => {toggle(num)}}/>
                         <MyProfile
                         vis={vis}
                         />

@@ -6,6 +6,9 @@ const SidebarItem = (props) => {
         props.onClick();
 
     }
+    else if (props.name=="My account info"){
+        props.onClick();
+    }
     }
     return (
         <div className="sidebaritem" onClick={showConnections}>
@@ -17,15 +20,17 @@ const SidebarItem = (props) => {
 
 const Sidebar = ({show}) => {
     const deleteProfile = () => {
-        console.log("clicked");
-        show();
+        show(1);
+    }
+    const showProfile = () => {
+        show(0);
     }
     
     return (
         <div className="sidebarwrapper">
             <div className="sidebar">
                 <SidebarItem name="My account info" 
-                ishow={() => show(-1)}/>
+                onClick={showProfile}/>
                 <SidebarItem name="Manage Connections"
                 onClick={deleteProfile} 
                 />
