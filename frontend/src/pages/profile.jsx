@@ -20,9 +20,9 @@ const Profile = (props) => {
                         show={() => {toggle(1)}}/>
                         <MyProfile
                         vis={vis}
-                        hide={() => {toggle(3)}} 
                         />
-                        <MyVideo />
+                        <MyVideo 
+                        vis={vis}/>
                     </React.Fragment>
                 }
                 { props.mode === 1 &&

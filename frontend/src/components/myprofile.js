@@ -148,7 +148,7 @@ const OtherProfile = () => {
     );
 }
 
-const MyProfile = ({vis, hide}) => {
+const MyProfile = ({vis}) => {
     return ((vis==0) ? (
         <div className="myprofile" id="profile">
             <Pic />
