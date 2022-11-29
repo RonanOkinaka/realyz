@@ -20,7 +20,12 @@ let bearerToken = "";
 const storeUserData = (param, val) => {
     for (let i = 0; i < param.length; i++)
     {
-        userData[param[i]] = val[i];
+        // Duct tape and zipties (crunch time...)
+        if (param[i] === 'uid') {
+            userData[param[i]] = val[i].replace(/[^_a-zA-Z0-9]/g, '_');
+        } else {
+            userData[param[i]] = val[i];
+        }
     }
 }
 
