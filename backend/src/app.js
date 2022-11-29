@@ -5,6 +5,7 @@ import cors from 'cors';
 import './config.js';
 import sessionRoute from './route/session.js';
 import userRoute from './route/user.js';
+import connectionRoute from './route/connections.js';
 
 const corsOptions = {
     origin: 'http://localhost:9500',
@@ -20,6 +21,7 @@ server.use(cors(corsOptions));
 server.use(express.json());
 server.use('/session', sessionRoute);
 server.use('/user', userRoute);
+server.use('/connections', connectionRoute);
 
 server.listen(PORT, function(err, _data) {
     if (err) {
