@@ -25,7 +25,6 @@ const Profile = (props) => {
                         <OtherVideo />
                     </React.Fragment>
                 }
-
             </div>
         </body>
     );

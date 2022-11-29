@@ -21,6 +21,7 @@ const LoginPopup = ({vis, hide}) => {
                 setErr(null);
                 storeBearerToken(response['data']['token']);
                 console.log("login success.");
+                console.log(response['data']);
                 navigate('/profile');
             })
             .catch(function(error){

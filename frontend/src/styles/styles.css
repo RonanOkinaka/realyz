@@ -41,10 +41,11 @@ button:hover {
     width: 100%;
     margin: 0;
     font-size: 30px;
+    line-height: 0;
     overflow: hidden;
     justify-items: center;
     align-items: center;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
 }
 
 .nav ul {
@@ -281,6 +282,7 @@ button:hover {
     width: 70%;
     height: 3%;
     font-size: 20px;
+    text-align: center;
     border-color: white;
     border-style: solid;
     color: white;
@@ -338,10 +340,10 @@ button:hover {
 .profilepage .sidebarwrapper {
     position: absolute;
     background-color: rgba(222, 220, 174, 0.5);
-    top: 19.5%;
+    top: 18%;
     left: 0;
     width: 15%;
-    height: 80.5%;
+    height: 82%;
     display: flex;
     flex-flow: column wrap;
 }

@@ -64,8 +64,17 @@ const getUserData = (uid) => axios ({
     url: "/user/" + uid,
 });
 
+//takes a incomplete/complete user data object, update the database.
+const updateUserData = (usrData) => axios ({
+    method: 'patch',
+    baseURL: 'http://localhost:8080',
+    url: "/user/" + usrData['uid'],
+    headers: {'Authorization': 'Bearer ' + bearerToken},
+    data: usrData,
+})
+
 const dump = () => {
     console.log(userData);
 }
 
-export {userData, bearerToken, storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, loginUser, getUserData, dump};
+export {userData, bearerToken, storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, loginUser, getUserData, updateUserData, dump};
