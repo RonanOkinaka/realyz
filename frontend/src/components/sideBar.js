@@ -1,8 +1,13 @@
 import React from "react";
 import {Pic} from "./myprofile"
 const SidebarItem = (props) => {
+    const showConnections = () => {
+        if(props.name=="Manage Connections"){
+        console.log("you clicked");
+    }
+    }
     return (
-        <div className="sidebaritem">
+        <div className="sidebaritem" onClick={showConnections}>
             <Pic />
             <span>{props.name}</span>
         </div>
@@ -10,6 +15,7 @@ const SidebarItem = (props) => {
 }
 
 const Sidebar = () => {
+    
     return (
         <div className="sidebarwrapper">
             <div className="sidebar">
