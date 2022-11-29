@@ -53,7 +53,7 @@ export async function uploadMedia(uid, type, file) {
     }
 
     const [path, filename] = formatAbsolutePath(hash);
-    await file.mv(path + filename, );
+    await file.mv(path + filename);
 
     return [null, hash];
 }

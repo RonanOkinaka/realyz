@@ -79,11 +79,8 @@ const uploadMedia = (media, type, uid) => axios ({
     baseURL: 'http://localhost:8080',
     url: '/media/' + uid + '/' + type,
     headers: {'Authorization': 'Bearer ' + bearerToken},
-    //FIXME: get the right data requirement structure.
-    data: {
-        files: media,
-    }
-})
+    data: media
+});
 
 const getMedia = (media, type, uid) => axios ({
     method: 'get',

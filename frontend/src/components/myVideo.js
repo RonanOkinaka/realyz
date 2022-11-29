@@ -38,7 +38,7 @@ const ButtonEdit = () => {
         console.log(fileSuffix);
         const formData = new FormData();
         formData.append(
-            "myVideo",
+            "file",
             video,
             video.name
         );
