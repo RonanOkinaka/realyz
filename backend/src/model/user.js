@@ -104,7 +104,7 @@ export async function updateUserData(uid, userData) {
         return new ResError(400, 'Must provide fields to update');
     }
 
-    const updateStr = '?? = ?'.repeat(args.length / 2);
+    const updateStr = Array(args.length / 2).fill('?? = ?').join(', ');
     await pool.query(
         `UPDATE users SET ${updateStr} WHERE uid = ?`,
         args.concat(uid)
