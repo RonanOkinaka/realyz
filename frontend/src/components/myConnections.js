@@ -14,7 +14,13 @@ const MyConnections = ({ vis }) => {
     let query = {
         "from": "a",
     }
-    getConnections(query);
+    const handleOnClick = event => {
+        getConnections(query)
+        .then(function(res){
+            console.log(res);
+        });
+    }
+
     return ((vis == 1) ? (
         <div className="myprofile">
             <p className="subheading">My Connections</p>
@@ -24,6 +30,7 @@ const MyConnections = ({ vis }) => {
             </form>
             <div class="connectionGallery">
                 <Connection connectName={"Abhay Rao"} />
+                <button onClick={handleOnClick}></button>
             </div>
         </div>
     ) : null);
