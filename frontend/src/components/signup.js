@@ -12,7 +12,7 @@ export default function Signup({show}) {
         let username = email;
         event.preventDefault(); // prevent page refresh
         // prevent popup if user does NOT fill in a valid email.
-        let hasAt = false;
+        let hasAt = false; // simple check to ensure email has an @
         for (let i = 0; i < email.length; i++)
                 if (email[i] == '@')
                     hasAt = true;
@@ -29,6 +29,7 @@ export default function Signup({show}) {
         else 
         {
             setErr("your email isn't valid.");
+            setStatus(false);
         }
     };
 
