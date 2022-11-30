@@ -5,11 +5,16 @@ import { MyProfile, OtherProfile } from "../components/myprofile";
 import MyVideo from "../components/myVideo";
 import Sidebar from "../components/sideBar";
 import OtherVideo from "../components/otherVideo";
+import useModal from "../util/useModal";
+import MyConnections from "../components/myConnections"
+import SentRequests from "../components/sentRequests";
+import PendingInvitations from "../components/pendingInvitations"
 import { useNavigate } from "react-router-dom";
 import { getUserData } from "../util/data";
 
 //props.mode: 0 == myprofile, 1 == otherprofile; props.uid: other user's uid to display info
 const Profile = (props) => {
+    const {vis, toggle} = useModal();
     const navigate = useNavigate();
 
     //TODO: experimental
@@ -33,9 +38,20 @@ const Profile = (props) => {
                 <Navbar isLanding={() => false}/>
                 { props.mode === 0 &&
                     <React.Fragment>
-                        <Sidebar />
-                        <MyProfile />
-                        <MyVideo />
+                        <Sidebar 
+                        show={(num) => {toggle(num)}}/>
+                        <MyProfile
+                        vis={vis}
+                        />
+                        <MyVideo 
+                        vis={vis}/>
+                        <MyConnections
+                        vis={vis}/>
+                        <SentRequests
+                        vis={vis}/>
+                        <PendingInvitations
+                        vis={vis}
+                        />
                     </React.Fragment>
                 }
                 { props.mode === 1 &&

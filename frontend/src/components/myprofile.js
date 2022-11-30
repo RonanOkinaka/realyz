@@ -123,14 +123,14 @@ const OtherProfile = (props) => {
     );
 }
 
-const MyProfile = () => {
-    return (
-        <div className="myprofile">
+const MyProfile = ({vis}) => {
+    return ((vis==0) ? (
+        <div className="myprofile" id="profile">
             <Pic />
             <p className="subheading">My Profile</p>
             <UserInfoEditable />
         </div>
-    )
+    ) : null ) ;
 }
 
 export {MyProfile, OtherProfile, Pic};

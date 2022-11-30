@@ -93,14 +93,14 @@ const MyVideoBtns = () => {
     )
 }
 
-const MyVideo = () => {
-    return (
+const MyVideo = ({vis}) => {
+    return ((vis==0) ? (
         <div className="myvideocontainer">
             <p>My Video</p>
             <ProfileVid />
             <MyVideoBtns />
         </div>
-    );
+    ): null);
 }
 
 export default MyVideo;

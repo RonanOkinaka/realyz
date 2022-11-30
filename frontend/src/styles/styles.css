@@ -220,6 +220,7 @@ button:hover {
     top: 20%;
     left: 50%;
     transform: translateX(-50%);
+    overflow-y: auto;
 }
 
 .profilepage .btn {
@@ -380,6 +381,117 @@ button:hover {
     width: 80%;
     /* background-color: green; */
 }
+
+.connectionGallery {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 150px 150px 150px;
+}
+.connectionGallery .item {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .connectionGallery .item img {
+    vertical-align: middle;
+    width: 140px;
+    height: 140px;
+  }
+  
+  .connectionGallery .caption {
+    margin: 0;
+    padding: 1em;
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 100%;
+    overflow: auto;
+    box-sizing: border-box;
+    transition: transform .5s;
+    transform: translateY(0%);
+    background: rgba(0, 0, 0, .7);
+    color: rgb(255, 255, 255);
+    font-size: small;
+  }
+
+  .myprofile form {
+    margin-bottom: 10px;
+  }
+
+  .profilepage .requestsContainer {
+    position: absolute;
+    top: 25%;
+    right: 10%;
+    width: 30%;
+    height: 40%;
+    background: rgba(222, 220, 174, 0.5); /* Green background with 30% opacity */
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    padding: 15px;
+    border-radius: 5%;
+    overflow-y: auto;
+  }
+
+  .profilepage .requestsContainer .request, 
+  .profilepage .pendingInvitationsContainer .request{
+    position: relative;
+    margin-bottom: 10px;
+    background: black;
+    width: 90%;
+    height: 20%;
+  }
+
+  .profilepage .requestsContainer .requestsSubheading {
+    
+    vertical-align: middle;
+    position: relative;
+    background: green;
+    margin-bottom: 10px;
+    width: 90%;
+    height: 20%;
+  }
+  .profilepage .requestsContainer .requestsSubheading p {
+    position: relative;
+    font-size: x-large;
+    left: 50%;
+  }
+
+  .profilepage .requestsContainer .request button,
+  .profilepage .pendingInvitationsContainer .request button{
+    position: absolute;
+    left: 75%;
+    top: 25%;
+  }
+
+  .profilepage .requestsContainer .request p,
+  .profilepage .pendingInvitationsContainer .request p {
+    text-align: left;
+    font-size: larger;
+    color: white;
+  }
+
+  .profilepage .requestsContainer p,
+  .profilepage .pendingInvitationsContainer p {
+    font-size: xx-large;
+  }
+
+  .profilepage .pendingInvitationsContainer {
+    position: absolute;
+    top: 70%;
+    right: 10%;
+    width: 30%;
+    height: 40%;
+    background: rgba(222, 220, 174, 0.5); /* Green background with 30% opacity */
+    display: flex;
+    flex-flow: row wrap;
+    padding: 15px;
+    border-radius: 5%;
+    overflow-y: auto;
+    margin-bottom: 20px;
+  }
 
 /* main page */
 .mainpage .backgroundcontainer {
