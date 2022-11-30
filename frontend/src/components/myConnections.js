@@ -22,7 +22,7 @@ const MyConnections = ({ vis }) => {
     }
 
     const makeConnection = event => {
-        createConnection('a', 'nini_gmail_com')
+        createConnection('nini_gmail_com')
         .then(function(res){
             console.log(res);
         });

@@ -126,13 +126,12 @@ const searchUser = (query, val) => axios ({
     params: query,
 });
 
-const createConnection = (from, to) => axios ({
-    method: 'get',
+const createConnection = (to) => axios ({
+    method: 'post',
     baseURL: 'http://localhost:8080',
     url: '/connections/',
     headers: {'Authorization': 'Bearer ' + bearerToken},
     params: {
-        'from': from,
         'to': to,
     }
 });
@@ -145,6 +144,16 @@ const getConnections = (query) => axios ({
     params: query
 });
 
+const deleteConnection = (from, to) => axios ({
+    method: 'delete',
+    baseURL: 'http://localhost:8080',
+    url: '/connections/',
+    headers: {'Authorization': 'Bearer ' + bearerToken},
+    params: {
+        'from': from,
+        'to': to,
+    }
+});
 const dump = () => {
     console.log(userData);
 };
