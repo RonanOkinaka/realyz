@@ -1,5 +1,6 @@
 import axios, { AxiosHeaders } from "axios";
 
+let userName = "";
 let userData = {};  //TODO: use sessionStorage to store userData
 let bearerToken = "";
 
@@ -23,6 +24,7 @@ const storeUserData = (param, val) => {
         // Duct tape and zipties (crunch time...)
         if (param[i] === 'uid') {
             userData[param[i]] = val[i].replace(/[^_a-zA-Z0-9]/g, '_');
+            // console.log(userData[param[i]]);
         } else {
             userData[param[i]] = val[i];
         }
