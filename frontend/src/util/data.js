@@ -150,4 +150,4 @@ const dump = () => {
 };
 
 export {userData, bearerToken, searchQuery, otherUserID, storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, 
-    loginUser, getUserData, updateUserData, uploadMedia, getMedia, deleteMedia, searchUser, storeQuery, clearQuery, getConnections, dump};
+    loginUser, getUserData, updateUserData, uploadMedia, getMedia, deleteMedia, searchUser, storeQuery, clearQuery, getConnections, createConnection, dump};

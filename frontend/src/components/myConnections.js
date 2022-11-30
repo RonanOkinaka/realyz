@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SamplePic from "../media/sample.jpg";
-import { getConnections } from "../util/data";
+import { createConnection, getConnections } from "../util/data";
 
 const Connection = ({connectName}) => {
     return (
@@ -21,6 +21,13 @@ const MyConnections = ({ vis }) => {
         });
     }
 
+    const makeConnection = event => {
+        createConnection('a', 'nini_gmail_com')
+        .then(function(res){
+            console.log(res);
+        });
+    }
+
     return ((vis == 1) ? (
         <div className="myprofile">
             <p className="subheading">My Connections</p>
@@ -30,7 +37,8 @@ const MyConnections = ({ vis }) => {
             </form>
             <div class="connectionGallery">
                 <Connection connectName={"Abhay Rao"} />
-                <button onClick={handleOnClick}></button>
+                <button onClick={handleOnClick}>check</button>
+                <button onClick={makeConnection}>connect</button>
             </div>
         </div>
     ) : null);
