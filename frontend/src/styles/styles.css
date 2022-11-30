@@ -412,6 +412,7 @@ button:hover {
   }
 
   .profilepage .requestsContainer {
+    grid-template-columns: 150px;
     position: absolute;
     top: 25%;
     right: 10%;
@@ -419,9 +420,23 @@ button:hover {
     height: 40%;
     background: rgba(222, 220, 174, 0.5); /* Green background with 30% opacity */
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: row wrap;
     align-items: center;
     padding: 15px;
     border-radius: 5%;
     overflow-y: auto;
+  }
+
+  .profilepage .requestsContainer .request {
+    vertical-align: middle;
+    position: relative;
+    margin-bottom: 10px;
+    background: black;
+    width: 90%;
+    height: 20%;
+  }
+
+  .profilepage .requestsContainer .request p {
+    font-size: larger;
+    color: white;
   }

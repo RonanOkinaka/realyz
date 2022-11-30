@@ -6,6 +6,21 @@ const SentRequests = ({vis}) => {
     return (vis==1) ?(
         <div className="requestsContainer">
             <p>Sent Requests</p>
+            <div className="request">
+                <p>John Doe</p>
+            </div>
+            <div className="request">
+                <p>John Doe</p>
+            </div>
+            <div className="request">
+                <p>John Doe</p>
+            </div>
+            <div className="request">
+                <p>John Doe</p>
+            </div>
+            <div className="request">
+                <p>John Doe</p>
+            </div>
         </div>
     ) : null;
 }
