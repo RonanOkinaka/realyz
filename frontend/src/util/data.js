@@ -117,18 +117,25 @@ const storeQuery = (param, val) => {
 
 const clearQuery = () => {
     searchQuery = {};
-}
+};
 
 const searchUser = (query, val) => axios ({
     method: 'get',
     baseURL: 'http://localhost:8080',
     url: '/search/',
     params: query,
-})
+});
 
+const getConnections = (query) => axios ({
+    method: 'get',
+    baseURL: 'http://localhost:8080',
+    url: '/connections/',
+    headers: {'Authorization': 'Bearer ' + bearerToken},
+    params: query
+});
 const dump = () => {
     console.log(userData);
 };
 
 export {userData, bearerToken, searchQuery, otherUserID, storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, 
-    loginUser, getUserData, updateUserData, uploadMedia, getMedia, deleteMedia, searchUser, storeQuery, clearQuery, dump};
+    loginUser, getUserData, updateUserData, uploadMedia, getMedia, deleteMedia, searchUser, storeQuery, clearQuery, getConnections, dump};

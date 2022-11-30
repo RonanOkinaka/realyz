@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SamplePic from "../media/sample.jpg";
+import { getConnections } from "../util/data";
 
 const Connection = ({connectName}) => {
     return (
@@ -10,6 +11,10 @@ const Connection = ({connectName}) => {
     )
 }
 const MyConnections = ({ vis }) => {
+    let query = {
+        "from": "a",
+    }
+    getConnections(query);
     return ((vis == 1) ? (
         <div className="myprofile">
             <p className="subheading">My Connections</p>
