@@ -126,6 +126,17 @@ const searchUser = (query, val) => axios ({
     params: query,
 });
 
+const createConnection = (from, to) => axios ({
+    method: 'get',
+    baseURL: 'http://localhost:8080',
+    url: '/connections/',
+    headers: {'Authorization': 'Bearer ' + bearerToken},
+    params: {
+        'from': from,
+        'to': to,
+    }
+});
+
 const getConnections = (query) => axios ({
     method: 'get',
     baseURL: 'http://localhost:8080',
@@ -133,6 +144,7 @@ const getConnections = (query) => axios ({
     headers: {'Authorization': 'Bearer ' + bearerToken},
     params: query
 });
+
 const dump = () => {
     console.log(userData);
 };
