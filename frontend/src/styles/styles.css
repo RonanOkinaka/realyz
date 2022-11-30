@@ -215,6 +215,13 @@ button:hover {
     overflow-y: auto;
 }
 
+.mainpage .mainpagetitle {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .profilepage .btn {
     padding-left: 40px;
 }
@@ -416,3 +423,7 @@ button:hover {
   .myprofile form {
     margin-bottom: 10px;
   }
+
+  .mainpage .backgroundcontainer {
+    justify-content: center;
+}
