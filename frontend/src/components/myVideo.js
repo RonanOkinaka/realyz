@@ -1,34 +1,32 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import video from "../media/landing_page_video.mp4"
 import { deleteMedia, getLocalUserData, uploadMedia, getMedia } from "../util/data";
 
 //TODO: get Profile Video from server.
 const ProfileVid = () => {
-    const [profileVid, setProfileVid] = useState(null);
-    const handleOnClick = event => {
-        // fetchVideo();
-        getMedia(2, 'a')
-        .then(function(response){
-            // let file = new File(response.data, {type: "video/mp4"});
-            var videoURL = window.URL.createObjectURL(response.data);
-            // let videoUrl = response.data;
-            setProfileVid(videoURL);
-        })
-        .catch(function(error){
-            console.log(error);
-        })
-    }
+    const [profileVid, setProfileVid] = useState(getMedia(2, getLocalUserData(['uid'])['uid']));
+    // const handleOnClick = event => {
+    //     // fetchVideo();
+    //     getMedia(2, 'a')
+    //     .then(function(response){
+    //         // let file = new File(response.data, {type: "video/mp4"});
+    //         var videoURL = window.URL.createObjectURL(response.data);
+    //         // let videoUrl = response.data;
+    //         setProfileVid(videoURL);
+    //     })
+    //     .catch(function(error){
+    //         console.log(error);
+    //     })
+    // }
+
     useEffect(() => {
-        console.log(profileVid);
-    }, [profileVid]);
+    }, []);
 
     //TODO: stream data from the server after rendering.
     return (
         <div className="profilevidcontainer">
-            <button onClick={handleOnClick}></button>
             <video className="profilevid" controls>
-                <source src={profileVid} type="video/mp4"></source>
+                <source src={profileVid}></source>
             </video>
         </div>
     );

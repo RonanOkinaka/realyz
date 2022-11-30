@@ -89,13 +89,18 @@ const uploadMedia = (media, type, uid) => axios ({
     data: media
 });
 
-const getMedia = (type, uid) => axios ({
-    method: 'get',
-    baseURL: 'http://localhost:8080',
-    url: '/media/u/' + uid + '/' + type,
-    responseType: 'blob',
-    // headers: {'Accept': 'video/mp4; charset=UTF-8'}
-});
+// const getMedia = (type, uid) => axios ({
+//     method: 'get',
+//     baseURL: 'http://localhost:8080',
+//     url: '/media/u/' + uid + '/' + type,
+//     responseType: 'blob',
+//     // headers: {'Accept': 'video/mp4; charset=UTF-8'}
+// });
+
+const getMedia = (type, uid) => {
+    let url = 'http://localhost:8080/media/u/' + uid + '/' + type;
+    return url;
+}
 
 const deleteMedia = (type, uid) => axios ({
     method: 'delete',
