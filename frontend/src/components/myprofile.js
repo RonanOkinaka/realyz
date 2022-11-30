@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { bearerToken, getLocalUserData, getUserData, updateUserData } from "../util/data";
 import SamplePic from "../media/sample.jpg";
 import ConnectIcon from "../media/addConnections.png";
+import ExplorePic from "../media/explore.png";
 
 const Pic = () => {
     return (
@@ -15,6 +16,14 @@ const ConnectionsIcon = () => {
     return (
         <div className="piccontainer">
             <img className="pic" src={ConnectIcon} alt="manageConnect"></img>
+        </div>
+    );
+}
+
+const Explore = () => {
+    return (
+        <div className="piccontainer">
+            <img className="pic" src={ExplorePic} alt="manageConnect"></img>
         </div>
     );
 }
@@ -146,14 +155,13 @@ const UserInfoUnEditable = () => {
 }
 
 const OtherProfile = ({vis}) => {
-    return (
+    return ((vis==1) ? (
         <div className="otherprofile">
             <Pic />
             <FullName />
             <ConnectionCount />
             <UserInfoUnEditable />
-        </div>
-    );
+        </div>) : null);
 }
 
 const MyProfile = ({vis}) => {
@@ -166,4 +174,4 @@ const MyProfile = ({vis}) => {
     ) : null ) ;
 }
 
-export {MyProfile, OtherProfile, Pic, ConnectionsIcon};
+export {MyProfile, OtherProfile, Pic, ConnectionsIcon, Explore};
