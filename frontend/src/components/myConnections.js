@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SamplePic from "../media/sample.jpg";
-import { createConnection, getConnections } from "../util/data";
+import { createConnection, getConnections, getLocalUserData } from "../util/data";
 
 const Connection = ({connectName}) => {
     return (
@@ -13,10 +13,20 @@ const Connection = ({connectName}) => {
 const MyConnections = ({ vis }) => {
     //WARNING: BUG, "pending": 0 also shows pending requests
     // to get completed requests, do not add pending at all.
+    // if not found, data.connections = []
+    // let query = {
+    //     "from": getLocalUserData(['uid'])['uid'],
+    //     "to": "harvey",
+    //     "pending": 1,
+    // }
+    const [connections, setConnections] = useState([]);
+
     let query = {
-        "from": "a",
-        "pending": 1,
+        "from": getLocalUserData(['uid'])['uid'],
     }
+
+    //TODO: get user's connection
+
     // data.connections:
     // {
     //     "connections": [
@@ -31,15 +41,25 @@ const MyConnections = ({ vis }) => {
         getConnections(query)
         .then(function(res){
             console.log(res);
+            setConnections(res.data.connections);
         });
     }
 
     const makeConnection = event => {
+        //createconnection(usrname_you_wanna_connect)
         createConnection('zichengzhao_g_ucla_edu')
         .then(function(res){
             console.log(res);
         });
     }
+
+    useEffect(() => {
+        console.log(connections);
+    })
+
+    //TODO: for searchbar: 
+    //if getConnection(from=me, to=usr).data.connections != []
+    //display all connections.uidTo
 
     return ((vis == 1) ? (
         <div className="myprofile">
