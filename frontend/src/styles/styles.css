@@ -343,20 +343,10 @@ button:hover {
     justify-content: space-between;
 }
 
-.profilepage {
+.profilepage .sidebarwrapper {
     position: absolute;
     background-color: rgba(222, 220, 174, 0.5);
     top: 18%;
-    left: 0;
-    width: 15%;
-    height: 82%;
-    display: flex;
-    flex-flow: column wrap;
-}
-.sidebarwrapper{
-    position: absolute;
-    background-color: rgba(222, 220, 174, 0.5);
-    top:11%;
     left: 0;
     width: 15%;
     height: 82%;
