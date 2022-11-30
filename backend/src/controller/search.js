@@ -21,3 +21,12 @@ export async function searchUsers(req, res) {
         return res.status(500).json({ error: 'Internal server error' });
     }
 }
+
+export async function getRandomUsers(_req, res) {
+    try {
+        return res.status(200).json(await searchModel.getRandomUsers());
+    } catch (except) {
+        console.error(except);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+}

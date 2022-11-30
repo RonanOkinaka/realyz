@@ -93,3 +93,10 @@ export async function searchUsers(queryData, wildcard, connected, uid) {
     );
     return [null, results];
 }
+
+export async function getRandomUsers() {
+    const [results] = await pool.query(
+        'SELECT * FROM users ORDER BY RAND() LIMIT 20'
+    );
+    return results;
+}

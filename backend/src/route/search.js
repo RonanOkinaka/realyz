@@ -14,4 +14,6 @@ searchRoute.get('/', function(req, res, next) {
     return next();
 }, searchController.searchUsers);
 
+searchRoute.get('/random', searchController.getRandomUsers);
+
 export default searchRoute;
