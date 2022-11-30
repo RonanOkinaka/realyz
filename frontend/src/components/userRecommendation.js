@@ -2,18 +2,18 @@ import React from "react";
 
 const UserSnapShot = () => {
     return (
-        <div className="usersnapshot">
-        </div>
-    )
+        <p>hfih</p>
+    );
 }
+
 const UserRecommendationRow = () => {
     return (
         <div className="userrrecommendationrow">
-            <UserSnapshot />
-            <UserSnapshot />
+            <UserSnapShot />
+            <UserSnapShot />
             <UserSnapShot />
         </div>
-    )
+    );
 }
 const UserRecommendation = () => {
     return (

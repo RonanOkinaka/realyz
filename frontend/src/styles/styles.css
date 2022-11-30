@@ -202,6 +202,7 @@ button:hover {
 }
 
 /* Profile Page */
+.mainpage .backgroundcontainer,
 .profilepage .backgroundcontainer {
     background-size: cover;
     background-repeat: no-repeat;
@@ -212,6 +213,13 @@ button:hover {
     bottom: 0;
     min-width: 100%;
     min-height: 100%;
+}
+
+.mainpage .mainpagetitle {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .profilepage .btn {
@@ -304,6 +312,7 @@ button:hover {
 .profileform::-webkit-input-placeholder {
     font-size: 14px;
 }
+.mainpage .nav,
 .profilepage .nav {
     background: rgba(222, 220, 174, 0.5); /* Green background with 30% opacity */
 }

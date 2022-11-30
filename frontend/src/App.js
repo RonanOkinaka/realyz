@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from './pages/Layout';
 import LandingPage from './pages/landing';
 import Profile from './pages/profile';
+import MainPage from './pages/main';
 import NoPage from './pages/noPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
                 <Route path="/" element={<Layout />}>
                     <Route index element={<LandingPage />} /> {/* CHANGE THIS BACK TO LANDINGPAGE WHEN FINISHED DEBUGGING PROFILE PAGE*/}
                     <Route path="profile" element= {<Profile mode={0}/>}/>
+                    <Route path="main" element= {<MainPage />} />
                     <Route path="*" element={<NoPage />} />
                 </Route>
             </Routes>
