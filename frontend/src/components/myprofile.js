@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { bearerToken, getLocalUserData, getUserData, updateUserData } from "../util/data";
 import SamplePic from "../media/sample.jpg";
+import ConnectIcon from "../media/addConnections.png";
+import ExplorePic from "../media/explore.png";
 
 const Pic = () => {
     return (
@@ -10,6 +12,21 @@ const Pic = () => {
     );
 }
 
+const ConnectionsIcon = () => {
+    return (
+        <div className="piccontainer">
+            <img className="pic" src={ConnectIcon} alt="manageConnect"></img>
+        </div>
+    );
+}
+
+const Explore = () => {
+    return (
+        <div className="piccontainer">
+            <img className="pic" src={ExplorePic} alt="manageConnect"></img>
+        </div>
+    );
+}
 const FullName = () => {
     return (
         <p className="fullname">Fred Check</p>
@@ -124,7 +141,7 @@ const UserInfoUnEditable = () => {
 
     //TODO: pass in a key to each element in list
     return (
-        <div className="profiledivcontainer">
+        <div className="profiledivcontainer" id="profileContainer">
             {Object.keys(field).map(name => (
                 <React.Fragment>
                     <span className="profiledivname">{name}</span>
@@ -137,25 +154,24 @@ const UserInfoUnEditable = () => {
     );
 }
 
-const OtherProfile = () => {
-    return (
+const OtherProfile = ({vis}) => {
+    return ((vis==1) ? (
         <div className="otherprofile">
             <Pic />
             <FullName />
             <ConnectionCount />
             <UserInfoUnEditable />
-        </div>
-    );
+        </div>) : null);
 }
 
-const MyProfile = () => {
-    return (
-        <div className="myprofile">
+const MyProfile = ({vis}) => {
+    return ((vis==0) ? (
+        <div className="myprofile" id="profile">
             <Pic />
             <p className="subheading">My Profile</p>
             <UserInfoEditable />
         </div>
-    )
+    ) : null ) ;
 }
 
-export {MyProfile, OtherProfile, Pic};
+export {MyProfile, OtherProfile, Pic, ConnectionsIcon, Explore};
