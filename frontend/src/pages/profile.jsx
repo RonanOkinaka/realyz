@@ -8,6 +8,7 @@ import OtherVideo from "../components/otherVideo";
 import useModal from "../util/useModal";
 import MyConnections from "../components/myConnections"
 import SentRequests from "../components/sentRequests";
+import PendingInvitations from "../components/pendingInvitations"
 //props.mode: 0 == myprofile, 1 == otherprofile
 const Profile = (props) => {
     const {vis, toggle} = useModal();
@@ -28,6 +29,9 @@ const Profile = (props) => {
                         vis={vis}/>
                         <SentRequests
                         vis={vis}/>
+                        <PendingInvitations
+                        vis={vis}
+                        />
                     </React.Fragment>
                 }
                 { props.mode === 1 &&

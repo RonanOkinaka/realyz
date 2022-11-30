@@ -426,7 +426,8 @@ button:hover {
     overflow-y: auto;
   }
 
-  .profilepage .requestsContainer .request {
+  .profilepage .requestsContainer .request, 
+  .profilepage .pendingInvitationsContainer .request{
     position: relative;
     margin-bottom: 10px;
     background: black;
@@ -449,18 +450,36 @@ button:hover {
     left: 50%;
   }
 
-  .profilepage .requestsContainer .request button {
+  .profilepage .requestsContainer .request button,
+  .profilepage .pendingInvitationsContainer .request button{
     position: absolute;
     left: 75%;
     top: 25%;
   }
 
-  .profilepage .requestsContainer .request p {
+  .profilepage .requestsContainer .request p,
+  .profilepage .pendingInvitationsContainer .request p {
     text-align: left;
     font-size: larger;
     color: white;
   }
 
-  .profilepage .requestsContainer p {
+  .profilepage .requestsContainer p,
+  .profilepage .pendingInvitationsContainer p {
     font-size: xx-large;
+  }
+
+  .profilepage .pendingInvitationsContainer {
+    position: absolute;
+    top: 70%;
+    right: 10%;
+    width: 30%;
+    height: 40%;
+    background: rgba(222, 220, 174, 0.5); /* Green background with 30% opacity */
+    display: flex;
+    flex-flow: row wrap;
+    padding: 15px;
+    border-radius: 5%;
+    overflow-y: auto;
+    margin-bottom: 20px;
   }

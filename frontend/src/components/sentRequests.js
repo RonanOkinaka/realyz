@@ -13,10 +13,10 @@ const SentRequests = ({vis}) => {
     return (vis==1) ?(
         <div className="requestsContainer">
             <p>Sent Requests</p>
-            <SentRequest requestee="James Sattler" />
-            <SentRequest requestee="Harvey Zhao" />
-            <SentRequest requestee="Ronan Ok" />
-            <SentRequest requestee="Harvey Zhao" />
+            <SentRequest requestee={"Abhay"} />
+            <SentRequest requestee={"Raj"} />
+            <SentRequest requestee={"Ronan"} />
+            <SentRequest requestee={"David"} />
         </div>
     ) : null;
 }
