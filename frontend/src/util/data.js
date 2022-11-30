@@ -71,7 +71,7 @@ const updateUserData = (usrData) => axios ({
     url: '/user/' + usrData['uid'],
     headers: {'Authorization': 'Bearer ' + bearerToken},
     data: usrData,
-})
+});
 
 //type: 1 -> jpeg/png 2 -> mp4; media takes in a formData() object.
 const uploadMedia = (media, type, uid) => axios ({
@@ -82,22 +82,24 @@ const uploadMedia = (media, type, uid) => axios ({
     data: media
 });
 
-const getMedia = (media, type, uid) => axios ({
+const getMedia = (type, uid) => axios ({
     method: 'get',
     baseURL: 'http://localhost:8080',
     url: '/media/u/' + uid + '/' + type,
-})
+    responseType: 'blob',
+    // headers: {'Accept': 'video/mp4; charset=UTF-8'}
+});
 
 const deleteMedia = (type, uid) => axios ({
     method: 'delete',
     baseURL: 'http://localhost:8080',
     url: '/media/u/' + uid + '/' + type,
     headers: {'Authorization': 'Bearer ' + bearerToken},
-})
+});
 
 const dump = () => {
     console.log(userData);
-}
+};
 
 export {userData, bearerToken, storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, 
     loginUser, getUserData, updateUserData, uploadMedia, getMedia, deleteMedia, dump};

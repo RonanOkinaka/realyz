@@ -1,19 +1,34 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import video from "../media/landing_page_video.mp4"
-import { deleteMedia, getLocalUserData, uploadMedia } from "../util/data";
+import { deleteMedia, getLocalUserData, uploadMedia, getMedia } from "../util/data";
 
 //TODO: get Profile Video from server.
 const ProfileVid = () => {
+    const [profileVid, setProfileVid] = useState(null);
+    const handleOnClick = event => {
+        // fetchVideo();
+        getMedia(2, 'a')
+        .then(function(response){
+            // let file = new File(response.data, {type: "video/mp4"});
+            var videoURL = window.URL.createObjectURL(response.data);
+            // let videoUrl = response.data;
+            setProfileVid(videoURL);
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+    }
+    useEffect(() => {
+        console.log(profileVid);
+    }, [profileVid]);
+
     //TODO: stream data from the server after rendering.
     return (
         <div className="profilevidcontainer">
-            {/* <video className="profilevid" controls> 
-                <source src='/media/u/a/2' type="video/mp4"> </source>
-            </video> */}
-
+            <button onClick={handleOnClick}></button>
             <video className="profilevid" controls>
-                <source src={video} type="video/mp4"></source>
+                <source src={profileVid} type="video/mp4"></source>
             </video>
         </div>
     );
@@ -33,7 +48,6 @@ const ButtonEdit = () => {
 
     const handleOnClick = event => {
         //upload the file at the given path to server
-        //catch edge cases:
         const fileSuffix = video.name.match(fileSuffixPattern)[0];
         console.log(fileSuffix);
         const formData = new FormData();
@@ -42,16 +56,19 @@ const ButtonEdit = () => {
             video,
             video.name
         );
+        //catch edge cases:
         if (fileSuffix !== ".mp4") {
             setErr("file type not supported.");
         }
         else {
             setErr(null);
-            //FIXME:
             uploadMedia(formData, 2, uid)
-            .catch(function(error){
-                console.log(error);
-            });
+                .then (function(response){
+                    console.log(response);
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
         }
     }
 
