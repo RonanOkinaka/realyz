@@ -10,10 +10,12 @@ import MyConnections from "../components/myConnections"
 //props.mode: 0 == myprofile, 1 == otherprofile
 const Profile = (props) => {
     const {vis, toggle} = useModal();
+    console.log('prop mode: ' + props.mode);
     return (
         <body className="profilepage">
             <div className="backgroundcontainer" style={{ backgroundImage: `url(${Background})` }}>
                 <Navbar isLanding={() => false}/>
+                
                 { props.mode === 0 &&
                     <React.Fragment>
                         <Sidebar 

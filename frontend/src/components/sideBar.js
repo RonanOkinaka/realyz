@@ -1,4 +1,5 @@
 import React from "react";
+import {ConnectionsIcon} from "./myprofile"
 import {Pic} from "./myprofile"
 const SidebarItem = (props) => {
     const showConnections = () => {
@@ -10,12 +11,23 @@ const SidebarItem = (props) => {
         props.onClick();
     }
     }
-    return (
-        <div className="sidebaritem" onClick={showConnections}>
-            <Pic />
-            <span>{props.name}</span>
-        </div>
-    )
+    if (props.name == "Manage Connections"){
+        return (
+            <div className="sidebaritem" onClick={showConnections}>
+                <ConnectionsIcon />
+                <span>{props.name}</span>
+            </div>
+        )   
+    }
+    if (props.name == "My account info"){
+        return (
+            <div className="sidebaritem" onClick={showConnections}>
+                <Pic />
+                <span>{props.name}</span>
+            </div>
+        )  
+    }
+    
 }
 
 const Sidebar = ({show}) => {

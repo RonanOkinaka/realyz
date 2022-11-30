@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { bearerToken, getLocalUserData, getUserData, updateUserData } from "../util/data";
 import SamplePic from "../media/sample.jpg";
+import ConnectIcon from "../media/addConnections.png";
 
 const Pic = () => {
     return (
@@ -10,6 +11,13 @@ const Pic = () => {
     );
 }
 
+const ConnectionsIcon = () => {
+    return (
+        <div className="piccontainer">
+            <img className="pic" src={ConnectIcon} alt="manageConnect"></img>
+        </div>
+    );
+}
 const FullName = () => {
     return (
         <p className="fullname">Fred Check</p>
@@ -137,7 +145,7 @@ const UserInfoUnEditable = () => {
     );
 }
 
-const OtherProfile = () => {
+const OtherProfile = ({vis}) => {
     return (
         <div className="otherprofile">
             <Pic />
@@ -158,4 +166,4 @@ const MyProfile = ({vis}) => {
     ) : null ) ;
 }
 
-export {MyProfile, OtherProfile, Pic};
+export {MyProfile, OtherProfile, Pic, ConnectionsIcon};

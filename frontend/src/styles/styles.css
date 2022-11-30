@@ -254,6 +254,11 @@ button:hover {
     clip-path: circle(50%);
 }
 
+.sidebaritem .piccontainer .pic {
+    width: 50%;
+    clip-path: circle(50%);
+    
+}
 .otherprofile .fullname,
 .myprofile .subheading {
     margin-bottom: 0px;
@@ -338,7 +343,7 @@ button:hover {
     justify-content: space-between;
 }
 
-.profilepage .sidebarwrapper {
+.profilepage {
     position: absolute;
     background-color: rgba(222, 220, 174, 0.5);
     top: 18%;
@@ -348,7 +353,16 @@ button:hover {
     display: flex;
     flex-flow: column wrap;
 }
-
+.sidebarwrapper{
+    position: absolute;
+    background-color: rgba(222, 220, 174, 0.5);
+    top: 22.7%;
+    left: 0;
+    width: 15%;
+    height: 82%;
+    display: flex;
+    flex-flow: column wrap;
+}
 .sidebar .sidebaritem {
     display: flex;
     flex-flow: row nowrap;
@@ -369,7 +383,8 @@ button:hover {
 }
 
 .sidebaritem span {
-    width: 80%;
+    width: 70%;
+    font-size: 1vw;
     /* background-color: green; */
 }
 
