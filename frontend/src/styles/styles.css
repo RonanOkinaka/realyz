@@ -385,6 +385,8 @@ button:hover {
   
   .connectionGallery .item img {
     vertical-align: middle;
+    width: 80px;
+    height: 80px;
   }
   
   .connectionGallery .caption {
