@@ -427,7 +427,6 @@ button:hover {
   }
 
   .profilepage .requestsContainer .request {
-    vertical-align: middle;
     position: relative;
     margin-bottom: 10px;
     background: black;
@@ -450,8 +449,18 @@ button:hover {
     left: 50%;
   }
 
+  .profilepage .requestsContainer .request button {
+    position: absolute;
+    left: 75%;
+    top: 25%;
+  }
+
   .profilepage .requestsContainer .request p {
     text-align: left;
-    font-size: large;
+    font-size: larger;
     color: white;
+  }
+
+  .profilepage .requestsContainer p {
+    font-size: xx-large;
   }

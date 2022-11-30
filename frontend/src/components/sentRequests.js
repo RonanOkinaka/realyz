@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from "react";
 
-
+const SentRequest = ({requestee}) => {
+    return (
+        <div className="request">
+            <p>{requestee}</p>
+            <button>View Profile</button>
+        </div>
+    );
+}
 
 const SentRequests = ({vis}) => {
     return (vis==1) ?(
         <div className="requestsContainer">
-            <div classname="requestsSubheading"><p>Sent Requests</p></div>
-            <div className="request">
-                <p>John Doe</p>
-            </div>
-            <div className="request">
-                <p>John Doe</p>
-            </div>
-            <div className="request">
-                <p>John Doe</p>
-            </div>
-            <div className="request">
-                <p>John Doe</p>
-            </div>
-            <div className="request">
-                <p>John Doe</p>
-            </div>
+            <p>Sent Requests</p>
+            <SentRequest requestee="James Sattler" />
+            <SentRequest requestee="Harvey Zhao" />
+            <SentRequest requestee="Ronan Ok" />
+            <SentRequest requestee="Harvey Zhao" />
         </div>
     ) : null;
 }
