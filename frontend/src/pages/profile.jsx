@@ -5,9 +5,14 @@ import { MyProfile, OtherProfile } from "../components/myprofile";
 import MyVideo from "../components/myVideo";
 import Sidebar from "../components/sideBar";
 import OtherVideo from "../components/otherVideo";
+import { useNavigate } from "react-router-dom";
 
 //props.mode: 0 == myprofile, 1 == otherprofile
 const Profile = (props) => {
+    const navigate = useNavigate();
+    const handleOnClick = event => {
+        navigate('/main');
+    }
     return (
         <body className="profilepage">
             <div className="backgroundcontainer" style={{ backgroundImage: `url(${Background})` }}>
@@ -25,6 +30,7 @@ const Profile = (props) => {
                         <OtherVideo />
                     </React.Fragment>
                 }
+                <button onClick={handleOnClick}></button>
             </div>
         </body>
     );

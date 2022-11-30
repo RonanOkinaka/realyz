@@ -3,6 +3,8 @@ import axios, { AxiosHeaders } from "axios";
 let userName = "";
 let userData = {};  //TODO: use sessionStorage to store userData
 let bearerToken = "";
+let searchQuery = {};
+let otherUserID = "";
 
 /*
 {
@@ -109,9 +111,24 @@ const deleteMedia = (type, uid) => axios ({
     headers: {'Authorization': 'Bearer ' + bearerToken},
 });
 
+const storeQuery = (param, val) => {
+    searchQuery[param] = val;
+}
+
+const clearQuery = () => {
+    searchQuery = {};
+}
+
+const searchUser = (query, val) => axios ({
+    method: 'get',
+    baseURL: 'http://localhost:8080',
+    url: '/search/',
+    params: query,
+})
+
 const dump = () => {
     console.log(userData);
 };
 
-export {userData, bearerToken, storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, 
-    loginUser, getUserData, updateUserData, uploadMedia, getMedia, deleteMedia, dump};
+export {userData, bearerToken, searchQuery, otherUserID, storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, 
+    loginUser, getUserData, updateUserData, uploadMedia, getMedia, deleteMedia, searchUser, storeQuery, clearQuery, dump};
