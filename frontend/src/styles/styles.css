@@ -52,6 +52,17 @@ button:hover {
     list-style-type: none;
 }
 
+.backgroundcontainer {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: fixed;
+    display: flex;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
 /* landing page properties */
 .fullpage {
     position: absolute;
@@ -116,6 +127,7 @@ button:hover {
     /* background-color: black; */
 }
 
+.mainpage .searchbar,
 .fullpage .signup .signupform {
     background-color: transparent;
     width: 500px;
@@ -150,6 +162,7 @@ button:hover {
     flex-direction: column;
 }
 
+.mainpage .formcontainer,
 .fullpage .formcontainer {
     display: flex;
     /* background-color: black; */
@@ -202,16 +215,11 @@ button:hover {
 }
 
 /* Profile Page */
-.profilepage .backgroundcontainer {
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    /* background-size: contain; */
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
+.mainpage .mainpagetitle {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .profilepage .btn {
@@ -304,6 +312,7 @@ button:hover {
 .profileform::-webkit-input-placeholder {
     font-size: 14px;
 }
+.mainpage .nav,
 .profilepage .nav {
     background: rgba(222, 220, 174, 0.5); /* Green background with 30% opacity */
 }
@@ -370,4 +379,9 @@ button:hover {
 .sidebaritem span {
     width: 80%;
     /* background-color: green; */
+}
+
+/* main page */
+.mainpage .backgroundcontainer {
+    justify-content: center;
 }
