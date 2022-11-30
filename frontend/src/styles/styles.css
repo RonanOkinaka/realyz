@@ -412,7 +412,6 @@ button:hover {
   }
 
   .profilepage .requestsContainer {
-    grid-template-columns: 150px;
     position: absolute;
     top: 25%;
     right: 10%;
@@ -436,7 +435,23 @@ button:hover {
     height: 20%;
   }
 
+  .profilepage .requestsContainer .requestsSubheading {
+    
+    vertical-align: middle;
+    position: relative;
+    background: green;
+    margin-bottom: 10px;
+    width: 90%;
+    height: 20%;
+  }
+  .profilepage .requestsContainer .requestsSubheading p {
+    position: relative;
+    font-size: x-large;
+    left: 50%;
+  }
+
   .profilepage .requestsContainer .request p {
-    font-size: larger;
+    text-align: left;
+    font-size: large;
     color: white;
   }
