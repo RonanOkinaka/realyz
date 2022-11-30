@@ -3,27 +3,38 @@ import bcrypt from 'bcryptjs';
 import pool from '../database.js';
 import { ResError } from '../error.js';
 
+class TableEntryMetadata {
+    constructor(canEdit = true, canSearch = true, isReal = true) {
+        this.canEdit = canEdit;
+        this.canSearch = canSearch;
+
+        // Handy to denote implicit or special columns
+        this.isReal = isReal;
+    }
+};
+
 // Lists all columns in the users table and whether they can be edited
 // after account creation
-const USERS_TABLE_COLUMNS = {
-    uid: false,
-    pass: false,
-    email: true,
-    fname: true,
-    lname: true,
-    type: true,
-    company: true,
-    biography: true
+export const USERS_TABLE_COLUMNS = {
+    uid: new TableEntryMetadata(false),
+    pass: new TableEntryMetadata(false, false, false),
+    email: new TableEntryMetadata(),
+    fname: new TableEntryMetadata(),
+    lname: new TableEntryMetadata(),
+    type: new TableEntryMetadata(),
+    company: new TableEntryMetadata(),
+    biography: new TableEntryMetadata(true, false)
 };
 
 // Returns true iff. the column exists in the users table and can be changed
 function canEditColumn(field) {
-    return !!USERS_TABLE_COLUMNS[field];
+    const colData = USERS_TABLE_COLUMNS[field];
+    return colData && colData.isReal && colData.canEdit;
 }
 
-function generateUserColumnSql(userData, fields, values) {
+export function generateUserColumnSql(userData, fields, values, predicate) {
     for (var key in userData) {
-        if (!canEditColumn(key)) {
+        if (!predicate) {
             return new ResError(400, `Invalid field ${key}`);
         }
 
@@ -62,7 +73,7 @@ export async function registerUser(uid, pass, userData) {
 
     // Generate our SQL query
     let fields = ['uid'], values = [uid];
-    const err = generateUserColumnSql(userData, fields, values);
+    const err = generateUserColumnSql(userData, fields, values, canEditColumn);
     if (err) {
         return err;
     }
@@ -96,7 +107,7 @@ export async function getUserPublicData(uid) {
 export async function updateUserData(uid, userData) {
     let args = [];
 
-    const err = generateUserColumnSql(userData, args, args);
+    const err = generateUserColumnSql(userData, args, args, canEditColumn);
     if (err) {
         return err;
     }
