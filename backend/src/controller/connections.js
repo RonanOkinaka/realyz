@@ -81,6 +81,22 @@ export async function viewConnections(req, res) {
     }
 }
 
+export async function countConnections(req, res) {
+    const [err, connections] = await connectionsModel.getConnections(
+        req.params.uid, null, connectionsModel.CONNECTION_STATUS.ACCEPTED
+    );
+
+    if (err !== null) {
+        return res.status(err.code).json({
+            error: err.message
+        });
+    }
+
+    return res.status(200).json({
+        count: connections.length
+    });
+}
+
 export async function deleteConnection(req, res) {
     let { from, to } = req.query;
     const uid = req.body.uid;

@@ -19,6 +19,10 @@ connectionsRoute.post('/',
     connectionController.createConnection
 );
 
+connectionsRoute.get('/:uid/count',
+    connectionController.countConnections
+);
+
 connectionsRoute.get('/',
     authorizeUserMiddleware,
     connectionController.viewConnections
