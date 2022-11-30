@@ -6,7 +6,7 @@ import SamplePic from "../media/sample.jpg";
 const Pic = (props) => {
     return (
         <div className="piccontainer">
-            <img className="pic" src={SamplePic} alt="samplePic"></img>
+            <img className="pic" src={['http://localhost:8080/media/u/', props.uid, '/1'].join('')} alt="samplePic"></img>
         </div>
     );
 }
