@@ -376,7 +376,7 @@ button:hover {
 .connectionGallery {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: 100px 100px 100px;
+    grid-template-columns: 150px 150px 150px;
 }
 .connectionGallery .item {
     position: relative;
@@ -385,8 +385,8 @@ button:hover {
   
   .connectionGallery .item img {
     vertical-align: middle;
-    width: 80px;
-    height: 80px;
+    width: 140px;
+    height: 140px;
   }
   
   .connectionGallery .caption {
@@ -401,11 +401,12 @@ button:hover {
     overflow: auto;
     box-sizing: border-box;
     transition: transform .5s;
-    transform: translateY(100%);
+    transform: translateY(0%);
     background: rgba(0, 0, 0, .7);
     color: rgb(255, 255, 255);
+    font-size: small;
   }
-  
-  .connectionGallery .item:hover .caption {
-    transform: translateY(0%);
+
+  .myprofile form {
+    margin-bottom: 10px;
   }
