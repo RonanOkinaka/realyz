@@ -1,9 +1,8 @@
 import React from "react";
 import Logo from "./logo";
-import { clearUserData, loginUser, storeBearerToken, userData } from "../util/data";
+import { clearUserData, loginUser, storeBearerToken, userData} from "../util/data";
 import { useNavigate } from "react-router-dom";
 import Parent from "./dataVisualizer";
-
 const Navbar = ({isLanding, show}) => {
     const navigate = useNavigate();
     const handleOnClickSignin = event => {

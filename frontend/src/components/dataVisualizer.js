@@ -9,7 +9,7 @@ const Parent = () => {
     useEffect(() => {
         fetchData(getLocalUserData(['uid'])['uid']);
     }, []);
-
+    
     const fetchData = (param) => {
         getUserData(param)
             .then((response) => {

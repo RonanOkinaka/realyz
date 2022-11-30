@@ -10,6 +10,7 @@ const LoginPopup = ({vis, hide}) => {
         clearUserData();
         //user input
         let uid = event.target.usrname.value;
+        console.log(uid);
         let pass = event.target.pwd.value;
         
         //store user info in sessionStorage
@@ -21,6 +22,7 @@ const LoginPopup = ({vis, hide}) => {
                 setErr(null);
                 storeBearerToken(response['data']['token']);
                 console.log("login success.");
+                console.log(response['data']);
                 navigate('/profile');
             })
             .catch(function(error){
