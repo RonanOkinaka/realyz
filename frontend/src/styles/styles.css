@@ -410,3 +410,18 @@ button:hover {
   .myprofile form {
     margin-bottom: 10px;
   }
+
+  .profilepage .requestsContainer {
+    position: absolute;
+    top: 25%;
+    right: 10%;
+    width: 30%;
+    height: 40%;
+    background: rgba(222, 220, 174, 0.5); /* Green background with 30% opacity */
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    padding: 15px;
+    border-radius: 5%;
+    overflow-y: auto;
+  }
