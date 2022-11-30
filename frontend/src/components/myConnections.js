@@ -54,13 +54,17 @@ const MyConnections = ({ vis }) => {
     }
 
     useEffect(() => {
+        console.log(getLocalUserData(['uid'])['uid']);
         console.log(connections);
     })
 
     //TODO: for searchbar: 
     //if getConnection(from=me, to=usr).data.connections != []
     //display all connections.uidTo
-
+    //TODO: for modal
+    //TODO: display user first and last name instead of uid
+    //TODO: display user picture instead of sample picture
+    //TODO: handle CSS for each
     return ((vis == 1) ? (
         <div className="myprofile">
             <p className="subheading">My Connections</p>
@@ -68,11 +72,14 @@ const MyConnections = ({ vis }) => {
                 <input type="text" name="text" class="search" placeholder="Search here!" />
                 <input type="submit" name="submit" class="submit" value="Search" />
             </form>
-            <div class="connectionGallery">
-                <Connection connectName={"Abhay Rao"} />
-                <button onClick={handleOnClick}>check</button>
-                <button onClick={makeConnection}>connect</button>
-            </div>
+            {connections.map(obj => (
+                <div class="connectionGallery">
+                    <Connection connectName={obj.uidTo} />
+                    <button onClick={handleOnClick}>check</button>
+                    <button onClick={makeConnection}>connect</button>
+                </div>
+            ))}
+            <button onClick={handleOnClick}>check</button>
         </div>
     ) : null);
 }
