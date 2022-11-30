@@ -11,9 +11,22 @@ const Connection = ({connectName}) => {
     )
 }
 const MyConnections = ({ vis }) => {
+    //WARNING: BUG, "pending": 0 also shows pending requests
+    // to get completed requests, do not add pending at all.
     let query = {
         "from": "a",
+        "pending": 1,
     }
+    // data.connections:
+    // {
+    //     "connections": [
+    //         {
+    //             "uidTo": "nini_gmail_com",
+    //             "uidFrom": "a",
+    //             "status": 0
+    //         }
+    //     ]
+    // }
     const handleOnClick = event => {
         getConnections(query)
         .then(function(res){
@@ -22,7 +35,7 @@ const MyConnections = ({ vis }) => {
     }
 
     const makeConnection = event => {
-        createConnection('nini_gmail_com')
+        createConnection('zichengzhao_g_ucla_edu')
         .then(function(res){
             console.log(res);
         });
