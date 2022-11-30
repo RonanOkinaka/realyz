@@ -21,7 +21,8 @@ module.exports={
         /** "filename"
          * the name of the output file 
          */
-        filename: "main.js"
+        filename: "main.js",
+        publicPath: '/'
     },
     /** "target"
      * setting "node" as target app (server side), and setting it as "web" is 
@@ -29,6 +30,17 @@ module.exports={
      */
     target: "web",
     devServer: {
+        historyApiFallback: true,
+        /** "proxy"
+         * port of backend server - prevent CORS issue
+        */
+        proxy: {
+            '/api': {
+                target: 'http://localhost:8080',
+                secure: false,
+            }
+        },
+
         /** "port" 
          * port of dev server
         */
@@ -91,3 +103,4 @@ module.exports={
         ]
     }
 }
+
