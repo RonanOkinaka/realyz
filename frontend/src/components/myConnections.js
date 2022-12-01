@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SamplePic from "../media/sample.jpg";
-import { createConnection, getConnections, getLocalUserData } from "../util/data";
+import { createConnection, deleteConnection, getConnections, getLocalUserData } from "../util/data";
 
 const Connection = ({connectName}) => {
     return (
@@ -37,13 +37,6 @@ const MyConnections = ({ vis }) => {
     //         }
     //     ]
     // }
-    const handleOnClick = event => {
-        getConnections(query)
-        .then(function(res){
-            console.log(res);
-            setConnections(res.data.connections);
-        });
-    }
 
     const makeConnection = event => {
         //createconnection(usrname_you_wanna_connect)
@@ -53,10 +46,26 @@ const MyConnections = ({ vis }) => {
         });
     }
 
+    const delConnection = event => {
+        //deleteConnection(this_user, other_user)
+        deleteConnection("a", "nini_gmail_com")
+        .then(function(res){
+            console.log(res);
+        })
+        .catch(function(err){
+            console.log(err);
+        })
+    }
+
     useEffect(() => {
-        console.log(getLocalUserData(['uid'])['uid']);
-        console.log(connections);
-    })
+        // console.log(getLocalUserData(['uid'])['uid']);
+        // console.log(connections);
+        //TODO: refresh the list when user modifies its connection
+        getConnections(query)
+        .then(function(res){
+            setConnections(res.data.connections);
+        });
+    }, [])
 
     //TODO: for searchbar: 
     //if getConnection(from=me, to=usr).data.connections != []
@@ -75,10 +84,9 @@ const MyConnections = ({ vis }) => {
             {connections.map(obj => (
                 <div class="connectionGallery">
                     <Connection connectName={obj.uidTo} />
-                    <button onClick={handleOnClick}>check</button>
+                    <button onClick={delConnection}>del</button>
                 </div>
             ))}
-            <button onClick={handleOnClick}>check</button>
         </div>
     ) : null);
 }

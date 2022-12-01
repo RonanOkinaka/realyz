@@ -41,8 +41,6 @@ function getLocalUserData(param){
     {
         testData[param[i]] = sessionStorage.getItem(param[i]);
     }
-    console.log("selecteddATA: " + JSON.stringify(selectedData));
-    console.log("testData: " + JSON.stringify(testData));
     return testData;
 }
 
@@ -165,4 +163,4 @@ const dump = () => {
 };
 
 export {userData, searchQuery, otherUserID, storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, 
-    loginUser, getUserData, updateUserData, uploadMedia, getMedia, deleteMedia, searchUser, storeQuery, clearQuery, getConnections, createConnection, dump};
+    loginUser, getUserData, updateUserData, uploadMedia, getMedia, deleteMedia, searchUser, storeQuery, clearQuery, getConnections, createConnection, deleteConnection, dump};
