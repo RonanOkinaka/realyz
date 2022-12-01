@@ -25,8 +25,6 @@ const MyConnections = ({ vis }) => {
         "from": getLocalUserData(['uid'])['uid'],
     }
 
-    //TODO: get user's connection
-
     // data.connections:
     // {
     //     "connections": [
@@ -38,17 +36,9 @@ const MyConnections = ({ vis }) => {
     //     ]
     // }
 
-    const makeConnection = event => {
-        //createconnection(usrname_you_wanna_connect)
-        createConnection('zichengzhao_g_ucla_edu')
-        .then(function(res){
-            console.log(res);
-        });
-    }
-
-    const delConnection = event => {
+    const delConnection = (requester, requestee) => {
         //deleteConnection(this_user, other_user)
-        deleteConnection("a", "nini_gmail_com")
+        deleteConnection(requester, requestee)
         .then(function(res){
             console.log(res);
         })
@@ -84,7 +74,7 @@ const MyConnections = ({ vis }) => {
             {connections.map(obj => (
                 <div class="connectionGallery">
                     <Connection connectName={obj.uidTo} />
-                    <button onClick={delConnection}>del</button>
+                    <button onClick={() => {deleteConnection(query.from, obj.uidTo)}}>del</button>
                 </div>
             ))}
         </div>
