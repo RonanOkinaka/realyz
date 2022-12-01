@@ -1,21 +1,48 @@
 import React from "react";
-import {Pic} from "./myprofile"
+import {Pic, ConnectionsIcon, Explore} from "./myprofile"
+import { useNavigate } from "react-router-dom";
 const SidebarItem = (props) => {
+    const navigate = useNavigate();
     const showConnections = () => {
         if(props.name=="Manage Connections"){
-        props.onClick();
-
+            props.onClick();
+        }
+        else if (props.name=="My account info"){
+            props.onClick();
+        }
+        else if (props.name=="Explore"){
+            props.onClick();
+        }
     }
-    else if (props.name=="My account info"){
-        props.onClick();
+    const gotoMain = event => {
+        navigate('/main');
     }
+    if (props.name == "Manage Connections"){
+        return (
+            <div className="sidebaritem" onClick={showConnections}>
+                <ConnectionsIcon />
+                <span>{props.name}</span>
+            </div>
+        )   
     }
-    return (
-        <div className="sidebaritem" onClick={showConnections}>
-            <Pic />
-            <span>{props.name}</span>
-        </div>
-    )
+    else if (props.name == "My account info"){
+        return (
+            <div className="sidebaritem" onClick={showConnections}>
+                <Pic />
+                <span>{props.name}</span>
+            </div>
+        )  
+    }
+    //directs user to main page
+    else if (props.name == "Explore"){
+        return (
+            <div className="sidebaritem" onClick={gotoMain}>
+                <Explore />
+                <span>{props.name}</span>
+            </div>
+        )
+    }
+    
 }
 
 const Sidebar = ({show}) => {
@@ -25,7 +52,6 @@ const Sidebar = ({show}) => {
     const showProfile = () => {
         show(0);
     }
-    
     return (
         <div className="sidebarwrapper">
             <div className="sidebar">
@@ -33,6 +59,8 @@ const Sidebar = ({show}) => {
                 onClick={showProfile}/>
                 <SidebarItem name="Manage Connections"
                 onClick={deleteProfile} 
+                />
+                <SidebarItem name="Explore"
                 />
             </div>
         </div>

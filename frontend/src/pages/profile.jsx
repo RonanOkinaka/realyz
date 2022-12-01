@@ -9,13 +9,11 @@ import useModal from "../util/useModal";
 import MyConnections from "../components/myConnections"
 import SentRequests from "../components/sentRequests";
 import PendingInvitations from "../components/pendingInvitations"
-import { useNavigate } from "react-router-dom";
 import { getUserData } from "../util/data";
 
 //props.mode: 0 == myprofile, 1 == otherprofile; props.uid: other user's uid to display info
 const Profile = (props) => {
     const {vis, toggle} = useModal();
-    const navigate = useNavigate();
 
     //TODO: experimental
     const [usrData, setUsrData] = useState({});
@@ -28,10 +26,6 @@ const Profile = (props) => {
             });
         }
     }, []);
-
-    const handleOnClick = event => {
-        navigate('/main');
-    }
     return (
         <body className="profilepage">
             <div className="backgroundcontainer" style={{ backgroundImage: `url(${Background})` }}>
@@ -56,11 +50,10 @@ const Profile = (props) => {
                 }
                 { props.mode === 1 &&
                     <React.Fragment>
-                        <OtherProfile info={usrData}/>
-                        <OtherVideo uid={props.uid}/>
+                        <OtherProfile />
+                        <OtherVideo />
                     </React.Fragment>
                 }
-                <button onClick={handleOnClick}></button>
             </div>
         </body>
     );

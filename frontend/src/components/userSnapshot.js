@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-
+import {createConnection, getConnections, deleteConnection} from "../util/data";
 const UserSnapShot = (props) => {
     const [usrData, setUsrData] = useState(props.info);
-
+    const connectTo = () =>{
+        console.log(props.info.uid);
+        createConnection(props.info.uid);
+    }
     return (
         <div className="profiledivcontainer">
             {Object.keys(usrData).map(name => (
@@ -13,6 +16,7 @@ const UserSnapShot = (props) => {
                     </div>
                 </React.Fragment>
             ))}
+            <button onClick={connectTo} id="connectBut">Connect</button>
         </div>
     );
 }
