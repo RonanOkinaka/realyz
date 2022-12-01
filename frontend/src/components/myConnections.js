@@ -4,9 +4,9 @@ import { createConnection, getConnections, getLocalUserData } from "../util/data
 
 const Connection = ({connectName}) => {
     return (
-        <div class="item">
+        <div className="item">
             <img src={SamplePic} />
-            <span class="caption">{connectName}</span>
+            <span className="caption">{connectName}</span>
         </div>
     )
 }
@@ -24,7 +24,6 @@ const MyConnections = ({ vis }) => {
     let query = {
         "from": getLocalUserData(['uid'])['uid'],
     }
-
     //TODO: get user's connection
 
     // data.connections:
@@ -37,6 +36,7 @@ const MyConnections = ({ vis }) => {
     //         }
     //     ]
     // }
+    
     const handleOnClick = event => {
         getConnections(query)
         .then(function(res){
@@ -57,6 +57,13 @@ const MyConnections = ({ vis }) => {
         console.log(getLocalUserData(['uid'])['uid']);
         console.log(connections);
     })
+    useEffect(() => {
+        getConnections(query)
+        .then(function(res){
+            console.log(res);
+            setConnections(res.data.connections);
+        });
+    }, [])
 
     //TODO: for searchbar: 
     //if getConnection(from=me, to=usr).data.connections != []
@@ -69,17 +76,16 @@ const MyConnections = ({ vis }) => {
         <div className="myprofile">
             <p className="subheading">My Connections</p>
             <form action="/form/submit" method="GET">
-                <input type="text" name="text" class="search" placeholder="Search here!" />
-                <input type="submit" name="submit" class="submit" value="Search" />
+                <input type="text" name="text" className="search" placeholder="Search here!" />
+                <input type="submit" name="submit" className="submit" value="Search" />
             </form>
             {connections.map(obj => (
-                <div class="connectionGallery">
+                <div className="connectionGallery">
                     <Connection connectName={obj.uidTo} />
                     <button onClick={handleOnClick}>check</button>
                     <button onClick={makeConnection}>connect</button>
                 </div>
             ))}
-            <button onClick={handleOnClick}>check</button>
         </div>
     ) : null);
 }

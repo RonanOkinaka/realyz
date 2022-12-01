@@ -15,7 +15,6 @@ const Parent = () => {
             .then((response) => {
                 console.log(response);
                 const fname = response['data']['fname'];
-                console.log(fname);
                 setResponseData(fname);
             })
             .catch((error) => {

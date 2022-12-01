@@ -35,13 +35,13 @@ const storeUserData = (param, val) => {
 
 //takes in a list of requested user datatypes, return a list of corresponding values.
 function getLocalUserData(param){
-    let selectedData = {};
+    //let selectedData = {};
     let testData = {};
     for (let i = 0; i < param.length; i++)
     {
         testData[param[i]] = sessionStorage.getItem(param[i]);
     }
-    console.log("selecteddATA: " + JSON.stringify(selectedData));
+    //console.log("selecteddATA: " + JSON.stringify(selectedData));
     console.log("testData: " + JSON.stringify(testData));
     return testData;
 }
