@@ -310,15 +310,20 @@ button:hover {
 }
 
 .profiledivcontainer .profilediv {
-    background-color: darkgrey;
+    background-color: lightgray;
     width: 70%;
     height: 3%;
-    font-size: 8px;
+    font-size: 20px;
+    overflow-x:auto;
+    
 }
 
 .profilediv p {
+    position: absolute;
     font-size: 11px;
     line-height: 0;
+    text-align: center;
+
 }
 
 .profileform[type='text'],
@@ -515,4 +520,12 @@ button:hover {
     top: 20px;
     position:relative;
     color: black;
+
+.backgroundcontainer .profiledivcontainer {
+    position: block;
+    overflow-x: auto;
+    width: 100%;
+    top: 20%;
+    left: 50%;
+    padding-top: 150px;
 }
