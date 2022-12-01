@@ -76,7 +76,6 @@ const MyConnections = ({ vis }) => {
                 <div class="connectionGallery">
                     <Connection connectName={obj.uidTo} />
                     <button onClick={handleOnClick}>check</button>
-                    <button onClick={makeConnection}>connect</button>
                 </div>
             ))}
             <button onClick={handleOnClick}>check</button>
