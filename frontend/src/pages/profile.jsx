@@ -34,7 +34,7 @@ const Profile = () => {
                 setUsrData(res.data);
             });
         }
-    }, []);
+    }, [location]);
 
     const handleOnClick = event => {
         navigate('/main');
