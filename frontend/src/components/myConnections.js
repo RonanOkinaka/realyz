@@ -45,14 +45,6 @@ const MyConnections = ({ vis }) => {
         });
     }
 
-    const makeConnection = event => {
-        //createconnection(usrname_you_wanna_connect)
-        createConnection('zichengzhao_g_ucla_edu')
-        .then(function(res){
-            console.log(res);
-        });
-    }
-
     useEffect(() => {
         console.log(getLocalUserData(['uid'])['uid']);
         console.log(connections);
@@ -83,7 +75,6 @@ const MyConnections = ({ vis }) => {
                 <div className="connectionGallery">
                     <Connection connectName={obj.uidTo} />
                     <button onClick={handleOnClick}>check</button>
-                    <button onClick={makeConnection}>connect</button>
                 </div>
             ))}
         </div>
