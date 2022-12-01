@@ -20,11 +20,12 @@ const MyConnections = ({ vis }) => {
     //     "pending": 1,
     // }
     const [connections, setConnections] = useState([]);
+    const [searchResult, setSearchResult] = useState([]);
 
     let query = {
         "from": getLocalUserData(['uid'])['uid'],
     }
-
+    
     // data.connections:
     // {
     //     "connections": [
@@ -35,6 +36,30 @@ const MyConnections = ({ vis }) => {
     //         }
     //     ]
     // }
+    const searchConnections = (uid) => {
+        let result = [];
+        for (const obj of connections) {
+            if (obj.uidTo === uid) {
+                //add this to the list of obj.
+                result.push(obj);
+            }
+        }
+        return result;
+    }
+
+    const handleSubmit = event => {
+        //TODO: search uid from connections.
+        event.preventDefault();
+        let searchInput = event.target.connectionField.value;
+        if (searchInput === '') {
+            // fetch all results
+            setSearchResult(connections);
+        } else {
+            //get an array of matching connections
+            setSearchResult(searchConnections(event.target.connectionField.value));
+        }
+        console.log(searchResult);
+    }
 
     const delConnection = (requester, requestee) => {
         //deleteConnection(this_user, other_user)
@@ -54,6 +79,7 @@ const MyConnections = ({ vis }) => {
         getConnections(query)
         .then(function(res){
             setConnections(res.data.connections);
+            setSearchResult(res.data.connections);
         });
     }, [])
 
@@ -67,11 +93,11 @@ const MyConnections = ({ vis }) => {
     return ((vis == 1) ? (
         <div className="myprofile">
             <p className="subheading">My Connections</p>
-            <form action="/form/submit" method="GET">
-                <input type="text" name="text" class="search" placeholder="Search here!" />
-                <input type="submit" name="submit" class="submit" value="Search" />
+            <form onSubmit={handleSubmit}>
+                <input className="search" type="text" name="connectionField" placeholder="search connection" />
+                <button type="submit">search</button>
             </form>
-            {connections.map(obj => (
+            {searchResult.map(obj => (
                 <div class="connectionGallery">
                     <Connection connectName={obj.uidTo} />
                     <button onClick={() => {deleteConnection(query.from, obj.uidTo)}}>del</button>

@@ -6,6 +6,7 @@ import SearchBar from "../components/searchBar";
 import UserSnapShot from "../components/userSnapshot";
 
 const SearchResultPage = () => {
+    //TODO: if a search result is connected, change "connect" to "remove"
     const [res, setRes] = useState([]);
     //first, search with existing content
     useEffect(() => {

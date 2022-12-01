@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { deleteConnection, getConnections, getLocalUserData } from "../util/data";
 
 const SentRequest = (props) => {
-    //TODO: add functionality  to view profile and retract btns
+    //TODO: add functionality to view profile and retract btns
     const retract = (requester, requestee) => {
         //deleteConnection(this_user, other_user)
         deleteConnection(requester, requestee)
