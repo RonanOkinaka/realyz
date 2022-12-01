@@ -13,7 +13,7 @@ const SearchBar = () => {
     }
     
     useEffect(() => {
-
+        
     })
 
     return (

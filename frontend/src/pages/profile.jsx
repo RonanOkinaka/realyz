@@ -9,20 +9,27 @@ import useModal from "../util/useModal";
 import MyConnections from "../components/myConnections"
 import SentRequests from "../components/sentRequests";
 import PendingInvitations from "../components/pendingInvitations"
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getUserData } from "../util/data";
 
 //props.mode: 0 == myprofile, 1 == otherprofile; props.uid: other user's uid to display info
 const Profile = (props) => {
     const {vis, toggle} = useModal();
     const navigate = useNavigate();
+    const location = useLocation();
+    const uid = location.state.uid;
 
-    //TODO: experimental
+    //TODO: add viewing other profile feature
     const [usrData, setUsrData] = useState({});
     //first, search with existing content
     useEffect(() => {
-        if (props.uid) {
-            getUserData(props.uid)
+        if (location.state){
+            console.log(location.state.uid);
+            console.log(location.state.mode);
+        }
+
+        if (uid) {
+            getUserData(uid)
             .then(function(res){
                 setUsrData(res.data);
             });
@@ -57,7 +64,7 @@ const Profile = (props) => {
                 { props.mode === 1 &&
                     <React.Fragment>
                         <OtherProfile info={usrData}/>
-                        <OtherVideo uid={props.uid}/>
+                        <OtherVideo uid={uid}/>
                     </React.Fragment>
                 }
                 <button onClick={handleOnClick}></button>

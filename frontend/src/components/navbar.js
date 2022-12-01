@@ -16,7 +16,7 @@ const Navbar = ({isLanding, show}) => {
             loginUser()
             .then(function(response){
                 storeBearerToken(response['data']['token']);
-                navigate('/profile');
+                navigate('/profile', {state: {'mode': 0}});
             })
             .catch(function(error){
                 show();

@@ -7,6 +7,7 @@ import UserSnapShot from "../components/userSnapshot";
 
 const SearchResultPage = () => {
     //TODO: if a search result is connected, change "connect" to "remove"
+    //TODO: add view profile button
     const [res, setRes] = useState([]);
     //first, search with existing content
     useEffect(() => {

@@ -23,7 +23,7 @@ const LoginPopup = ({vis, hide}) => {
                 storeBearerToken(response['data']['token']);
                 console.log("login success.");
                 console.log(response['data']);
-                navigate('/profile');
+                navigate('/profile', {state: {'mode': 0}});
             })
             .catch(function(error){
                 if (error['response']['status'] === 403) {

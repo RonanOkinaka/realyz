@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { getLocalUserData, getUserData, updateUserData } from "../util/data";
-import SamplePic from "../media/sample.jpg";
 
 //TODO: get profile picture
 const Pic = (props) => {

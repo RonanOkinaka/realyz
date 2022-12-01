@@ -26,7 +26,7 @@ function SignupPopup ({vis, hide}){
                     loginUser()
                         .then(function(response){
                             storeBearerToken(response['data']['token']);
-                            navigate('/profile');
+                            navigate('/profile', {state: {'mode': 0}});
                         })
                         .catch(function(error){
                             setErr("cannot sign in user after signing up. Dev error.");
