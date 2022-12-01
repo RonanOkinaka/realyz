@@ -39,6 +39,8 @@ const Profile = () => {
     const handleOnClick = event => {
         navigate('/main');
     }
+
+    //TODO: re-render the page content when any child component has changed.
     return (
         <body className="profilepage">
             <div className="backgroundcontainer" style={{ backgroundImage: `url(${Background})` }}>

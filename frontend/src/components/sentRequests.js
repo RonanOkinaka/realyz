@@ -1,23 +1,37 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { deleteConnection, getConnections, getLocalUserData } from "../util/data";
 
 const SentRequest = (props) => {
-    //TODO: add functionality to view profile and retract btns
+    //TODO: 
+    const Navigate = useNavigate();
+    const [refresh, setRefresh] = useState(true);
+
     const retract = (requester, requestee) => {
         //deleteConnection(this_user, other_user)
         deleteConnection(requester, requestee)
         .then(function(res){
             console.log(res);
+            setRefresh(!refresh);
         })
         .catch(function(err){
             console.log(err);
         })
     }
+    useEffect(() => {
+
+    }, [refresh])
+    const viewProfile = (uid) => {
+        //redirect to profile mode = 1
+        Navigate('/profile', {state:{'mode': 1, 'uid': uid}});
+    }
+
+    //TODO: refresh everytime after retract executes
     return (
         <div className="request">
             <p>{props.requestee}</p>
-            <button>View</button>
-            <button onClick={() => {retract(props.requester, props.requestee)}}>retract</button>
+            <button onClick={() => viewProfile(props.requestee)}>View</button>
+            <button onClick={() => retract(props.requester, props.requestee)}>retract</button>
         </div>
     );
 }

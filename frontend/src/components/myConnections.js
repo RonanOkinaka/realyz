@@ -73,6 +73,11 @@ const MyConnections = ({ vis }) => {
         })
     }
 
+    const viewProfile = (uid) => {
+        //redirect to profile mode = 1
+        Navigate('/profile', {state:{'mode': 1, 'uid': uid}});
+    }
+
     useEffect(() => {
         // console.log(getLocalUserData(['uid'])['uid']);
         // console.log(connections);
@@ -91,6 +96,8 @@ const MyConnections = ({ vis }) => {
     //TODO: display user first and last name instead of uid
     //TODO: display user picture instead of sample picture
     //TODO: handle CSS for each
+
+    //TODO: add view profile function 
     return ((vis == 1) ? (
         <div className="myprofile">
             <p className="subheading">My Connections</p>
@@ -102,6 +109,7 @@ const MyConnections = ({ vis }) => {
                 <div class="connectionGallery">
                     <Connection connectName={obj.uidTo} />
                     <button onClick={() => {deleteConnection(query.from, obj.uidTo)}}>del</button>
+                    <button onClick={() => {() => viewProfile(uid)}}>view </button>
                 </div>
             ))}
         </div>
