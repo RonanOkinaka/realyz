@@ -12,8 +12,7 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<LandingPage />} />
-                    <Route path="profile" element= {<Profile mode={0} />}/>
-                    <Route path="otherprofile" element= {<Profile mode={1} uid="a"/>}/>
+                    <Route path="profile" element= {<Profile />}/>
                     <Route path="main" element= <MainPage /> />
                     <Route path="search" element= <SearchResultPage /> />
                     <Route path="*" element={<NoPage />} />

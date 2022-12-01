@@ -36,6 +36,7 @@ const MyConnections = ({ vis }) => {
     //         }
     //     ]
     // }
+    //TODO: make it a substring search & allow users to serach by other properties.
     const searchConnections = (uid) => {
         let result = [];
         for (const obj of connections) {

@@ -12,12 +12,12 @@ import PendingInvitations from "../components/pendingInvitations"
 import { useLocation, useNavigate } from "react-router-dom";
 import { getUserData } from "../util/data";
 
-//props.mode: 0 == myprofile, 1 == otherprofile; props.uid: other user's uid to display info
-const Profile = (props) => {
+const Profile = () => {
     const {vis, toggle} = useModal();
     const navigate = useNavigate();
     const location = useLocation();
     const uid = location.state.uid;
+    const mode = location.state.mode;
 
     //TODO: add viewing other profile feature
     const [usrData, setUsrData] = useState({});
@@ -43,7 +43,7 @@ const Profile = (props) => {
         <body className="profilepage">
             <div className="backgroundcontainer" style={{ backgroundImage: `url(${Background})` }}>
                 <Navbar isLanding={() => false}/>
-                { props.mode === 0 &&
+                { mode === 0 &&
                     <React.Fragment>
                         <Sidebar 
                         show={(num) => {toggle(num)}}/>
@@ -61,7 +61,7 @@ const Profile = (props) => {
                         />
                     </React.Fragment>
                 }
-                { props.mode === 1 &&
+                { mode === 1 &&
                     <React.Fragment>
                         <OtherProfile info={usrData}/>
                         <OtherVideo uid={uid}/>
