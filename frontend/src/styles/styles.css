@@ -223,6 +223,13 @@ button:hover {
     overflow-y: auto;
 }
 
+.mainpage .mainpagetitle {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .profilepage .btn {
     padding-left: 40px;
 }
@@ -231,7 +238,7 @@ button:hover {
     padding-right: 40px;
     margin-left: auto;
     /* background-color: black; */
-    font-size: 4;
+    font-size: 2vw;
 }
 
 .profilepage .myprofile,
@@ -262,6 +269,11 @@ button:hover {
     clip-path: circle(50%);
 }
 
+.sidebaritem .piccontainer .pic {
+    width: 50%;
+    clip-path: circle(50%);
+    
+}
 .otherprofile .fullname,
 .myprofile .subheading {
     margin-bottom: 0px;
@@ -298,15 +310,20 @@ button:hover {
 }
 
 .profiledivcontainer .profilediv {
-    background-color: darkgrey;
+    background-color: lightgray;
     width: 70%;
     height: 3%;
-    font-size: 8px;
+    font-size: 20px;
+    overflow-x:auto;
+    
 }
 
 .profilediv p {
+    position: absolute;
     font-size: 11px;
     line-height: 0;
+    text-align: center;
+
 }
 
 .profileform[type='text'],
@@ -357,7 +374,6 @@ button:hover {
     display: flex;
     flex-flow: column wrap;
 }
-
 .sidebar .sidebaritem {
     display: flex;
     flex-flow: row nowrap;
@@ -367,6 +383,7 @@ button:hover {
     justify-content: space-between;
     align-items: center;
     height: 100%;
+    border-radius: 12%;
 }
 
 .sidebaritem .piccontainer {
@@ -378,7 +395,8 @@ button:hover {
 }
 
 .sidebaritem span {
-    width: 80%;
+    width: 70%;
+    font-size: 1vw;
     /* background-color: green; */
 }
 
@@ -498,4 +516,18 @@ button:hover {
 /* main page */
 .mainpage .backgroundcontainer {
     justify-content: center;
+}
+
+#connectBut {
+    top: 20px;
+    position:relative;
+    color: black;
+}
+.backgroundcontainer .profiledivcontainer {
+    position: block;
+    overflow-x: auto;
+    width: 100%;
+    top: 20%;
+    left: 50%;
+    padding-top: 150px;
 }

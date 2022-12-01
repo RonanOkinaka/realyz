@@ -69,7 +69,6 @@ const Profile = () => {
                         <OtherVideo uid={uid}/>
                     </React.Fragment>
                 }
-                <button onClick={handleOnClick}></button>
             </div>
         </body>
     );

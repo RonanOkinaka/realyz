@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getLocalUserData, getUserData, updateUserData } from "../util/data";
+import ConnectIcon from "../media/addConnections.png";
+import ExplorePic from "../media/explore.png";
 
 //TODO: get profile picture
 const Pic = (props) => {
@@ -10,6 +12,21 @@ const Pic = (props) => {
     );
 }
 
+const ConnectionsIcon = () => {
+    return (
+        <div className="piccontainer">
+            <img className="pic" src={ConnectIcon} alt="manageConnect"></img>
+        </div>
+    );
+}
+
+const Explore = () => {
+    return (
+        <div className="piccontainer">
+            <img className="pic" src={ExplorePic} alt="manageConnect"></img>
+        </div>
+    );
+}
 const FullName = (props) => {
     return (
         <p className="fullname">
@@ -130,4 +147,4 @@ const MyProfile = ({vis}) => {
     ) : null ) ;
 }
 
-export {MyProfile, OtherProfile, Pic};
+export {MyProfile, OtherProfile, Pic, ConnectionsIcon, Explore};
