@@ -58,7 +58,7 @@ const registerUser = () => axios({
     method: 'post',
     baseURL: 'http://localhost:8080',
     url: '/user/',
-    data: userData
+    data: sessionStorage,
 });
 
 const loginUser = () => axios({

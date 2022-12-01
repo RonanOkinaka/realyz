@@ -16,8 +16,10 @@ function SignupPopup ({vis, hide}){
         }
         else {
             event.preventDefault();
-            console.log(userData);
+            sessionStorage.removeItem('bearer');
+            console.log(JSON.stringify(sessionStorage));
             storeUserData(["fname", "lname", "pass"], [fname, lname, pass]);
+            console.log("data: " + JSON.stringify(sessionStorage))
             registerUser()
                 //if account creation succeeded, login user automatically and goto user portal.
                 .then(function (response){
@@ -36,6 +38,7 @@ function SignupPopup ({vis, hide}){
                         setErr("Your email has already been registered in the system.");
                     if (error.response.status === 500)
                         setErr("Internal Server Error.");
+                    console.log(error);
                     clearUserData();
                 });
         }
