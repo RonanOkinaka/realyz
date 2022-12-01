@@ -1,5 +1,6 @@
-import QRCode from 'qrcode';
- import { useEffect, useState } from 'react';
+import QRCode from "qrcode";
+import { useEffect, useState } from "react";
+import React from "react";
 
 
  const QRobject = ({ text }) => { // object for qrcodes
@@ -10,9 +11,11 @@ import QRCode from 'qrcode';
      }, []);
 
      return (
-         <div>
+         <div id="QRCode">
            <img src ={src} /> 
          </div>
      );
  };
+
+ export default QRobject;
  //test

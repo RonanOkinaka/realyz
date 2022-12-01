@@ -371,3 +371,9 @@ button:hover {
     width: 80%;
     /* background-color: green; */
 }
+
+#QRCode {
+    position: absolute;
+    top: 85%;
+    left: 2.5%;
+}
