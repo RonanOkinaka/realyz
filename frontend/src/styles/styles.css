@@ -510,3 +510,9 @@ button:hover {
 .mainpage .backgroundcontainer {
     justify-content: center;
 }
+
+#connectBut {
+    top: 20px;
+    position:relative;
+    color: black;
+}

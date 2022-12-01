@@ -141,7 +141,7 @@ const createConnection = (to) => axios ({
     }
 });
 
-//pending: 1 = pending, 0 = established
+//pending: 0 = pending, 1 = established
 const getConnections = (query) => axios ({
     method: 'get',
     baseURL: 'http://localhost:8080',
