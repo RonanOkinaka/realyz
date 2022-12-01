@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { bearerToken, getLocalUserData, getUserData, updateUserData } from "../util/data";
+import { getLocalUserData, getUserData, updateUserData } from "../util/data";
 import SamplePic from "../media/sample.jpg";
 
 //TODO: get profile picture
@@ -63,13 +63,11 @@ const UserInfoEditable = (userInfo) => {
     }, [update]);
 
     const updateData = (data) => {
-        console.log(bearerToken);
         updateUserData(data)
             .then(function(response){
                 setUpdate(!update);
             })
             .catch(function(error){
-                console.log(bearerToken);
                 console.log(error)
                 console.error("cznndiodfoaofmowf");
             })

@@ -6,7 +6,8 @@ import Parent from "./dataVisualizer";
 const Navbar = ({isLanding, show}) => {
     const navigate = useNavigate();
     const handleOnClickSignin = event => {
-        if (!(userData['uid'] || userData['pass']))
+        // if (!(userData['uid'] || userData['pass']))
+        if (!(sessionStorage.getItem('uid') || sessionStorage.getItem('pass')))
         {
             clearUserData();
             show();
