@@ -20,7 +20,7 @@ const SentRequests = ({vis}) => {
     useEffect(() => {
     getConnections(query)
     .then(function(res){
-        for (let i = 0; i < 5; i++){
+        for (let i = 0; i < res.data.connections.length; i++){
             getUserData(res.data.connections[i]['uidTo']).then(function(r2) {
                 console.log("this is exec");
                 names.push(r2.data.fname +" " + r2.data.lname);

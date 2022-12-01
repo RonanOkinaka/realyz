@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { getLocalUserData, getConnections, getUserData } from "../util/data";
 
 const SentRequest = ({requestee}) => {
     return (
@@ -10,14 +11,32 @@ const SentRequest = ({requestee}) => {
 }
 
 const PendingInvitations = ({vis}) => {
-    return ((vis == 1) ? (
+  const [connections, setConnections] = useState([]);
+  const names = [];
+  let query = {
+      "pending" : 1,
+      "to": getLocalUserData(['uid'])['uid'],
+  }
+  useEffect(() => {
+  getConnections(query)
+  .then(function(res){
+      for (let i = 0; i < res.data.connections.length; i++){
+          getUserData(res.data.connections[i]['uidTo']).then(function(r2) {
+              console.log("this is exec");
+              names.push(r2.data.fname +" " + r2.data.lname);
+              setConnections(names);
+          });
+        }
+  });}, [])
+  //setConnections()
+  console.log(connections);
+  return (vis==1) ?(
       <div className="pendingInvitationsContainer">
-        <p>Pending Invitations</p>
-        <SentRequest requestee={"Bruh"} />
-        <SentRequest requestee={"Wtf"} />
-        <SentRequest requestee={"Is"} />
-        <SentRequest requestee={"This"} />
+          <p>Pending Invitations (Accept or Deny)</p>
+          {connections.map(obj => (
+              <SentRequest requestee={obj} />
+          ))}
       </div>
-    ) : null);
+  ) : null;
 }
 export default PendingInvitations;
