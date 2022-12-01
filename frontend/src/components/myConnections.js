@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+//import { deleteConnection } from "../../../backend/src/model/connections";
 import SamplePic from "../media/sample.jpg";
-import { createConnection, getConnections, getLocalUserData } from "../util/data";
+import { createConnection, getConnections, getLocalUserData, deleteConnection } from "../util/data";
 
 const Connection = ({connectName}) => {
     return (
@@ -38,25 +39,17 @@ const MyConnections = ({ vis }) => {
     // }
     
     const handleOnClick = event => {
-        getConnections(query)
-        .then(function(res){
-            console.log(res);
-            setConnections(res.data.connections);
-        });
+       
     }
-
-    useEffect(() => {
-        console.log(getLocalUserData(['uid'])['uid']);
-        console.log(connections);
-    })
+    const handleDeleteCon = (targetuid) => {
+        deleteConnection(getLocalUserData(['uid'])['uid'], targetuid);   
+    }
     useEffect(() => {
         getConnections(query)
         .then(function(res){
-            console.log(res);
             setConnections(res.data.connections);
         });
-    }, [])
-
+    })
     //TODO: for searchbar: 
     //if getConnection(from=me, to=usr).data.connections != []
     //display all connections.uidTo
@@ -75,6 +68,7 @@ const MyConnections = ({ vis }) => {
                 <div className="connectionGallery">
                     <Connection connectName={obj.uidTo} />
                     <button onClick={handleOnClick}>check</button>
+                    <button onClick={() => handleDeleteCon(obj.uidTo)}>remove</button>
                 </div>
             ))}
         </div>

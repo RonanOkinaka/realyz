@@ -25,7 +25,7 @@ const storeUserData = (param, val) => {
         if (param[i] === 'uid') {
             // userData[param[i]] = val[i].replace(/[^_a-zA-Z0-9]/g, '_');
             sessionStorage.setItem(param[i], val[i].replace(/[^_a-zA-Z0-9]/g, '_'));
-            // console.log(userData[param[i]]);
+            console.log(userData[param[i]]);
         } else {
             // userData[param[i]] = val[i];
             sessionStorage.setItem(param[i], val[i]);
@@ -165,4 +165,4 @@ const dump = () => {
 };
 
 export {userData, searchQuery, otherUserID, storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, 
-    loginUser, getUserData, updateUserData, uploadMedia, getMedia, deleteMedia, searchUser, storeQuery, clearQuery, getConnections, createConnection, dump};
+    loginUser, getUserData, updateUserData, uploadMedia, getMedia, deleteMedia, searchUser, storeQuery, clearQuery, getConnections, deleteConnection, createConnection, dump};
