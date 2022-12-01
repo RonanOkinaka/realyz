@@ -10,6 +10,7 @@ const LoginPopup = ({vis, hide}) => {
         clearUserData();
         //user input
         let uid = event.target.usrname.value;
+        console.log(uid);
         let pass = event.target.pwd.value;
         
         //store user info in sessionStorage

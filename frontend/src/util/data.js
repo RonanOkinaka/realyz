@@ -1,7 +1,8 @@
 import axios, { AxiosHeaders } from "axios";
-
+let userName = "";
 let userData = {};  //TODO: use sessionStorage to store userData
-let bearerToken = "";
+let searchQuery = {};
+let otherUserID = "";
 
 /*
 {
@@ -20,41 +21,54 @@ let bearerToken = "";
 const storeUserData = (param, val) => {
     for (let i = 0; i < param.length; i++)
     {
-        userData[param[i]] = val[i];
+        // Duct tape and zipties (crunch time...)
+        if (param[i] === 'uid') {
+            // userData[param[i]] = val[i].replace(/[^_a-zA-Z0-9]/g, '_');
+            sessionStorage.setItem(param[i], val[i].replace(/[^_a-zA-Z0-9]/g, '_'));
+            // console.log(userData[param[i]]);
+        } else {
+            // userData[param[i]] = val[i];
+            sessionStorage.setItem(param[i], val[i]);
+        }
     }
 }
 
 //takes in a list of requested user datatypes, return a list of corresponding values.
 function getLocalUserData(param){
     let selectedData = {};
+    let testData = {};
     for (let i = 0; i < param.length; i++)
     {
-        selectedData[param[i]] = userData[param[i]];
+        testData[param[i]] = sessionStorage.getItem(param[i]);
     }
-    return selectedData;
+    console.log("selecteddATA: " + JSON.stringify(selectedData));
+    console.log("testData: " + JSON.stringify(testData));
+    return testData;
 }
 
 const storeBearerToken = (token) => {
-    bearerToken = token;
+    sessionStorage.setItem('bearer', token);
 }
 
 const clearUserData = () => {
-    userData = {};
-    bearerToken = "";
+    sessionStorage.clear();
 }
 
 const registerUser = () => axios({
     method: 'post',
     baseURL: 'http://localhost:8080',
     url: '/user/',
-    data: userData
+    data: sessionStorage,
 });
 
 const loginUser = () => axios({
     method: 'post',
     baseURL: 'http://localhost:8080',
     url: '/session/login',
-    data: userData  //backend only takes uid and pass fields in userData.
+    data: {
+        'uid': sessionStorage.getItem('uid'),
+        'pass': sessionStorage.getItem('pass'),
+    }  //backend only takes uid and pass fields in userData.
 });
 
 //TODO: get user profile picture
@@ -68,13 +82,87 @@ const getUserData = (uid) => axios ({
 const updateUserData = (usrData) => axios ({
     method: 'patch',
     baseURL: 'http://localhost:8080',
-    url: "/user/" + usrData['uid'],
-    headers: {'Authorization': 'Bearer ' + bearerToken},
+    url: '/user/' + usrData['uid'],
+    headers: {'Authorization': 'Bearer ' + sessionStorage.getItem('bearer')},
     data: usrData,
-})
+});
 
-const dump = () => {
-    console.log(userData);
+//type: 1 -> jpeg/png 2 -> mp4; media takes in a formData() object.
+const uploadMedia = (media, type, uid) => axios ({
+    method: 'post',
+    baseURL: 'http://localhost:8080',
+    url: '/media/' + uid + '/' + type,
+    headers: {'Authorization': 'Bearer ' + sessionStorage.getItem('bearer')},
+    data: media
+});
+
+// const getMedia = (type, uid) => axios ({
+//     method: 'get',
+//     baseURL: 'http://localhost:8080',
+//     url: '/media/u/' + uid + '/' + type,
+//     responseType: 'blob',
+//     // headers: {'Accept': 'video/mp4; charset=UTF-8'}
+// });
+
+const getMedia = (type, uid) => {
+    let url = 'http://localhost:8080/media/u/' + uid + '/' + type;
+    return url;
 }
 
-export {userData, bearerToken, storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, loginUser, getUserData, updateUserData, dump};
+const deleteMedia = (type, uid) => axios ({
+    method: 'delete',
+    baseURL: 'http://localhost:8080',
+    url: '/media/u/' + uid + '/' + type,
+    headers: {'Authorization': 'Bearer ' + sessionStorage.getItem('bearer')},
+});
+
+const storeQuery = (param, val) => {
+    searchQuery[param] = val;
+}
+
+const clearQuery = () => {
+    searchQuery = {};
+};
+
+const searchUser = (query, val) => axios ({
+    method: 'get',
+    baseURL: 'http://localhost:8080',
+    url: '/search/',
+    params: query,
+});
+
+const createConnection = (to) => axios ({
+    method: 'post',
+    baseURL: 'http://localhost:8080',
+    url: '/connections/',
+    headers: {'Authorization': 'Bearer ' + sessionStorage.getItem('bearer')},
+    params: {
+        'to': to,
+    }
+});
+
+//pending: 1 = pending, 0 = established
+const getConnections = (query) => axios ({
+    method: 'get',
+    baseURL: 'http://localhost:8080',
+    url: '/connections/',
+    headers: {'Authorization': 'Bearer ' + sessionStorage.getItem('bearer')},
+    params: query
+});
+
+const deleteConnection = (from, to) => axios ({
+    method: 'delete',
+    baseURL: 'http://localhost:8080',
+    url: '/connections/',
+    headers: {'Authorization': 'Bearer ' + sessionStorage.getItem('bearer')},
+    params: {
+        'from': from,
+        'to': to,
+    }
+});
+const dump = () => {
+    console.log(userData);
+};
+
+export {userData, searchQuery, otherUserID, storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, 
+    loginUser, getUserData, updateUserData, uploadMedia, getMedia, deleteMedia, searchUser, storeQuery, clearQuery, getConnections, createConnection, dump};

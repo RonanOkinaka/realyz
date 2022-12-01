@@ -4,19 +4,50 @@ Pronounced 'realize', the goal of this project is to connect people to people. R
 
 Based on Node.js, Express and React.
 
-## Running
+## Running the Backend
 
-Prerequisites:
-- The backend uses Node.js, so install it from their website
-- For the server layer, this project uses MariaDB (which must also be installed)
+#### Prerequisites
+- The backend uses Node.js, so install it [with their instructions](https://nodejs.org/en/download/package-manager/)
+- For the server layer, this project uses [MariaDB](https://mariadb.com/downloads/)
+- This repository (`git clone https://github.com/RonanOkinaka/realyz`)
 
-Setting up the database:
-This section is a WIP and will be updated at a later time.
+#### Setting up the database
+First, log into MariaDB as the root user. For many platforms, the command is something like: `mysql -u root -p`.
 
-Then, one should clone this repository into a directory of their choice. In that directory, follow these steps:
-- Enter the project directory with `cd realyz/backend`
-- Install relevant packages with `npm install`
-- Start the server with `npm start`
+We now want to create the database. Use the following command: `CREATE DATABASE realyz;`.
+Note that the database does not strictly need to have this name, but the rest of the tutorial may be easier to follow if it matches.
 
-There is a .env configuration file that contains some information that is required in order to use the backend.
-For security reasons, this is not published. There is, however, a "fill in the blank" version of this file called `env.template`.
+Then, we want to create a user for the backend to use when communicating with MySQL.
+Use `CREATE USER 'realyz_agent'@'localhost' IDENTIFIED BY 'choose a password';`.
+Once again, the username can be different as long as it is remembered.
+
+Follow this with: `GRANT ALL PRIVILEGES ON realyz.* TO 'realyz_agent'@'localhost';`.
+
+Finally, `FLUSH PRIVILEGES;` and `exit`.
+
+To finish database setup, clone the existing schema with `mysql realyz -u root -p <realyz.sql`.
+As of writing, this file is not committed. Please contact me (Ronan) if you need it.
+
+#### Setting up the environment file
+In `realyz/backend`, there is a provided template called `env.template`.
+
+Start by creating the `.env` file with `cp env.template .env`.
+
+This is designed to be fill in the blank. Remember to put "quotes around strings!"
+
+Matching the database setup above, fill in the following values:
+- `MYSQL_DB_HOST="localhost"`
+- `MYSQL_DB_USER="realyz_agent"` (or whatever username was chosen)
+- `MYSQL_DB_PASS="the password you chose"`
+- `MYSQL_DB_NAME="realyz"`
+
+One can choose any value for:
+- `PORT` (numeric, 8080 and 3000 are common)
+- `PEPPER` (should be a randomized string)
+- `JWT_SECRET` (should be random and long)
+
+#### Preparing Node.js
+With Node.js deterministic install, relevant packages can be easily retrieved with `npm install`.
+
+#### Executing
+At this point, the backend should be ready. Simply start the server with `npm start`!

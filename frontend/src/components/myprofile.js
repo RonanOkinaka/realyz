@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { bearerToken, getLocalUserData, getUserData, updateUserData } from "../util/data";
+import { getLocalUserData, getUserData, updateUserData } from "../util/data";
 import SamplePic from "../media/sample.jpg";
 import ConnectIcon from "../media/addConnections.png";
 import ExplorePic from "../media/explore.png";
 
-const Pic = () => {
+//TODO: get profile picture
+const Pic = (props) => {
     return (
         <div className="piccontainer">
-            <img className="pic" src={SamplePic} alt="samplePic"></img>
+            <img className="pic" src={['http://localhost:8080/media/u/', props.uid, '/1'].join('')} alt="samplePic"></img>
         </div>
     );
 }
@@ -27,13 +28,16 @@ const Explore = () => {
         </div>
     );
 }
-const FullName = () => {
+const FullName = (props) => {
     return (
-        <p className="fullname">Fred Check</p>
+        <p className="fullname">
+            {[props.info['fname'], props.info['lname']].join(' ')}
+        </p>
     )
 }
 
-const ConnectionCount = () => {
+//TODO: get connection count
+const ConnectionCount = (props) => {
     return (
         <button>100 connections</button>
     )
@@ -76,13 +80,11 @@ const UserInfoEditable = (userInfo) => {
     }, [update]);
 
     const updateData = (data) => {
-        console.log(bearerToken);
         updateUserData(data)
             .then(function(response){
                 setUpdate(!update);
             })
             .catch(function(error){
-                console.log(bearerToken);
                 console.log(error)
                 console.error("cznndiodfoaofmowf");
             })
@@ -109,44 +111,14 @@ const UserInfoEditable = (userInfo) => {
     );
 }
 
-const UserInfoUnEditable = () => {
-    const [field, setFields] = useState({});
-    //TODO: delete this testing data.
-    let allData = {
-        "uid": "a",
-        "email": "a",
-        "fname": "a",
-        "lname": "a",
-        "type": "individual",
-        "company": "hyundai",
-        "biography": "what's up g"
-    };
-    
-    // get ALL user data
-    const fetchAllData = (uid) => {
-        getUserData(uid)
-            .then(function(response){
-                setFields(response['data']);
-            })
-            .catch(function(error){
-                console.error(error)
-                console.error("an error occurred fetching user data.");
-            })
-    }
-    
-    useEffect(() => {
-        setFields(allData);
-        // console.log(field);
-    }, [])
-
-    //TODO: pass in a key to each element in list
+const UserInfoUnEditable = (props) => {
     return (
-        <div className="profiledivcontainer" id="profileContainer">
-            {Object.keys(field).map(name => (
+        <div className="profiledivcontainer">
+            {Object.keys(props.info).map(name => (
                 <React.Fragment>
                     <span className="profiledivname">{name}</span>
                     <div className="profilediv">
-                        <p>{field[name]}</p>
+                        <p>{props.info[name]}</p>
                     </div>
                 </React.Fragment>
             ))}
@@ -154,14 +126,16 @@ const UserInfoUnEditable = () => {
     );
 }
 
-const OtherProfile = ({vis}) => {
-    return ((vis==1) ? (
+//takes in a userData object
+const OtherProfile = (props) => {
+    return (
         <div className="otherprofile">
-            <Pic />
-            <FullName />
-            <ConnectionCount />
-            <UserInfoUnEditable />
-        </div>) : null);
+            <Pic uid={props.info['uid']}/>
+            <FullName info={props.info}/>
+            <ConnectionCount uid={props.info['uid']}/>
+            <UserInfoUnEditable info={props.info}/>
+        </div>
+    );
 }
 
 const MyProfile = ({vis}) => {

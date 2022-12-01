@@ -56,6 +56,12 @@ export async function updateUser(req, res) {
     const uid = req.body.uid;
     delete req.body.uid;
 
+    if (uid !== req.params.uid) {
+        return res.status(403).json({
+            error: 'Cannot edit the accounts of other users'
+        });
+    }
+
     const err = await userModel.updateUserData(uid, req.body);
     if (err !== null) {
         return res.status(err.code).json({ error: err.message });
