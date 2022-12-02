@@ -30,7 +30,7 @@ const SentRequest = (props) => {
     return (
         <div className="request">
             <p>{props.requestee}</p>
-            <button onClick={() => viewProfile(props.requestee)}>View</button>
+            <button id="viewprofilebutton" onClick={() => viewProfile(props.requestee)}>View</button>
             <button onClick={() => retract(props.requester, props.requestee)}>retract</button>
         </div>
     );
