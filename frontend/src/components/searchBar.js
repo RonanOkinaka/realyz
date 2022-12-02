@@ -5,9 +5,7 @@ import { useNavigate } from "react-router-dom";
 const SearchBar = () => {
     const navigate = useNavigate();
     const handleSubmit = event => {
-        event.preventDefault();
         let fname = event.target.searchfield.value;
-        console.log(fname);
         storeQuery('fname', fname);
         navigate('/search');
     }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { searchQuery, searchUser } from "../util/data";
+import { searchUser } from "../util/data";
 import Background from "../media/portalBackground.jpg";
 import Navbar from "../components/navbar";
 import SearchBar from "../components/searchBar";
@@ -7,11 +7,11 @@ import UserSnapShot from "../components/userSnapshot";
 
 const SearchResultPage = () => {
     //TODO: if a search result is connected, change "connect" to "remove"
-    //TODO: add view profile button
+    //TODO: make result refresh everytime after 
     const [res, setRes] = useState([]);
     //first, search with existing content
     useEffect(() => {
-        searchUser(searchQuery)
+        searchUser(JSON.parse(sessionStorage.getItem('query')))
         .then(function(res){
             setRes(res.data);
         });
