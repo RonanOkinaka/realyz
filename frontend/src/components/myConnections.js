@@ -77,7 +77,7 @@ const MyConnections = ({ vis }) => {
     const viewProfile = (uid) => {
         //redirect to profile mode = 1
         console.log(uid);
-        navigate('/profile', {state:{'mode': 1, 'uid': uid}});
+        navigate(`/profile/${uid}`);
     }
 
     useEffect(() => {
