@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from './pages/Layout';
 import LandingPage from './pages/landing';
 import Profile from './pages/profile';
+import MainPage from './pages/main';
 import NoPage from './pages/noPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './pages/main';

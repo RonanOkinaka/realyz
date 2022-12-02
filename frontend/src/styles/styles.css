@@ -215,12 +215,33 @@ button:hover {
 }
 
 /* Profile Page */
+
 .mainpage .mainpagetitle {
     position: absolute;
     top: 20%;
     left: 50%;
     transform: translateX(-50%);
     overflow-y: auto;
+}
+
+.mainpage .mainpagetitle {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+
+.mainpage .backgroundcontainer,
+.profilepage .backgroundcontainer {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /* background-size: contain; */
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+
 }
 
 .mainpage .mainpagetitle {
