@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slogan from "../components/slogan"
 import Navbar from "../components/navbar";
 import Signup from "../components/signup";
@@ -10,6 +10,10 @@ import { clearUserData } from "../util/data";
 
 const LandingPage = () => {
     const {vis, toggle} = useModal(); //by default set state to 0 (hide all)
+    useEffect(() => {
+        console.log("rendering landing page");
+    })
+    
     return (
         <body className="fullpage">
             <VidBackground/>

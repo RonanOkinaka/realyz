@@ -1,28 +1,72 @@
 import Navbar from "../components/navbar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Background from "../media/portalBackground.jpg"
 import { MyProfile, OtherProfile } from "../components/myprofile";
 import MyVideo from "../components/myVideo";
 import Sidebar from "../components/sideBar";
 import OtherVideo from "../components/otherVideo";
+import useModal from "../util/useModal";
+import MyConnections from "../components/myConnections"
+import SentRequests from "../components/sentRequests";
+import PendingInvitations from "../components/pendingInvitations"
+import { useLocation, useNavigate } from "react-router-dom";
+import { getUserData } from "../util/data";
 
-//props.mode: 0 == myprofile, 1 == otherprofile
-const Profile = (props) => {
+const Profile = () => {
+    const {vis, toggle} = useModal();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const uid = location.state.uid;
+    const mode = location.state.mode;
+
+    //TODO: add viewing other profile feature
+    const [usrData, setUsrData] = useState({});
+    //first, search with existing content
+    useEffect(() => {
+        if (location.state){
+            console.log(location.state.uid);
+            console.log(location.state.mode);
+        }
+
+        if (uid) {
+            getUserData(uid)
+            .then(function(res){
+                setUsrData(res.data);
+            });
+        }
+    }, [location]);
+
+    const handleOnClick = event => {
+        navigate('/main');
+    }
+
+    //TODO: re-render the page content when any child component has changed.
     return (
         <body className="profilepage">
             <div className="backgroundcontainer" style={{ backgroundImage: `url(${Background})` }}>
                 <Navbar isLanding={() => false}/>
-                { props.mode === 0 &&
+                { mode === 0 &&
                     <React.Fragment>
-                        <Sidebar />
-                        <MyProfile />
-                        <MyVideo />
+                        <Sidebar 
+                        show={(num) => {toggle(num)}}/>
+                        <MyProfile
+                        vis={vis}
+                        />
+                        <MyVideo 
+                        vis={vis}/>
+                        <MyConnections
+                        vis={vis}/>
+                        <SentRequests
+                        vis={vis}/>
+                        <PendingInvitations
+                        vis={vis}
+                        />
                     </React.Fragment>
                 }
-                { props.mode === 1 &&
+                { mode === 1 &&
                     <React.Fragment>
-                        <OtherProfile />
-                        <OtherVideo />
+                        <OtherProfile info={usrData}/>
+                        <OtherVideo uid={uid}/>
                     </React.Fragment>
                 }
             </div>

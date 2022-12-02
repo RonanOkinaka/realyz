@@ -1,12 +1,12 @@
 import React from "react";
 import Logo from "./logo";
-import { clearUserData, loginUser, storeBearerToken, userData} from "../util/data";
+import { clearUserData, loginUser, storeBearerToken} from "../util/data";
 import { useNavigate } from "react-router-dom";
 import Parent from "./dataVisualizer";
 const Navbar = ({isLanding, show}) => {
     const navigate = useNavigate();
     const handleOnClickSignin = event => {
-        if (!(userData['uid'] || userData['pass']))
+        if (!(sessionStorage.getItem('uid') || sessionStorage.getItem('pass')))
         {
             clearUserData();
             show();
@@ -15,7 +15,7 @@ const Navbar = ({isLanding, show}) => {
             loginUser()
             .then(function(response){
                 storeBearerToken(response['data']['token']);
-                navigate('/profile');
+                navigate('/profile', {state: {'mode': 0}});
             })
             .catch(function(error){
                 show();
