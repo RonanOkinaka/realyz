@@ -312,7 +312,9 @@ button:hover {
     margin-bottom: 5%;
 }
 
-.otherprofile .profiledivcontainer .profilediv {
+.otherprofile .profiledivcontainer .profilediv,
+.userrecommendation .profiledivcontainer .profilediv
+{
     width:70%;
     height:27px;
     text-align:center;
