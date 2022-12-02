@@ -62,6 +62,7 @@ button:hover {
     bottom: 0;
     min-width: 100%;
     min-height: 100%;
+    overflow-y: auto;
 }
 /* landing page properties */
 .fullpage {
@@ -309,6 +310,14 @@ button:hover {
     align-items: center;
     width: 100%;
     margin-bottom: 5%;
+}
+
+.otherprofile .profiledivcontainer .profilediv,
+.userrecommendation .profiledivcontainer .profilediv
+{
+    width:70%;
+    height:27px;
+    text-align:center;
 }
 
 .profiledivcontainer .profiledivname,
@@ -647,4 +656,30 @@ button:hover {
     width: 75px;
     height: 75px;
     object-fit: cover;
+}
+.mainpage .backgroundcontainer .userrecommendation{
+    column-count: 3;
+    column-gap: 5px;
+    position: absolute;
+    top: 20%;
+    left: 63%;
+    overflow: hidden;
+    background: rgba(222, 220, 174, 0.5);
+    border-radius: 5%;
+    padding: 1em;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainpage {
+    overflow-y: auto;
+}
+
+.mainpage .backgroundcontainer .userrecommendation .profiledivcontainer {
+    position: block;
+    overflow-x: auto;
+    width: 100%;
+    top: 20%;
+    left: 50%;
 }
