@@ -661,8 +661,8 @@ button:hover {
     column-count: 3;
     column-gap: 5px;
     position: absolute;
-    top: 20%;
-    left: 63%;
+    top: 60%;
+    left: 27%;
     overflow: hidden;
     background: rgba(222, 220, 174, 0.5);
     border-radius: 5%;
