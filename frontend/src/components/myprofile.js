@@ -208,8 +208,7 @@ const MyProfile = ({vis}) => {
                 <p className="subheading">My Profile</p>
                 <UserInfoEditable />
             </div>
-            <div className="testt">
-                
+            <div className="pfpbuttons">
                 <button className="buttonedit" onClick={handleOnClick}>edit</button>
                 { err &&
                     <p>{err}</p>

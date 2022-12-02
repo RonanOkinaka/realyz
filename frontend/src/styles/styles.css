@@ -580,9 +580,30 @@ button:hover {
     position: absolute;
     left: 55%;
     }
-.testt {
+/*Profile Photo Buttons */    
+.pfpbuttons {
     position: absolute;
-    top: 80%;
+    top: 34%;
+    left: 22%;
+}
+.pfpbuttons .buttondelete {
+    position:relative;
+    left: 110%;
+    font-size: 10px;
+    width: 45px;
+    height: 45px;
+    text-align:center;
+    border-radius: 50%;
+}
+
+.pfpbuttons .buttonedit {
+    position: relative;
+    left: 47%;
+    font-size: 10px;
+    width: 45px;
+    height: 45px;
+    text-align:center;
+    border-radius: 50%;
 }
 
 .mainpage .sidebarwrapper {
