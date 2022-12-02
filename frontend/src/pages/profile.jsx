@@ -10,6 +10,7 @@ import Sidebar from "../components/sideBar";
 import OtherVideo from "../components/otherVideo";
 import QRobject from "../components/QRCODES"
 
+
 //props.mode: 0 == myprofile, 1 == otherprofile
 const Profile = (props) => {
     return (
@@ -19,7 +20,7 @@ const Profile = (props) => {
                 { props.mode === 0 &&
                     <React.Fragment>
                         <Sidebar />
-                        <QRobject text = {window.location.href} /> 
+                        <QRobject text = {window.location.href + '/' + sessionStorage.getItem("uid")}  /> 
 
                         <MyProfile />
                         
