@@ -623,9 +623,10 @@ button:hover {
 }
 .mainpage .backgroundcontainer .userrecommendation{
     column-count: 3;
+    column-gap: 5px;
     position: absolute;
     top: 20%;
-    left: 70%;
+    left: 63%;
     overflow: hidden;
     background: rgba(222, 220, 174, 0.5);
     border-radius: 5%;
@@ -637,4 +638,12 @@ button:hover {
 
 .mainpage {
     overflow-y: auto;
+}
+
+.mainpage .backgroundcontainer .userrecommendation .profiledivcontainer {
+    position: block;
+    overflow-x: auto;
+    width: 100%;
+    top: 20%;
+    left: 50%;
 }
