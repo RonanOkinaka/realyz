@@ -42,11 +42,11 @@ const SentRequest = (props) => {
 
 const SentRequests = ({vis}) => {
     const [connections, setConnections] = useState([]);
+    const names = [];
     let query = {
+        "pending" : 1,
         "from": getLocalUserData(['uid'])['uid'],
-        "pending": 1,
     }
-
     useEffect(() => {
         getConnections(query)
         .then(function(res){
@@ -58,7 +58,7 @@ const SentRequests = ({vis}) => {
         <div className="requestsContainer">
             <p>Sent Requests</p>
             {connections.map(obj => (
-                <SentRequest requestee={obj.uidTo} requester={query.from}/>
+                <SentRequest requestee={obj} />
             ))}
         </div>
     ) : null;

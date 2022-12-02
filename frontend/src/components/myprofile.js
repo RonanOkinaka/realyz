@@ -13,6 +13,16 @@ const Pic = (props) => {
     );
 }
 
+
+
+const ProfilePic = (props) => {
+    return (
+        <div id="profpic" className="piccontainer">
+            <img className="pic" src={['http://localhost:8080/media/u/', props.uid, '/1'].join('')} alt="samplePic"></img>
+        </div>
+    );
+}
+
 const ConnectionsIcon = () => {
     return (
         <div className="piccontainer">
@@ -62,7 +72,7 @@ const UserInfoEditable = (userInfo) => {
             })
     }
 
-    const handleInputChange = event => {
+    const handleProfileChange = event => {
         let key = event.target.name;
         let val = event.target.value;
         let tempField = field;
@@ -102,7 +112,8 @@ const UserInfoEditable = (userInfo) => {
                         type="text" 
                         placeholder={field[name]} 
                         name={name}
-                        onChange={handleInputChange}
+                        //descriptive name : previous was "handleInputChange"
+                        onChange={handleProfileChange}
                     >
                     </input>
                 </React.Fragment>
@@ -190,12 +201,15 @@ const MyProfile = ({vis}) => {
     return ((vis==0) ? (
         <>
             <div className="myprofile" id="profile">
-                <Pic uid={uid}/>
+                <ProfilePic uid={uid}/>
+                <div id="btn_upload_data">
+                    <input id="choosefilebut" type="file" onChange={handleInputChange}></input>
+                </div>
                 <p className="subheading">My Profile</p>
                 <UserInfoEditable />
             </div>
             <div className="testt">
-                <input type="file" onChange={handleInputChange}></input>
+                
                 <button className="buttonedit" onClick={handleOnClick}>edit</button>
                 { err &&
                     <p>{err}</p>
