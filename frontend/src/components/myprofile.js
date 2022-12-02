@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { deleteMedia, getLocalUserData, getUserData, updateUserData, uploadMedia } from "../util/data";
+import { deleteMedia, getConnectionCount, getLocalUserData, getUserData, updateUserData, uploadMedia } from "../util/data";
 import ConnectIcon from "../media/addConnections.png";
 import ExplorePic from "../media/explore.png";
 import { useNavigate } from "react-router-dom";
@@ -48,8 +48,20 @@ const FullName = (props) => {
 
 //TODO: get connection count
 const ConnectionCount = (props) => {
+    const [c, setC] = useState("");
+
+    const getNumConnections = (uid) => {
+        getConnectionCount(uid)
+        .then(function(res) {
+            setC(res.data.count);
+        })
+    }
+    useEffect(() => {
+        getNumConnections(props.uid)
+    }, []);
+
     return (
-        <button>100 connections</button>
+        <button>{c} connections</button>
     )
 }
 
@@ -78,12 +90,12 @@ const UserInfoEditable = (userInfo) => {
         let tempField = field;
         tempField[key] = val;
         setFields(tempField);
-        console.log(field);
     }
 
     const handleSubmit = event => {
         updateData(field);
         event.preventDefault();
+        window.location.reload();
     }
 
     useEffect(() => {
@@ -96,7 +108,6 @@ const UserInfoEditable = (userInfo) => {
                 setUpdate(!update);
             })
             .catch(function(error){
-                console.log(error)
                 console.error("cznndiodfoaofmowf");
             })
     }
@@ -140,6 +151,7 @@ const UserInfoUnEditable = (props) => {
 
 //takes in a userData object
 const OtherProfile = (props) => {
+    console.log(`props.info: ${props.info}`);
     return (
         <div className="otherprofile">
             <Pic uid={props.info['uid']}/>
@@ -153,10 +165,7 @@ const OtherProfile = (props) => {
 const ButtonDelete = () => {
     const uid = getLocalUserData(['uid'])['uid'];
     const handleOnClick = event => {
-        deleteMedia(1, uid)
-        .catch(function(error){
-            console.log(error);
-        })
+        deleteMedia(1, uid);
     }
     return (
         <button className="buttondelete" onClick={handleOnClick}>delete</button>
@@ -190,12 +199,12 @@ const MyProfile = ({vis}) => {
         else {
             setErr(null);
             uploadMedia(formData, 1, uid)
-                .then (function(response){
-                    console.log(response);
-                })
-                .catch(function(error){
-                    console.log(error);
-                });
+                // .then (function(response){
+                //     console.log(response);
+                // })
+                // .catch(function(error){
+                //     console.log(error);
+                // });
         }
     }
     return ((vis==0) ? (

@@ -111,8 +111,8 @@ const MyConnections = ({ vis }) => {
             {searchResult.map(obj => (
                 <div class="connectionGallery">
                     <Connection connectName={obj.uidTo} />
-                    <button onClick={() => delConnection(query.from, obj.uidTo)}>remove</button>
-                    <button onClick={() => viewProfile(obj.uidTo)}>view </button>
+                    <button type="submit" onClick={() => delConnection(query.from, obj.uidTo)}>remove</button>
+                    <button type="submit" onClick={() => viewProfile(obj.uidTo)}>view </button>
                 </div>
             ))}
         </div>
