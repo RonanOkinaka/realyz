@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createConnection, getConnections, getLocalUserData, getUserData } from "../util/data";
+import { createConnection, getConnections, deleteConnection, getLocalUserData, getUserData } from "../util/data";
 
 const SentRequest = (props) => {
   const Navigate = useNavigate();
   const [usrData, setUsrData] = useState({});
   const otherUid = props.requestee;
-
+  
   const viewProfile = (uid) => {
     //redirect to profile mode = 1
     Navigate('/profile', {state:{'mode': 1, 'uid': uid}});
@@ -28,20 +28,19 @@ const SentRequest = (props) => {
     .catch(function(err){
         console.log(err);
     });
-  }
-
+  } 
   useEffect(() => {
     getUserData(props.requestee)
     .then(function(res){
         setUsrData(res.data);
     })
   }, [])
-  
   return (
       <div className="request">
           <p>{getName()}</p>
-          <button onClick={() => makeConnection(otherUid)}>Accept</button>
           <button id="viewprofilebutton" onClick={() => viewProfile(otherUid)}>View</button>
+          <button className="acceptinvitebut" onClick={() => makeConnection(otherUid)}>Accept</button>
+          <button className="denyinvitebut" onClick={() => deleteConnection(getLocalUserData(['uid'])['uid'],otherUid)}>Deny</button>
       </div>
   );
 }
@@ -60,6 +59,14 @@ const PendingInvitations = ({vis}) => {
           setConnections(res.data.connections);
       });
   }, [])
+  
+  useEffect(() => {
+    getConnections(query)
+    .then(function(res){
+        console.log(res.data.connections)
+        setConnections(res.data.connections);
+    });
+})
 
     return ((vis == 1) ? (
       <div className="pendingInvitationsContainer">

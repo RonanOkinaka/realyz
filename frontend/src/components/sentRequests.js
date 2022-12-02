@@ -35,7 +35,7 @@ const SentRequest = (props) => {
         <div className="request">
             <p>{getName()}</p>
             <button id="viewprofilebutton" onClick={() => viewProfile(props.requestee)}>View</button>
-            <button onClick={() => retract(props.requester, props.requestee)}>retract</button>
+            <button className="retractbut" onClick={() => retract(props.requester, props.requestee)}>Cancel</button>
         </div>
     );
 }
@@ -53,7 +53,13 @@ const SentRequests = ({vis}) => {
             setConnections(res.data.connections);
         });
     }, [])
-
+    useEffect(() => {
+        getConnections(query)
+        .then(function(res){
+            console.log(res.data.connections)
+            setConnections(res.data.connections);
+        });
+    })
     return (vis==1) ?(
         <div className="requestsContainer">
             <p>Sent Requests</p>
