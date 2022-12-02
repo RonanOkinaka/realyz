@@ -24,7 +24,7 @@ const SearchBar = () => {
                 placeholder="search"
                 name="searchfield"
             />
-            <button type="submit">Search</button>
+            <button id='secondSearchBut' type="submit">Search</button>
             {/* {err && <p>Error: {err}</p>} */}
         </form>
     )
