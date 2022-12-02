@@ -26,7 +26,7 @@ const FullOtherProfile = (_props) => {
                 {
                     <React.Fragment>
                         <OtherProfile info={ usrData } />
-                        <OtherVideo info={ usrData } />
+                        <OtherVideo uid={ params.uid } />
                     </React.Fragment>
                 }
             </div>
