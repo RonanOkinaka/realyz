@@ -1,10 +1,12 @@
 import Navbar from "../components/navbar";
+import * as ReactDOM from 'react-dom/client';
 import React, { useEffect, useState } from "react";
 import Background from "../media/portalBackground.jpg"
 import { MyProfile, OtherProfile } from "../components/myprofile";
 import MyVideo from "../components/myVideo";
 import Sidebar from "../components/sideBar";
 import OtherVideo from "../components/otherVideo";
+import QRobject from "../components/QRCODES"
 import useModal from "../util/useModal";
 import MyConnections from "../components/myConnections"
 import SentRequests from "../components/sentRequests";
@@ -52,6 +54,7 @@ const Profile = () => {
                         <MyProfile
                         vis={vis}
                         />
+                        <QRobject text = {window.location.href + '/' + sessionStorage.getItem("uid")} /> 
                         <MyVideo 
                         vis={vis}/>
                         <MyConnections
@@ -68,7 +71,7 @@ const Profile = () => {
                         <OtherProfile info={usrData}/>
                         <OtherVideo uid={uid}/>
                     </React.Fragment>
-                }
+                } 
             </div>
         </body>
     );
