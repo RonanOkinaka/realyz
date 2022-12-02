@@ -102,7 +102,7 @@ const MyConnections = ({ vis }) => {
     //TODO: add view profile function 
 
     return ((vis == 1) ? (
-        <div className="myprofile">
+        <div className="myconnections">
             <p className="subheading">My Connections</p>
             <form onSubmit={handleSubmit}>
                 <input className="search" type="text" name="connectionField" placeholder="search connection" />

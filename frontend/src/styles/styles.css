@@ -225,13 +225,6 @@ button:hover {
     overflow-y: auto;
 }
 
-.mainpage .mainpagetitle {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
 .mainpage .backgroundcontainer,
 .profilepage .backgroundcontainer {
     background-size: cover;
@@ -266,7 +259,9 @@ button:hover {
     font-size: 2vw;
 }
 
-.profilepage .myprofile,
+
+.myconnections,
+.myprofile,
 .profilepage .otherprofile {
     position: absolute;
     top: 25%;
@@ -274,11 +269,24 @@ button:hover {
     width: 30%;
     height: auto;
     display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
+}
+
+
+.myprofile,
+.myconnections,
+.otherprofile,
+.requestsContainer,
+.pendingInvitationsContainer,
+.myvideocontainer {
     background: rgba(222, 220, 174, 0.5); /* Green background with 30% opacity */
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    padding: 15px;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-collapse: separate; 
+    border-radius: 30px;
 }
 
 .piccontainer {
@@ -300,13 +308,13 @@ button:hover {
     
 }
 .otherprofile .fullname,
-.myprofile .subheading {
+.subheading {
     margin-bottom: 0px;
     /* background-color: black; */
 }
 
 .otherprofile .profiledivcontainer,
-.myprofile .profileformcontainer {
+.profileformcontainer {
     /* background-color: goldenrod; */
     display: flex;
     flex-flow: column wrap;
@@ -356,7 +364,6 @@ button:hover {
     font-size: 11px;
     line-height: 0;
     text-align: center;
-
 }
 
 .profileform[type='text'],
@@ -367,17 +374,12 @@ button:hover {
 .profilepage .nav {
     background: rgba(222, 220, 174, 0.5); /* Green background with 30% opacity */
 }
+
 .profilepage .myvideocontainer {
     position: absolute;
     top: 30%;
-    right: 10%;
+    right: 3%;
     width: 40%;
-    background: rgba(222, 220, 174, 0.5); /* Green background with 30% opacity */
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-    padding: 15px;
-    border-radius: 4px;
 }
 
 .myvideocontainer .profilevidcontainer {
@@ -435,10 +437,12 @@ button:hover {
 }
 
 #QRCode {
-    position: absolute;
-    top: 72%;
-    left: 2.5%;
+    position: fixed;
+    bottom: 0px;
+    left: 25px;
 }
+
+
 .connectionGallery {
     display: grid;
     grid-gap: 10px;
@@ -481,34 +485,39 @@ button:hover {
     border-radius:4px;
   }
   
+  .myconnections form,
   .myprofile form {
     margin-bottom: 10px;
   }
 
+  .myconnections {
+    height: 85%;
+  }
   .profilepage .requestsContainer {
     position: absolute;
     top: 25%;
     right: 10%;
     width: 30%;
     height: 40%;
-    background: rgba(222, 220, 174, 0.5); /* Green background with 30% opacity */
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    padding: 15px;
-    border-radius: 4px;
-    overflow-y: auto;
-    overflow-x: auto;
   }
 
-  .profilepage .requestsContainer .request, 
-  .profilepage .pendingInvitationsContainer .request{
+.request {
     position: relative;
     margin-bottom: 10px;
+    padding: 5px;
     background: black;
-    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
     height: 20%;
-  }
+}
+
+.mainpage .formcontainer {
+    position: absolute;
+    top: 200px;
+    height: 100px;
+}
+
 
   .profilepage .requestsContainer .requestsSubheading {
     
@@ -541,7 +550,7 @@ button:hover {
 
   .profilepage .requestsContainer p,
   .profilepage .pendingInvitationsContainer p {
-    font-size: xx-large;
+    font-size: large;
   }
 
   .profilepage .pendingInvitationsContainer {
@@ -550,13 +559,7 @@ button:hover {
     right: 10%;
     width: 30%;
     height: 40%;
-    background: rgba(222, 220, 174, 0.5); /* Green background with 30% opacity */
-    display: flex;
-    flex-flow: row wrap;
     padding: 15px;
-    border-radius: 4px;
-    overflow-y: auto;
-    overflow-x: auto;
     margin-bottom: 20px;
   }
 
@@ -611,7 +614,7 @@ button:hover {
     display:flex;
     position: absolute;
     top: 10%;
-    left: 18%;
+    left: 22.9%;
 }
 
 .pfpbuttons .buttondelete {
@@ -669,17 +672,23 @@ button:hover {
     height: 75px;
     object-fit: cover;
 }
-.mainpage .backgroundcontainer .userrecommendation{
+
+.rectitle {
+    position: absolute;
+    top: 45%;
+}
+
+.userrecommendation{
     column-count: 3;
     column-gap: 5px;
     position: absolute;
-    top: 60%;
-    left: 27%;
+    top: 53%;
+    left: 15%;
     overflow: hidden;
-    background: rgba(222, 220, 174, 0.5);
     border-radius: 4px;
     padding: 1em;
-    flex-flow: column wrap;
+    display: flex;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
 }
@@ -689,9 +698,16 @@ button:hover {
 }
 
 .mainpage .backgroundcontainer .userrecommendation .profiledivcontainer {
-    position: block;
     overflow-x: auto;
-    width: 100%;
+    width: 25%;
     top: 20%;
     left: 50%;
+    background: rgba(222, 220, 174, 0.5);
+    margin: 10px;
+    border-collapse: separate; 
+    border-radius: 30px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 20px;
 }

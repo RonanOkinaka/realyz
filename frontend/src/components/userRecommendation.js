@@ -21,9 +21,9 @@ const UserRecommendation = () => {
     
     return (
         <div className="userrecommendation">
-        { res.map(obj => (
-            <UserSnapShot info={obj} />
-        ))}
+            { res.map(obj => (
+                <UserSnapShot info={obj} />
+            ))}
         </div>
     )
 }

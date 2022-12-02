@@ -15,6 +15,7 @@ const MainPage = () => {
                 <Navbar isLanding={() => false}/>
                 <p className="mainpagetitle">Discover Connections</p>
                 <SearchBar />
+                <p className="rectitle">Recommended Users</p>
                 { <UserRecommendation /> }
             </div>
         </body>
