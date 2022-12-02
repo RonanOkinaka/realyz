@@ -23,9 +23,11 @@ const SearchResultPage = () => {
                 <Navbar isLanding={() => false}/>
                 <p className="mainpagetitle">Search Results</p>
                 <SearchBar />
-                {res.map(obj => (
-                    <UserSnapShot info={obj} />
-                ))}
+                <div className="searchresultcontainer">
+                    {res.map(obj => (
+                        <UserSnapShot info={obj} />
+                    ))}
+                </div>
             </div>
         </body>
     );

@@ -529,9 +529,30 @@ button:hover {
     width: 100%;
     top: 20%;
     left: 50%;
-    padding-top: 150px;
 }
+.searchresultpage .backgroundcontainer .mainpagetitle {
+    position: absolute;
+    left: 40%;
+    top: 12%;
+}
+.searchresultcontainer {
+    position: absolute;
+    left: 5%;
+    top: 23%;
+    display: flex;
+    min-width: 80%;
+    min-height: 100%;
 
+}
+.searchresultpage .backgroundcontainer .formcontainer {
+    position: absolute;
+    top: 17%;
+    left: 35%;
+}
+#secondSearchBut {
+    border-radius: 3%;
+    height: 30px;
+}
 .testt {
     position: absolute;
     top: 80%;
