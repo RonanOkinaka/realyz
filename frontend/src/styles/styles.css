@@ -585,7 +585,7 @@ button:hover {
     display:flex;
     position: absolute;
     top: 10%;
-    left: 12.5%;
+    left: 20%;
 }
 .pfpbuttons .buttondelete {
     position:relative;
