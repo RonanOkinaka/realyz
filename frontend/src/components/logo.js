@@ -5,7 +5,7 @@ import pic from "../media/logo.svg"
 const Logo = () => {
     const navigate = useNavigate();
     const handleOnClick = () => {
-        navigate('/');
+        navigate('/main');
     }
     return (
         <a onClick={handleOnClick}>

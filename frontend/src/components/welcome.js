@@ -5,11 +5,11 @@ const Welcome = (props) => {
         const {name} = props;
         if (name !== null) {
             return(
-                <p className="greetings">Welcome, {name}</p>
+                <p className="greeting">Welcome, {name}</p>
             );
         }
         else {
-            return <p className="greetings">Welcome</p>
+            return <p className="greeting">Welcome</p>
         }
     }
     return (
