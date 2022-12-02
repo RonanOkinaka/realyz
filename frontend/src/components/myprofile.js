@@ -54,7 +54,7 @@ const UserInfoEditable = (userInfo) => {
             .then(function(response){
                 setFields(response['data']);
             })
-            .catch(function(error){
+            .catch(function(error){h
                 console.error(error)
                 console.error("an error occurred fetching user data.");
             })
@@ -188,7 +188,7 @@ const MyProfile = ({vis}) => {
     return ((vis==0) ? (
         <>
             <div className="myprofile" id="profile">
-                <Pic />
+                <Pic uid={uid}/>
                 <p className="subheading">My Profile</p>
                 <UserInfoEditable />
             </div>

@@ -1,8 +1,4 @@
 import axios, { AxiosHeaders } from "axios";
-let userName = "";
-let userData = {};  //TODO: use sessionStorage to store userData
-let searchQuery = {};
-let otherUserID = "";
 
 /*
 {
@@ -23,11 +19,8 @@ const storeUserData = (param, val) => {
     {
         // Duct tape and zipties (crunch time...)
         if (param[i] === 'uid') {
-            // userData[param[i]] = val[i].replace(/[^_a-zA-Z0-9]/g, '_');
             sessionStorage.setItem(param[i], val[i].replace(/[^_a-zA-Z0-9]/g, '_'));
-            // console.log(userData[param[i]]);
         } else {
-            // userData[param[i]] = val[i];
             sessionStorage.setItem(param[i], val[i]);
         }
     }
@@ -35,7 +28,6 @@ const storeUserData = (param, val) => {
 
 //takes in a list of requested user datatypes, return a list of corresponding values.
 function getLocalUserData(param){
-    let selectedData = {};
     let testData = {};
     for (let i = 0; i < param.length; i++)
     {
@@ -66,7 +58,7 @@ const loginUser = () => axios({
     data: {
         'uid': sessionStorage.getItem('uid'),
         'pass': sessionStorage.getItem('pass'),
-    }  //backend only takes uid and pass fields in userData.
+    }  //backend only takes uid and pass fields
 });
 
 //TODO: get user profile picture
@@ -115,14 +107,18 @@ const deleteMedia = (type, uid) => axios ({
 });
 
 const storeQuery = (param, val) => {
-    searchQuery[param] = val;
+    let query = {
+        [param]: val,
+    }
+    sessionStorage.setItem('query', JSON.stringify(query));
 }
 
 const clearQuery = () => {
     searchQuery = {};
+    sessionStorage.removeItem('query');
 };
 
-const searchUser = (query, val) => axios ({
+const searchUser = (query) => axios ({
     method: 'get',
     baseURL: 'http://localhost:8080',
     url: '/search/',
@@ -158,9 +154,6 @@ const deleteConnection = (from, to) => axios ({
         'to': to,
     }
 });
-const dump = () => {
-    console.log(userData);
-};
 
-export {userData, searchQuery, otherUserID, storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, 
-    loginUser, getUserData, updateUserData, uploadMedia, getMedia, deleteMedia, searchUser, storeQuery, clearQuery, getConnections, createConnection, deleteConnection, dump};
+export {storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, 
+    loginUser, getUserData, updateUserData, uploadMedia, getMedia, deleteMedia, searchUser, storeQuery, clearQuery, getConnections, createConnection, deleteConnection};
