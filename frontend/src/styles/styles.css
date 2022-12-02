@@ -622,11 +622,17 @@ button:hover {
     object-fit: cover;
 }
 .mainpage .backgroundcontainer .userrecommendation{
+    column-count: 3;
     position: absolute;
+    top: 20%;
     left: 70%;
     overflow: hidden;
-    color: green;
-
+    background: rgba(222, 220, 174, 0.5);
+    border-radius: 5%;
+    padding: 1em;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .mainpage {
