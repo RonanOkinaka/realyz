@@ -582,9 +582,10 @@ button:hover {
     }
 /*Profile Photo Buttons */    
 .pfpbuttons {
+    display:flex;
     position: absolute;
-    top: 34%;
-    left: 22%;
+    top: 10%;
+    left: 12.5%;
 }
 .pfpbuttons .buttondelete {
     position:relative;

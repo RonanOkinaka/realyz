@@ -202,18 +202,18 @@ const MyProfile = ({vis}) => {
         <>
             <div className="myprofile" id="profile">
                 <ProfilePic uid={uid}/>
+                <div className="pfpbuttons">
+                    <button className="buttonedit" onClick={handleOnClick}>edit</button>
+                    { err &&
+                        <p>{err}</p>
+                    }
+                    <ButtonDelete />
+                </div>
                 <div id="btn_upload_data">
                     <input id="choosefilebut" type="file" onChange={handleInputChange}></input>
                 </div>
                 <p className="subheading">My Profile</p>
                 <UserInfoEditable />
-            </div>
-            <div className="pfpbuttons">
-                <button className="buttonedit" onClick={handleOnClick}>edit</button>
-                { err &&
-                    <p>{err}</p>
-                }
-                <ButtonDelete />
             </div>
         </>
         
