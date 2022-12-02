@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { createConnection, getConnections, getLocalUserData, getUserData } from "../util/data";
 
 const SentRequest = (props) => {
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
   const [usrData, setUsrData] = useState({});
   const otherUid = props.requestee;
 
   const viewProfile = (uid) => {
     //redirect to profile mode = 1
-    Navigate('/profile', {state:{'mode': 1, 'uid': uid}});
+    navigate(`/profile/${uid}`);
   }
 
   const getName = () => {

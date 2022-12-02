@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SamplePic from "../media/sample.jpg";
-import { createConnection, deleteConnection, getConnections, getLocalUserData } from "../util/data";
+import { createConnection, deleteConnection, getConnections, getLocalUserData, getUserData } from "../util/data";
 
 const Connection = ({connectName}) => {
     return (
@@ -23,6 +23,17 @@ const MyConnections = ({ vis }) => {
     const navigate = useNavigate();
     const [connections, setConnections] = useState([]);
     const [searchResult, setSearchResult] = useState([]);
+
+    const getName = (uid) => {
+        let usrData = {};
+        getUserData(uid).then(function(res){
+            usrData = res.data;
+        });
+        let fname = usrData.fname;
+        let lname = usrData.lname;
+        let fullName = [fname, lname].join(' ');
+        return fullName;
+    }
 
     let query = {
         "from": getLocalUserData(['uid'])['uid'],
@@ -109,10 +120,10 @@ const MyConnections = ({ vis }) => {
                 <button type="submit">search</button>
             </form>
             {searchResult.map(obj => (
-                <div class="connectionGallery">
+                <div className="connectionGallery">
                     <Connection connectName={obj.uidTo} />
                     <button className='delConButt' onClick={() => delConnection(query.from, obj.uidTo)}>remove</button>
-                    <button className='viewConButt' onClick={() => viewProfile(obj.uidTo)}>view </button>
+                    <button className='viewConButt' onClick={() => viewProfile(obj.uidTo)}>view</button>
                 </div>
             ))}
         </div>
