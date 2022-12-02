@@ -6,7 +6,7 @@ import { createConnection, deleteConnection, getConnections, getLocalUserData } 
 const Connection = ({connectName}) => {
     return (
         <div class="item">
-            <img src={SamplePic} />
+            <img src={['http://localhost:8080/media/u/', connectName, '/1'].join('')} />
             <span class="caption">{connectName}</span>
         </div>
     )
@@ -111,8 +111,8 @@ const MyConnections = ({ vis }) => {
             {searchResult.map(obj => (
                 <div class="connectionGallery">
                     <Connection connectName={obj.uidTo} />
-                    <button onClick={() => delConnection(query.from, obj.uidTo)}>remove</button>
-                    <button onClick={() => viewProfile(obj.uidTo)}>view </button>
+                    <button className='delConButt' onClick={() => delConnection(query.from, obj.uidTo)}>remove</button>
+                    <button className='viewConButt' onClick={() => viewProfile(obj.uidTo)}>view </button>
                 </div>
             ))}
         </div>
