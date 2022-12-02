@@ -95,7 +95,8 @@ const uploadMedia = (media, type, uid) => axios ({
 // });
 
 const getMedia = (type, uid) => {
-    let url = 'http://localhost:8080/media/u/' + uid + '/' + type;
+    let url = 'http://localhost:8080/media/u/' + uid + '/' + type + '?q=' + new Date().getMilliseconds();
+    console.log(`THE MEDIA URL IS ${url}`);
     return url;
 }
 
