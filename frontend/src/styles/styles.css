@@ -62,6 +62,7 @@ button:hover {
     bottom: 0;
     min-width: 100%;
     min-height: 100%;
+    overflow-y: auto;
 }
 /* landing page properties */
 .fullpage {
@@ -619,4 +620,15 @@ button:hover {
     width: 75px;
     height: 75px;
     object-fit: cover;
+}
+.mainpage .backgroundcontainer .userrecommendation{
+    position: absolute;
+    left: 70%;
+    overflow: hidden;
+    color: green;
+
+}
+
+.mainpage {
+    overflow-y: auto;
 }
