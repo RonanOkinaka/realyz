@@ -8,7 +8,14 @@ const UserRecommendation = () => {
     useEffect(() => {
         getRandomUsers()
         .then(function(res){
-            setRes(res.data);
+            const firstNine = [];
+            for(let i = 0; i < 9; i++){ 
+                if(i == res.data.length) {
+                    break;
+                }
+                firstNine.push(res.data[i]);
+            }
+            setRes(firstNine);
         });
     }, []);
     
