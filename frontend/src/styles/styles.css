@@ -52,6 +52,17 @@ button:hover {
     list-style-type: none;
 }
 
+.backgroundcontainer {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: fixed;
+    display: flex;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
 /* landing page properties */
 .fullpage {
     position: absolute;
@@ -116,6 +127,7 @@ button:hover {
     /* background-color: black; */
 }
 
+.mainpage .searchbar,
 .fullpage .signup .signupform {
     background-color: transparent;
     width: 500px;
@@ -150,6 +162,7 @@ button:hover {
     flex-direction: column;
 }
 
+.mainpage .formcontainer,
 .fullpage .formcontainer {
     display: flex;
     /* background-color: black; */
@@ -202,6 +215,23 @@ button:hover {
 }
 
 /* Profile Page */
+
+.mainpage .mainpagetitle {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow-y: auto;
+}
+
+.mainpage .mainpagetitle {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.mainpage .backgroundcontainer,
 .profilepage .backgroundcontainer {
     background-size: cover;
     background-repeat: no-repeat;
@@ -212,7 +242,13 @@ button:hover {
     bottom: 0;
     min-width: 100%;
     min-height: 100%;
-    overflow-y: auto;
+}
+
+.mainpage .mainpagetitle {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .profilepage .btn {
@@ -295,21 +331,27 @@ button:hover {
 }
 
 .profiledivcontainer .profilediv {
-    background-color: darkgrey;
+    background-color: lightgray;
     width: 70%;
     height: 3%;
-    font-size: 8px;
+    font-size: 20px;
+    overflow-x:auto;
+    
 }
 
 .profilediv p {
+    position: absolute;
     font-size: 11px;
     line-height: 0;
+    text-align: center;
+
 }
 
 .profileform[type='text'],
 .profileform::-webkit-input-placeholder {
     font-size: 14px;
 }
+.mainpage .nav,
 .profilepage .nav {
     background: rgba(222, 220, 174, 0.5); /* Green background with 30% opacity */
 }
@@ -343,20 +385,10 @@ button:hover {
     justify-content: space-between;
 }
 
-.profilepage {
+.profilepage .sidebarwrapper {
     position: absolute;
     background-color: rgba(222, 220, 174, 0.5);
     top: 18%;
-    left: 0;
-    width: 15%;
-    height: 82%;
-    display: flex;
-    flex-flow: column wrap;
-}
-.sidebarwrapper{
-    position: absolute;
-    background-color: rgba(222, 220, 174, 0.5);
-    top:11%;
     left: 0;
     width: 15%;
     height: 82%;
@@ -426,3 +458,165 @@ button:hover {
   .myprofile form {
     margin-bottom: 10px;
   }
+
+  .profilepage .requestsContainer {
+    position: absolute;
+    top: 25%;
+    right: 10%;
+    width: 30%;
+    height: 40%;
+    background: rgba(222, 220, 174, 0.5); /* Green background with 30% opacity */
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    padding: 15px;
+    border-radius: 5%;
+    overflow-y: auto;
+    overflow-x: auto;
+  }
+
+  .profilepage .requestsContainer .request, 
+  .profilepage .pendingInvitationsContainer .request{
+    position: relative;
+    margin-bottom: 10px;
+    background: black;
+    width: 90%;
+    height: 20%;
+  }
+
+  .profilepage .requestsContainer .requestsSubheading {
+    
+    vertical-align: middle;
+    position: relative;
+    background: green;
+    margin-bottom: 10px;
+    width: 90%;
+    height: 20%;
+  }
+  .profilepage .requestsContainer .requestsSubheading p {
+    position: relative;
+    font-size: x-large;
+    left: 50%;
+  }
+
+  .profilepage .requestsContainer .request button,
+  .profilepage .pendingInvitationsContainer .request button{
+    position: absolute;
+    left: 75%;
+    top: 25%;
+  }
+
+  .profilepage .requestsContainer .request p,
+  .profilepage .pendingInvitationsContainer .request p {
+    text-align: left;
+    font-size: larger;
+    color: white;
+  }
+
+  .profilepage .requestsContainer p,
+  .profilepage .pendingInvitationsContainer p {
+    font-size: xx-large;
+  }
+
+  .profilepage .pendingInvitationsContainer {
+    position: absolute;
+    top: 70%;
+    right: 10%;
+    width: 30%;
+    height: 40%;
+    background: rgba(222, 220, 174, 0.5); /* Green background with 30% opacity */
+    display: flex;
+    flex-flow: row wrap;
+    padding: 15px;
+    border-radius: 5%;
+    overflow-y: auto;
+    overflow-x: auto;
+    margin-bottom: 20px;
+  }
+
+/* main page */
+.mainpage .backgroundcontainer {
+    justify-content: center;
+}
+
+#connectBut {
+    top: 20px;
+    position:relative;
+    color: black;
+}
+.backgroundcontainer .profiledivcontainer {
+    position: block;
+    overflow-x: auto;
+    width: 100%;
+    top: 20%;
+    left: 50%;
+}
+.searchresultpage .backgroundcontainer .mainpagetitle {
+    position: absolute;
+    left: 40%;
+    top: 12%;
+}
+.searchresultcontainer {
+    position: absolute;
+    left: 5%;
+    top: 23%;
+    display: flex;
+    min-width: 80%;
+    min-height: 100%;
+
+}
+.searchresultpage .backgroundcontainer .formcontainer {
+    position: absolute;
+    top: 17%;
+    left: 35%;
+}
+#secondSearchBut {
+    border-radius: 3%;
+    height: 30px;
+}
+
+.request #viewprofilebutton {
+    width: 15%;
+    position: absolute;
+    left: 55%;
+    }
+.testt {
+    position: absolute;
+    top: 80%;
+}
+
+.mainpage .sidebarwrapper {
+    position: absolute;
+    background-color: rgba(222, 220, 174, 0.5);
+    top: 18%;
+    left: 0;
+    width: 15%;
+    height: 82%;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+#btn_upload_data {
+    position:absolute;
+    background-color: black;
+    width: 75px;
+    height: 75px;
+    opacity:0;
+    border-radius:50%;
+    z-index: 1;
+    top:10px;
+}
+#btn_upload_data:hover{
+    opacity:70%;
+}
+#btn_upload_data input[type="file"] {
+    opacity: 0;
+    font-size:60px;
+    width:79px;
+    
+}
+#profpic .pic {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+}

@@ -5,20 +5,6 @@ import { deleteMedia, getLocalUserData, uploadMedia, getMedia } from "../util/da
 //TODO: get Profile Video from server.
 const ProfileVid = () => {
     const [profileVid, setProfileVid] = useState(getMedia(2, getLocalUserData(['uid'])['uid']));
-    // const handleOnClick = event => {
-    //     // fetchVideo();
-    //     getMedia(2, 'a')
-    //     .then(function(response){
-    //         // let file = new File(response.data, {type: "video/mp4"});
-    //         var videoURL = window.URL.createObjectURL(response.data);
-    //         // let videoUrl = response.data;
-    //         setProfileVid(videoURL);
-    //     })
-    //     .catch(function(error){
-    //         console.log(error);
-    //     })
-    // }
-
     useEffect(() => {
     }, []);
 
