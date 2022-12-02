@@ -277,7 +277,7 @@ button:hover {
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    border-radius: 4px;
+    border-radius: 5%;
     background: rgba(222, 220, 174, 0.5); /* Green background with 30% opacity */
 }
 
@@ -370,14 +370,14 @@ button:hover {
 .profilepage .myvideocontainer {
     position: absolute;
     top: 30%;
-    right: 10%;
+    right: 6%;
     width: 40%;
     background: rgba(222, 220, 174, 0.5); /* Green background with 30% opacity */
     display: flex;
     flex-flow: column wrap;
     align-items: center;
     padding: 15px;
-    border-radius: 4px;
+    border-radius: 5%;
 }
 
 .myvideocontainer .profilevidcontainer {
@@ -528,10 +528,31 @@ button:hover {
   .profilepage .requestsContainer .request button,
   .profilepage .pendingInvitationsContainer .request button{
     position: absolute;
-    left: 75%;
     top: 25%;
   }
-
+  
+  .retractbut {
+    position:absolute;
+    left:64%;
+    background-color: rgb(255, 100, 83);
+  }
+  .request #viewprofilebutton {
+    width: 15%;
+    position: absolute;
+    left: 40%;
+    }
+  .denyinvitebut {
+    position:absolute;
+    width:15%;
+    left:60%;
+    background-color: rgb(255, 100, 83);
+  }
+  .acceptinvitebut {
+    background-color:rgb(60, 179, 113);
+    position:absolute;
+    width:20%;
+    left:78%;
+  }
   .profilepage .requestsContainer .request p,
   .profilepage .pendingInvitationsContainer .request p {
     text-align: left;
@@ -601,11 +622,6 @@ button:hover {
     height: 30px;
 }
 
-.request #viewprofilebutton {
-    width: 15%;
-    position: absolute;
-    left: 55%;
-    }
 /*Profile Photo Buttons */    
 .pfpbuttons {
     display:flex;

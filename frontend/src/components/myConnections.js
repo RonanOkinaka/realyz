@@ -81,6 +81,14 @@ const MyConnections = ({ vis }) => {
     }
 
     useEffect(() => {
+        getConnections(query)
+        .then(function(res){
+            setConnections(res.data.connections);
+            setSearchResult(res.data.connections);
+        });
+    })
+
+    useEffect(() => {
         // console.log(getLocalUserData(['uid'])['uid']);
         // console.log(connections);
         //TODO: refresh the list when user modifies its connection
