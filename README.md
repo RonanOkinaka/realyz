@@ -51,3 +51,21 @@ With Node.js deterministic install, relevant packages can be easily retrieved wi
 
 #### Executing
 At this point, the backend should be ready. Simply start the server with `npm start`!
+
+## Running the Frontend
+
+#### Prerequisites
+- NPM, which should already be installed
+- We use yarn, so `npm install yarn`
+
+#### Setting up the webpack
+
+Install any unmet dependencies by running `yarn` in `realyz/frontend`.
+
+Then, build the webpack with `npm run build`.
+
+#### Executing
+
+Everything should be ready, so simply `npm start`.
+
+At this point, everything should be set up and running. Congrats!
