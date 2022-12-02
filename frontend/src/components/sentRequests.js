@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { deleteConnection, getConnections, getLocalUserData } from "../util/data";
+import { deleteConnection, getConnections, getLocalUserData, getUserData } from "../util/data";
 
 const SentRequest = (props) => {
     //TODO: 
@@ -30,7 +30,7 @@ const SentRequest = (props) => {
     return (
         <div className="request">
             <p>{props.requestee}</p>
-            <button onClick={() => viewProfile(props.requestee)}>View</button>
+            <button id="viewprofilebutton" onClick={() => viewProfile(props.requestee)}>View</button>
             <button onClick={() => retract(props.requester, props.requestee)}>retract</button>
         </div>
     );
@@ -38,24 +38,29 @@ const SentRequest = (props) => {
 
 const SentRequests = ({vis}) => {
     const [connections, setConnections] = useState([]);
+    const names = [];
     let query = {
+        "pending" : 1,
         "from": getLocalUserData(['uid'])['uid'],
-        "pending": 1,
     }
-
     useEffect(() => {
-        getConnections(query)
-        .then(function(res){
-            console.log(res.data.connections)
-            setConnections(res.data.connections);
-        });
-    }, [])
-
+    getConnections(query)
+    .then(function(res){
+        for (let i = 0; i < res.data.connections.length; i++){
+            getUserData(res.data.connections[i]['uidTo']).then(function(r2) {
+                console.log("this is exec");
+                names.push(r2.data.fname +" " + r2.data.lname);
+                setConnections(names);
+            });
+          }
+    });}, [])
+    //setConnections()
+    console.log(connections);
     return (vis==1) ?(
         <div className="requestsContainer">
             <p>Sent Requests</p>
             {connections.map(obj => (
-                <SentRequest requestee={obj.uidTo} requester={query.from}/>
+                <SentRequest requestee={obj} />
             ))}
         </div>
     ) : null;
