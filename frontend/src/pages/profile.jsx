@@ -19,7 +19,7 @@ const Profile = (props) => {
                 { props.mode === 0 &&
                     <React.Fragment>
                         <Sidebar />
-                        <QRobject text="p"/> 
+                        <QRobject text = {window.location.href} /> 
 
                         <MyProfile />
                         
