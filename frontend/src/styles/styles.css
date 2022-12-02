@@ -34,7 +34,7 @@ button:hover {
 }
 
 .nav {
-    position: fixed;
+    position: absolute;
     display: flex;
     left: 0;
     color: white;
