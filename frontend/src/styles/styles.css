@@ -202,7 +202,7 @@ button:hover {
     height: 35px;
     width: 35px;
     font-size: 24px;
-    border-radius:1cm;
+    border-radius:4px;
 }
 
 .fullpage .popup .name .nameform {
@@ -256,6 +256,9 @@ button:hover {
     padding-left: 40px;
 }
 
+.profilepage .btn button{
+    border-radius: 4px;
+}
 .profilepage .greeting {
     padding-right: 40px;
     margin-left: auto;
@@ -268,13 +271,13 @@ button:hover {
     position: absolute;
     top: 25%;
     left: 19%;
-    width: 25%;
+    width: 30%;
     height: auto;
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    border-radius: 5%;
+    border-radius: 4px;
     background: rgba(222, 220, 174, 0.5); /* Green background with 30% opacity */
 }
 
@@ -374,7 +377,7 @@ button:hover {
     flex-flow: column wrap;
     align-items: center;
     padding: 15px;
-    border-radius: 5%;
+    border-radius: 4px;
 }
 
 .myvideocontainer .profilevidcontainer {
@@ -400,8 +403,9 @@ button:hover {
     top: 18%;
     left: 0;
     width: 15%;
-    height: 82%;
+    height: 100%;
     display: flex;
+    flex-direction: column;
     flex-flow: column wrap;
 }
 .sidebar .sidebaritem {
@@ -413,7 +417,7 @@ button:hover {
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    border-radius: 12%;
+    border-radius: 4px;
 }
 
 .sidebaritem .piccontainer {
@@ -432,7 +436,7 @@ button:hover {
 
 #QRCode {
     position: absolute;
-    top: 85%;
+    top: 72%;
     left: 2.5%;
 }
 .connectionGallery {
@@ -443,12 +447,15 @@ button:hover {
 .connectionGallery .item {
     position: relative;
     overflow: hidden;
+    padding-left:10px;
+    padding-bottom:10px;
   }
   
   .connectionGallery .item img {
     vertical-align: middle;
     width: 140px;
     height: 140px;
+    border-radius:4%;
   }
   
   .connectionGallery .caption {
@@ -456,9 +463,9 @@ button:hover {
     padding: 1em;
     position: absolute;
     z-index: 1;
-    bottom: 0;
-    left: 0;
-    width: 100%;
+    bottom: 10px;
+    left: 10px;
+    width: 95%;
     max-height: 100%;
     overflow: auto;
     box-sizing: border-box;
@@ -467,8 +474,13 @@ button:hover {
     background: rgba(0, 0, 0, .7);
     color: rgb(255, 255, 255);
     font-size: small;
+    border-radius:4px;
   }
 
+  .delConButt, .viewConButt{
+    border-radius:4px;
+  }
+  
   .myprofile form {
     margin-bottom: 10px;
   }
@@ -484,7 +496,7 @@ button:hover {
     flex-flow: row wrap;
     align-items: center;
     padding: 15px;
-    border-radius: 5%;
+    border-radius: 4px;
     overflow-y: auto;
     overflow-x: auto;
   }
@@ -542,7 +554,7 @@ button:hover {
     display: flex;
     flex-flow: row wrap;
     padding: 15px;
-    border-radius: 5%;
+    border-radius: 4px;
     overflow-y: auto;
     overflow-x: auto;
     margin-bottom: 20px;
@@ -585,7 +597,7 @@ button:hover {
     left: 35%;
 }
 #secondSearchBut {
-    border-radius: 3%;
+    border-radius: 4px;
     height: 30px;
 }
 
@@ -665,7 +677,7 @@ button:hover {
     left: 27%;
     overflow: hidden;
     background: rgba(222, 220, 174, 0.5);
-    border-radius: 5%;
+    border-radius: 4px;
     padding: 1em;
     flex-flow: column wrap;
     justify-content: center;
