@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import SamplePic from "../media/sample.jpg";
+import SamplePic from "../media/default-user.png";
 import { createConnection, deleteConnection, getConnections, getLocalUserData } from "../util/data";
 
 const Connection = ({connectName}) => {
+    const addImageFallback = (event) => {
+        event.currentTarget.src = SamplePic;
+    };
     return (
         <div class="item">
-            <img src={['http://localhost:8080/media/u/', connectName, '/1'].join('')} />
+            <img src={['http://localhost:8080/media/u/', connectName, '/1'].join('')} onError={addImageFallback} />
             <span class="caption">{connectName}</span>
         </div>
     )
@@ -88,8 +91,6 @@ const MyConnections = ({ vis }) => {
     })
 
     useEffect(() => {
-        // console.log(getLocalUserData(['uid'])['uid']);
-        // console.log(connections);
         //TODO: refresh the list when user modifies its connection
         getConnections(query)
         .then(function(res){

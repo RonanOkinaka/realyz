@@ -2,13 +2,17 @@ import React, { useEffect, useState } from "react";
 import { deleteMedia, getConnectionCount, getLocalUserData, getUserData, updateUserData, uploadMedia } from "../util/data";
 import ConnectIcon from "../media/addConnections.png";
 import ExplorePic from "../media/explore.png";
+import SamplePic from "../media/default-user.png";
 import { useNavigate } from "react-router-dom";
 
 //TODO: get profile picture
 const Pic = (props) => {
+    const addImageFallback = (event) => {
+        event.currentTarget.src = SamplePic;
+    };
     return (
         <div className="piccontainer">
-            <img className="pic" src={['http://localhost:8080/media/u/', props.uid, '/1'].join('')} alt="samplePic"></img>
+            <img className="pic" src={['http://localhost:8080/media/u/', props.uid, '/1'].join('')} onError={addImageFallback}></img>
         </div>
     );
 }
@@ -16,9 +20,12 @@ const Pic = (props) => {
 
 
 const ProfilePic = (props) => {
+    const addImageFallback = (event) => {
+        event.currentTarget.src = SamplePic;
+    };
     return (
         <div id="profpic" className="piccontainer">
-            <img className="pic" src={['http://localhost:8080/media/u/', props.uid, '/1'].join('')} alt="samplePic"></img>
+            <img className="pic" src={['http://localhost:8080/media/u/', props.uid, '/1'].join('')} onError={addImageFallback}></img>
         </div>
     );
 }
