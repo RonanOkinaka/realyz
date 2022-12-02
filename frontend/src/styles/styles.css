@@ -553,6 +553,12 @@ button:hover {
     border-radius: 3%;
     height: 30px;
 }
+
+.request #viewprofilebutton {
+    width: 15%;
+    position: absolute;
+    left: 55%;
+    }
 .testt {
     position: absolute;
     top: 80%;

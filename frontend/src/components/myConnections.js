@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SamplePic from "../media/sample.jpg";
 import { createConnection, deleteConnection, getConnections, getLocalUserData } from "../util/data";
 
@@ -19,6 +20,7 @@ const MyConnections = ({ vis }) => {
     //     "to": "harvey",
     //     "pending": 1,
     // }
+    const navigate = useNavigate();
     const [connections, setConnections] = useState([]);
     const [searchResult, setSearchResult] = useState([]);
 
@@ -74,7 +76,8 @@ const MyConnections = ({ vis }) => {
 
     const viewProfile = (uid) => {
         //redirect to profile mode = 1
-        Navigate('/profile', {state:{'mode': 1, 'uid': uid}});
+        console.log(uid);
+        navigate('/profile', {state:{'mode': 1, 'uid': uid}});
     }
 
     useEffect(() => {
@@ -109,7 +112,7 @@ const MyConnections = ({ vis }) => {
                 <div class="connectionGallery">
                     <Connection connectName={obj.uidTo} />
                     <button onClick={() => delConnection(query.from, obj.uidTo)}>remove</button>
-                    <button onClick={() => {() => viewProfile(uid)}}>view </button>
+                    <button onClick={() => viewProfile(obj.uidTo)}>view </button>
                 </div>
             ))}
         </div>

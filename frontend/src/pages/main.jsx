@@ -12,7 +12,7 @@ const MainPage = () => {
                 <Navbar isLanding={() => false}/>
                 <p className="mainpagetitle">Discover Connections</p>
                 <SearchBar />
-                <UserRecommendation />
+                {/* <UserRecommendation /> */}
             </div>
         </body>
     )

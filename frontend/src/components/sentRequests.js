@@ -1,36 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { deleteConnection, getConnections, getLocalUserData } from "../util/data";
+import { deleteConnection, getConnections, getLocalUserData, getUserData } from "../util/data";
 
 const SentRequest = (props) => {
-    //TODO: 
-    const Navigate = useNavigate();
-    const [refresh, setRefresh] = useState(true);
+    const navigate = useNavigate();
+    const [usrData, setUsrData] = useState({});
 
     const retract = (requester, requestee) => {
         //deleteConnection(this_user, other_user)
-        deleteConnection(requester, requestee)
-        .then(function(res){
-            console.log(res);
-            setRefresh(!refresh);
-        })
-        .catch(function(err){
-            console.log(err);
-        })
+        deleteConnection(requester, requestee);
     }
-    useEffect(() => {
 
-    }, [refresh])
+    const getName = () => {
+        let fname = usrData.fname;
+        let lname = usrData.lname;
+        let fullName = [fname, lname].join(' ');
+        return fullName;
+    }
+
     const viewProfile = (uid) => {
         //redirect to profile mode = 1
-        Navigate('/profile', {state:{'mode': 1, 'uid': uid}});
+        navigate('/profile', {state:{'mode': 1, 'uid': uid}});
     }
+
+    useEffect(() => {
+        getUserData(props.requestee)
+        .then(function(res){
+            setUsrData(res.data);
+        })
+    }, [])
 
     //TODO: refresh everytime after retract executes
     return (
         <div className="request">
-            <p>{props.requestee}</p>
-            <button onClick={() => viewProfile(props.requestee)}>View</button>
+            <p>{getName()}</p>
+            <button id="viewprofilebutton" onClick={() => viewProfile(props.requestee)}>View</button>
             <button onClick={() => retract(props.requester, props.requestee)}>retract</button>
         </div>
     );
@@ -46,7 +50,6 @@ const SentRequests = ({vis}) => {
     useEffect(() => {
         getConnections(query)
         .then(function(res){
-            console.log(res.data.connections)
             setConnections(res.data.connections);
         });
     }, [])

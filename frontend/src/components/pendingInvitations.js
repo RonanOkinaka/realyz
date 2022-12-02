@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createConnection, getConnections, getLocalUserData } from "../util/data";
+import { createConnection, getConnections, getLocalUserData, getUserData } from "../util/data";
 
 const SentRequest = (props) => {
   const Navigate = useNavigate();
+  const [usrData, setUsrData] = useState({});
   const otherUid = props.requestee;
-  
+
   const viewProfile = (uid) => {
     //redirect to profile mode = 1
     Navigate('/profile', {state:{'mode': 1, 'uid': uid}});
+  }
+
+  const getName = () => {
+    let fname = usrData.fname;
+    let lname = usrData.lname;
+    let fullName = [fname, lname].join(' ');
+    return fullName;
   }
 
   const makeConnection = (uid) => {
@@ -23,15 +31,17 @@ const SentRequest = (props) => {
   }
 
   useEffect(() => {
-    console.log("hahha");
-    console.log(otherUid);
-  })
+    getUserData(props.requestee)
+    .then(function(res){
+        setUsrData(res.data);
+    })
+  }, [])
   
   return (
       <div className="request">
-          <p>{otherUid}</p>
+          <p>{getName()}</p>
           <button onClick={() => makeConnection(otherUid)}>Accept</button>
-          <button onClick={() => viewProfile(otherUid)}>View</button>
+          <button id="viewprofilebutton" onClick={() => viewProfile(otherUid)}>View</button>
       </div>
   );
 }
