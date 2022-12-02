@@ -25,7 +25,6 @@ const MyConnections = ({ vis }) => {
     let query = {
         "from": getLocalUserData(['uid'])['uid'],
     }
-    
     // data.connections:
     // {
     //     "connections": [
@@ -108,7 +107,7 @@ const MyConnections = ({ vis }) => {
             {searchResult.map(obj => (
                 <div class="connectionGallery">
                     <Connection connectName={obj.uidTo} />
-                    <button onClick={() => {deleteConnection(query.from, obj.uidTo)}}>del</button>
+                    <button onClick={() => delConnection(query.from, obj.uidTo)}>remove</button>
                     <button onClick={() => {() => viewProfile(uid)}}>view </button>
                 </div>
             ))}
