@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../components/navbar";
 import Background from "../media/portalBackground.jpg"
 import UserRecommendation from "../components/userRecommendation";
 import SearchBar from "../components/searchBar";
+import { getRandomUsers } from "../util/data";
 
 const MainPage = () => {
     return (
@@ -11,7 +12,7 @@ const MainPage = () => {
                 <Navbar isLanding={() => false}/>
                 <p className="mainpagetitle">Discover Connections</p>
                 <SearchBar />
-                {/* <UserRecommendation /> */}
+                <UserRecommendation />
             </div>
         </body>
     )

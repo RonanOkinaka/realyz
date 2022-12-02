@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { deleteMedia, getLocalUserData, getUserData, updateUserData, uploadMedia } from "../util/data";
 import ConnectIcon from "../media/addConnections.png";
 import ExplorePic from "../media/explore.png";
+import { useNavigate } from "react-router-dom";
 
 //TODO: get profile picture
 const Pic = (props) => {
@@ -44,6 +45,7 @@ const ConnectionCount = (props) => {
 
 //takes in an array iterate through each and display value.
 const UserInfoEditable = (userInfo) => {
+    const navigate = useNavigate();
     const [update, setUpdate] = useState(false);
     const [field, setFields] = useState({}); //field is an array of keys
     //get cached user data

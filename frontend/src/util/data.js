@@ -155,5 +155,11 @@ const deleteConnection = (from, to) => axios ({
     }
 });
 
-export {storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, 
+const getRandomUsers = () => axios ({
+    method: 'get',
+    baseURL: 'http://localhost:8080',
+    url: '/search/random/'
+});
+
+export {storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, getRandomUsers,
     loginUser, getUserData, updateUserData, uploadMedia, getMedia, deleteMedia, searchUser, storeQuery, clearQuery, getConnections, createConnection, deleteConnection};
