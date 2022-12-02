@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getConnections, getLocalUserData } from "../util/data";
+import { getLocalUserData, getConnections, getUserData } from "../util/data";
 
 const SentRequest = (props) => {
     const Navigate = useNavigate();
@@ -25,26 +25,29 @@ const SentRequest = (props) => {
 
 const PendingInvitations = ({vis}) => {
   const [connections, setConnections] = useState([]);
+  const names = [];
   let query = {
+      "pending" : 1,
       "to": getLocalUserData(['uid'])['uid'],
-      "pending": 1,
   }
-
   useEffect(() => {
-      getConnections(query)
-      .then(function(res){
-          console.log(res.data.connections)
-          setConnections(res.data.connections);
-      });
-  }, [])
-
-    return ((vis == 1) ? (
+  getConnections(query)
+  .then(function(res){
+      for (let i = 0; i < res.data.connections.length; i++){
+          getUserData(res.data.connections[i]['uidTo']).then(function(r2) {
+              names.push(r2.data.fname +" " + r2.data.lname);
+              setConnections(names);
+          });
+        }
+  });}, [])
+  console.log(connections);
+  return (vis==1) ?(
       <div className="pendingInvitationsContainer">
-        <p>Pending Invitations</p>
-        { connections.map(obj => (
-          <SentRequest requestee={obj.uidFrom}/>
-        ))}
+          <p>Pending Invitations (Accept or Deny)</p>
+          {connections.map(obj => (
+              <SentRequest requestee={obj} />
+          ))}
       </div>
-    ) : null);
+  ) : null;
 }
 export default PendingInvitations;
