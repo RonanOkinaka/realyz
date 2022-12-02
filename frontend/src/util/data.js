@@ -162,5 +162,11 @@ const getRandomUsers = () => axios ({
     url: '/search/random/'
 });
 
-export {storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, getRandomUsers,
+const getConnectionCount = (uid) => axios ({
+    method: 'get',
+    baseURL: 'http://localhost:8080',
+    url: '/connections/' + uid + '/count',
+});
+
+export {storeBearerToken, storeUserData, getLocalUserData, clearUserData, registerUser, getRandomUsers, getConnectionCount,
     loginUser, getUserData, updateUserData, uploadMedia, getMedia, deleteMedia, searchUser, storeQuery, clearQuery, getConnections, createConnection, deleteConnection};

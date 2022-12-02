@@ -25,6 +25,7 @@ const Profile = () => {
     const [usrData, setUsrData] = useState({});
     //first, search with existing content
     useEffect(() => {
+        //FIXME: instead of using location, use get :
         if (location.state){
             console.log(location.state.uid);
             console.log(location.state.mode);

@@ -13,13 +13,8 @@ const Parent = () => {
     const fetchData = (param) => {
         getUserData(param)
             .then((response) => {
-                console.log(response);
                 const fname = response['data']['fname'];
-                console.log(fname);
                 setResponseData(fname);
-            })
-            .catch((error) => {
-                console.log("error");
             })
     }
     

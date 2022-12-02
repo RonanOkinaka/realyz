@@ -18,8 +18,7 @@ const UserSnapShot = (props) => {
     
     const viewProfile = (uid) => {
         //redirect to profile mode = 1
-        navigate('/profile', {state:{'mode': 1, 'uid': uid}});
-        // navigate(`/u/${uid}}`);
+        navigate(`/profile/${uid}`);
     }
 
     return (
