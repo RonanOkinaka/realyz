@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { deleteConnection, getConnections, getLocalUserData, getUserData } from "../util/data";
-
 const SentRequest = (props) => {
+    
     const navigate = useNavigate();
     const [usrData, setUsrData] = useState({});
 
     const retract = (requester, requestee) => {
         //deleteConnection(this_user, other_user)
-        deleteConnection(requester, requestee);
+        deleteConnection(requester, requestee); 
     }
 
     const getName = () => {

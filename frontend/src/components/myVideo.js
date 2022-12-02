@@ -56,9 +56,9 @@ const ButtonEdit = () => {
         }
     }
 
-    useEffect(() => {
+    /*useEffect(() => {
         
-    }, [])
+    }, [])*/
 
     return (
         <div className="buttonedit">
@@ -78,6 +78,7 @@ const ButtonDelete = () => {
         .catch(function(error){
             console.log(error);
         })
+        window.location.reload();
     }
     return (
         <button className="buttondelete" onClick={handleOnClick}>delete</button>

@@ -156,7 +156,6 @@ const OtherProfile = (props) => {
         <div className="otherprofile">
             <Pic uid={props.info['uid']}/>
             <FullName info={props.info}/>
-            <ConnectionCount uid={props.info['uid']}/>
             <UserInfoUnEditable info={props.info}/>
         </div>
     );
