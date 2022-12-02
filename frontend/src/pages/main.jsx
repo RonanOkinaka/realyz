@@ -4,7 +4,7 @@ import Background from "../media/portalBackground.jpg"
 import UserRecommendation from "../components/userRecommendation";
 import SearchBar from "../components/searchBar";
 
-const MainPage = (props) => {
+const MainPage = () => {
     return (
         <body className="mainpage">
             <div className="backgroundcontainer" style={{ backgroundImage: `url(${Background})` }}>

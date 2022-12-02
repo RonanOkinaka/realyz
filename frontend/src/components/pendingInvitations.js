@@ -1,26 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getLocalUserData, getConnections, getUserData } from "../util/data";
+import { createConnection, getConnections, getLocalUserData, getUserData } from "../util/data";
 
 const SentRequest = (props) => {
-    const Navigate = useNavigate();
-    const otherUid = props.requestee;
+  const Navigate = useNavigate();
+  const otherUid = props.requestee;
+  
+  const viewProfile = (uid) => {
+    //redirect to profile mode = 1
+    Navigate('/profile', {state:{'mode': 1, 'uid': uid}});
+  }
 
-    const viewProfile = (uid) => {
-      //redirect to profile mode = 1
-      Navigate('/profile', {state:{'mode': 1, 'uid': uid}});
-    }
-
-    useEffect(() => {
-      console.log("hahha");
-      console.log(otherUid);
+  const makeConnection = (uid) => {
+    //createconnection(usrname_you_wanna_connect)
+    createConnection(uid)
+    .then(function(res){
+        console.log(res);
     })
-    return (
-        <div className="request">
-            <p>{otherUid}</p>
-            <button onClick={() => viewProfile(otherUid)}>View Profile</button>
-        </div>
-    );
+    .catch(function(err){
+        console.log(err);
+    });
+  }
+
+  useEffect(() => {
+    console.log("hahha");
+    console.log(otherUid);
+  })
+  
+  return (
+      <div className="request">
+          <p>{otherUid}</p>
+          <button onClick={() => makeConnection(otherUid)}>Accept</button>
+          <button onClick={() => viewProfile(otherUid)}>View</button>
+      </div>
+  );
 }
 
 const PendingInvitations = ({vis}) => {
