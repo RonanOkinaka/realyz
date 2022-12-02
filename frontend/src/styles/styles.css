@@ -421,6 +421,11 @@ button:hover {
     /* background-color: green; */
 }
 
+#QRCode {
+    position: absolute;
+    top: 85%;
+    left: 2.5%;
+}
 .connectionGallery {
     display: grid;
     grid-gap: 10px;
