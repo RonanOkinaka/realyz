@@ -84,7 +84,6 @@ const MyConnections = ({ vis }) => {
         getConnections(query)
         .then(function(res){
             setConnections(res.data.connections);
-            setSearchResult(res.data.connections);
         });
     })
 

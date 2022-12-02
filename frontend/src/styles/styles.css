@@ -435,9 +435,9 @@ button:hover {
 }
 
 #QRCode {
-    position: absolute;
-    top: 72%;
-    left: 2.5%;
+    position: fixed;
+    bottom: 2%;
+    left: 1.5%;
 }
 .connectionGallery {
     display: grid;
@@ -627,7 +627,7 @@ button:hover {
     display:flex;
     position: absolute;
     top: 10%;
-    left: 18%;
+    left: 22.9%;
 }
 
 .pfpbuttons .buttondelete {
