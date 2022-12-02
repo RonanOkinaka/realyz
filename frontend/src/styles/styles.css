@@ -229,6 +229,7 @@ button:hover {
     top: 20%;
     left: 50%;
     transform: translateX(-50%);
+}
 
 .mainpage .backgroundcontainer,
 .profilepage .backgroundcontainer {
@@ -241,7 +242,6 @@ button:hover {
     bottom: 0;
     min-width: 100%;
     min-height: 100%;
-
 }
 
 .mainpage .mainpagetitle {
