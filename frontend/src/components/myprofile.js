@@ -130,7 +130,7 @@ const UserInfoUnEditable = (props) => {
                 <React.Fragment>
                     <span className="profiledivname">{name}</span>
                     <div className="profilediv">
-                        {props.info[name]}
+                        <p>{props.info[name]}</p>
                     </div>
                 </React.Fragment>
             ))}
