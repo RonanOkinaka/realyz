@@ -98,6 +98,7 @@ const MyConnections = ({ vis }) => {
     //TODO: handle CSS for each
 
     //TODO: add view profile function 
+
     return ((vis == 1) ? (
         <div className="myprofile">
             <p className="subheading">My Connections</p>
@@ -108,7 +109,7 @@ const MyConnections = ({ vis }) => {
             {searchResult.map(obj => (
                 <div class="connectionGallery">
                     <Connection connectName={obj.uidTo} />
-                    <button onClick={() => {deleteConnection(query.from, obj.uidTo)}}>del</button>
+                    <button onClick={() => {delConnection(query.from, obj.uidTo)}}>del</button>
                     <button onClick={() => {() => viewProfile(uid)}}>view </button>
                 </div>
             ))}

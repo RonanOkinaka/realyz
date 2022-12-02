@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getLocalUserData, getUserData, updateUserData } from "../util/data";
+import { deleteMedia, getLocalUserData, getUserData, updateUserData, uploadMedia } from "../util/data";
 import ConnectIcon from "../media/addConnections.png";
 import ExplorePic from "../media/explore.png";
 
@@ -137,13 +137,71 @@ const OtherProfile = (props) => {
     );
 }
 
+const ButtonDelete = () => {
+    const uid = getLocalUserData(['uid'])['uid'];
+    const handleOnClick = event => {
+        deleteMedia(1, uid)
+        .catch(function(error){
+            console.log(error);
+        })
+    }
+    return (
+        <button className="buttondelete" onClick={handleOnClick}>delete</button>
+    );
+}
+
 const MyProfile = ({vis}) => {
+    const [pic, setPic] = useState(null);
+    const [err, setErr]= useState(null);
+    const fileSuffixPattern = /(\.)(?!.*\.).*/;
+    const uid = getLocalUserData(['uid'])['uid'];
+
+    const handleInputChange = event => {
+        //save local path to state
+        setPic(event.target.files[0]);
+    }
+
+    const handleOnClick = event => {
+        //upload the file at the given path to server
+        const fileSuffix = pic.name.match(fileSuffixPattern)[0];
+        const formData = new FormData();
+        formData.append(
+            "file",
+            pic,
+            pic.name
+        );
+        //catch edge cases:
+        if (fileSuffix !== ".jpeg" && fileSuffix !== ".png") {
+            setErr("file type not supported.");
+        }
+        else {
+            setErr(null);
+            uploadMedia(formData, 1, uid)
+                .then (function(response){
+                    console.log(response);
+                })
+                .catch(function(error){
+                    console.log(error);
+                });
+        }
+    }
     return ((vis==0) ? (
-        <div className="myprofile" id="profile">
-            <Pic />
-            <p className="subheading">My Profile</p>
-            <UserInfoEditable />
-        </div>
+        <>
+            <div className="myprofile" id="profile">
+                <Pic />
+                <p className="subheading">My Profile</p>
+                <UserInfoEditable />
+            </div>
+            <div className="testt">
+                <input type="file" onChange={handleInputChange}></input>
+                <button className="buttonedit" onClick={handleOnClick}>edit</button>
+                { err &&
+                    <p>{err}</p>
+                }
+                <ButtonDelete />
+            </div>
+        </>
+        
     ) : null ) ;
 }
 

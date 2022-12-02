@@ -6,6 +6,8 @@ import NoPage from './pages/noPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './pages/main';
 import SearchResultPage from './pages/searchResult';
+import testPage from './pages/test';
+
 export default function App() {
     //TODO: separate profile into myprofile (mode = 0) and otherprofile/:uid (mode = 1,)
     //TODO: search up router nesting
@@ -18,6 +20,7 @@ export default function App() {
                     <Route path="u" element= {<Profile />}/>
                     <Route path="main" element= {<MainPage />} />
                     <Route path="search" element= {<SearchResultPage />} />
+                    <Route path="u/:uid" element= {<testPage />} />
                     <Route path="*" element={<NoPage />} />
                 </Route>
             </Routes>
