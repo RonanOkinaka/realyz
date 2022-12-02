@@ -3,6 +3,7 @@ import Layout from './pages/Layout';
 import LandingPage from './pages/landing';
 import Profile from './pages/profile';
 import NoPage from './pages/noPage';
+import MainPage from './pages/main';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SearchResultPage from './pages/searchResult';
 import testPage from './pages/test';
