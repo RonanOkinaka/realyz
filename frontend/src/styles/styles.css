@@ -557,3 +557,27 @@ button:hover {
     position: absolute;
     top: 80%;
 }
+#btn_upload_data {
+    position:absolute;
+    background-color: black;
+    width: 75px;
+    height: 75px;
+    opacity:0;
+    border-radius:50%;
+    z-index: 1;
+    top:10px;
+}
+#btn_upload_data:hover{
+    opacity:70%;
+}
+#btn_upload_data input[type="file"] {
+    opacity: 0;
+    font-size:60px;
+    width:79px;
+    
+}
+#profpic .pic {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+}

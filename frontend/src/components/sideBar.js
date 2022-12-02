@@ -1,7 +1,9 @@
 import React from "react";
 import {Pic, ConnectionsIcon, Explore} from "./myprofile"
 import { useNavigate } from "react-router-dom";
+import {getLocalUserData} from "../util/data";
 const SidebarItem = (props) => {
+    const uid = getLocalUserData(['uid'])['uid'];
     const navigate = useNavigate();
     const showConnections = () => {
         if(props.name=="Manage Connections"){
@@ -28,7 +30,7 @@ const SidebarItem = (props) => {
     else if (props.name == "My account info"){
         return (
             <div className="sidebaritem" onClick={showConnections}>
-                <Pic />
+                <Pic uid={uid}/>
                 <span>{props.name}</span>
             </div>
         )  
